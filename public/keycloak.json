@@ -1,0 +1,8 @@
+{
+  "realm": "ngel",
+  "auth-server-url": "http://gfsu2.hyderabad.cdac.in:8080/",
+  "ssl-required": "external",
+  "resource": "reactclient",
+  "public-client": true,
+  "confidential-port": 0
+}
