@@ -33,7 +33,7 @@ const languages = [
     //     name: 'Telugu',
     //     country_code: 'in'
     // },
-      // {
+    // {
     //     code: 'pu',
     //     name: 'Punjabi',
     //     country_code: 'in'
@@ -174,6 +174,7 @@ function StickyMenu() {
                                             <RenderOnAnonymous>
                                                 <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/library-content"}>All Books</Link></li>
                                             </RenderOnAnonymous> */}
+
                                         </ul>
                                     </li>
                                     <li className="nav-item dropdown">
@@ -183,6 +184,19 @@ function StickyMenu() {
                                         </ul> */}
                                     </li>
                                     <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/contact"}>{t('contact')}</Link></li>
+                                    <RenderOnAuthenticated>
+                                        <li className="nav-item dropdown">
+                                            <Link className="nav-link dropdown-toggle" data-toggle="dropdown">{t('dashboard')} <i className="las la-angle-down"></i></Link>
+                                            <ul className="dropdown list-unstyled">
+                                                {UserService.hasRole(['instructor']) ?
+                                                    <><li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/instructor-dashboard"}>{t('instructor_Dashborad')}</Link></li>
+                                                        <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/dashboard"}>{t('learner_Dashboard')}</Link></li>
+                                                    </>
+                                                    : UserService.hasRole(['admin']) ? <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/AdminDashBoard"}>{t('admin_Dashborad')}</Link></li>
+                                                        : <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/dashboard"}>{t('learner_Dashboard')}</Link></li>}
+                                            </ul>
+                                        </li>
+                                    </RenderOnAuthenticated>
                                     {/* <li className="nav-item"><Link className="nav-link" to={process.env.PUBLIC_URL + "/faq"}>{t('faq')}</Link></li> */}
 
                                     {/* <li className="nav-item dropdown">
