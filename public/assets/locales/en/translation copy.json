@@ -7,7 +7,7 @@
   "info" : "Info",
   "just_now" : "",
   "cdac_address" : "National Forensic Sciences University",
-  "cdac_add" : "Gandhinagar-382007 Gujarat-India.",
+  "cdac_add" : "Sector - 9, Gandhinagar-382007, Gujarat-India.",
   "have_questions" : "Have Questions",
   "log_in" : "Login",
   "log_out" : "Log out",
@@ -41,7 +41,7 @@
 
   "iconBox.js file " : "iconBox.js file",
   "popular_courses" : "Top Rated Courses",
-  "popular_courses_desc" : " PPA offers online courses for Police training",
+  "popular_courses_desc" : "NFSU offers online courses for training",
   "modern_library" : "e-Library",
   "modern_library_desc" : "The Modern Library of the World's Best Books",
   "qualified_teacher" : "Qualified Teacher",
@@ -49,9 +49,9 @@
 
 
   "Footer.js file ": "Footer.js file",
-  "cdac_full_address" : "NATIONAL FORENSIC SCIENCES UNIVERSITY Gandhinagar-382007 Gujarat-India. ",
+  "cdac_full_address" : "NATIONAL FORENSIC SCIENCES UNIVERSITY Sector - 9, Gandhinagar-382007, Gujarat-India. ",
   "meghsikshak" : "National Forensic Sciences University",
-  "cdac_official_site" : "PPA official site",
+  "cdac_official_site" : "NFSU official site",
   "chariot" : "National Forensic Sciences University",
   "privacy_policy" : "Privacy Policy",
   "copyright" : "Copyright",
@@ -258,7 +258,7 @@
   "contact_info" : "Contact Info",
   "our_location" : "Our Location",
   "phone_number" : "Phone Number",
-  "info@nfsu.ac.in" : "info@nfsu.ac.in",
+  "online@nfsu.ac.in" : "online@nfsu.ac.in",
   "get_in_touch" : "Get In Touch",
   "full_name" : "Full Name",
   "subject" : "Subject",

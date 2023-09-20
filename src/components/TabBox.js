@@ -91,6 +91,9 @@ function TabBox() {
                                             <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc1')}</li>
                                             <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc2')}</li>
                                             <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc3')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc4')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc5')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i>{t('our_mission_desc6')}</li>
                                             {/* <li><i className="fa fa-check"></i>{t('our_mission_desc4')}</li> */}
                                         </ul>
                                     </Tab.Pane>
@@ -99,6 +102,8 @@ function TabBox() {
                                         <p className="tab-desc" style={{textAlign:"justify"}}>{t('our_vision_desc1')}</p>
                                         <p className="tab-desc" style={{textAlign:"justify"}}>{t('our_vision_desc2')}</p>
                                         <p className="tab-desc" style={{textAlign:"justify"}}>{t('our_vision_desc3')}</p>
+                                        <p className="tab-desc" style={{textAlign:"justify"}}>{t('our_vision_desc5')}</p>
+                                        {/* <p className="tab-desc" style={{textAlign:"justify"}}>{t('our_vision_desc6')}</p> */}
                                         {/* <ul className="list-unstyled check-list">
                                                 <li><i className="fa fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum amet quo eius saepe et quis necessitatibus hic natus facere.</li>
                                                 <li><i className="fa fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum amet quo eius saepe et quis necessitatibus hic natus facere.</li>
@@ -121,10 +126,14 @@ function TabBox() {
                                         <ul className="list-unstyled check-list">
                                             <li style={{textAlign:"justify"}}><i className="fa fa-check" ></i><b>{t('our_research_title_1')}</b> {t('our_research_title_1_desc1')}</li>
                                             <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_2')}</b> {t('our_research_title_2_desc2')}</li>
-                                            {/* <li><i className="fa fa-check"></i><b>{t('our_research_title_3')}</b> {t('our_research_title_3_desc3')}</li>
-                                            <li><i className="fa fa-check"></i><b>{t('our_research_title_4')}</b> {t('our_research_title_4_desc4')}</li>
-                                            <li><i className="fa fa-check"></i><b>{t('our_research_title_5')}</b> {t('our_research_title_5_desc5')}</li>
-                                            <li><i className="fa fa-check"></i><b>{t('our_research_title_6')}</b> {t('our_research_title_6_desc6')}</li> */}
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_3')}</b> {t('our_research_title_3_desc3')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_4')}</b> {t('our_research_title_4_desc4')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_5')}</b> {t('our_research_title_5_desc5')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_6')}</b> {t('our_research_title_6_desc6')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_7')}</b> {t('our_research_title_7_desc7')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_8')}</b> {t('our_research_title_8_desc8')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_9')}</b> {t('our_research_title_9_desc9')}</li>
+                                            <li style={{textAlign:"justify"}}><i className="fa fa-check"></i><b>{t('our_research_title_10')}</b> {t('our_research_title_10_desc10')}</li>
                                         </ul>
                                     </Tab.Pane>
                                 </Tab.Content>

@@ -460,7 +460,7 @@ function Sidebar(props) {
                         <ul className="list-unstyled">
                             <li><i className="las la-map-marker" style={{ marginBottom: '35px' }}></i><p>{t('cdac_full_address')}</p></li>
                             <li><i className="las la-phone"></i>+91-01826-222061, 222062</li>
-                            <li><i className="las la-envelope"></i>info@nfsu.ac.in</li>
+                            <li><i className="las la-envelope"></i>online@nfsu.ac.in</li>
                         </ul>
                     </div>
                     <div className="side-social">

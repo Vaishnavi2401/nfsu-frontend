@@ -315,7 +315,7 @@ function Header() {
                                     </div>
                                     <div className="box-content">
                                         <p>{t('call_us_now')}</p>
-                                        <span><p href="tel:(079) 239 77103" style={{ color: "#182B49", fontSize: '17px' }}>{t('call_us_phone')}</p></span>
+                                        <span><p href="tel:+91-79-23977171" style={{ color: "#182B49", fontSize: '17px' }}>{t('call_us_phone')}</p></span>
                                     </div>
                                 </div>
                                 <div className="emcontact-box d-flex">
@@ -324,7 +324,7 @@ function Header() {
                                     </div>
                                     <div className="box-content">
                                         <p>{t('enquiry_us')}</p>
-                                        <span><p href="mailto: info@nfsu.ac.in" style={{ color: "#182B49", fontSize: '17px' }}>{t('enquiry_us_id')}</p></span>
+                                        <span><p href="mailto: online@nfsu.ac.in" style={{ color: "#182B49", fontSize: '17px' }}>{t('enquiry_us_id')}</p></span>
                                     </div>
                                 </div>
 
