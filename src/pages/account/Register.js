@@ -48,11 +48,11 @@ const languages = [
   //     name: 'Telugu',
   //     country_code: 'in'
   // },
-  {
-    code: "pu",
-    name: "Punjabi",
-    country_code: "in",
-  },
+  // {
+  //   code: "pu",
+  //   name: "Punjabi",
+  //   country_code: "in",
+  // },
   // {
   //     code : 'mr',
   //     name : 'Marathi',
@@ -759,6 +759,26 @@ function Register() {
       status = false;
     }
 
+    if (genderValue === "") {
+      setError(gender, "Select a Gender");
+      status = false;
+    } else if (genderValue === "Select Gender") {
+      setError(gender, "Select a Gender");
+      status = false;
+    } else {
+      setSuccess(gender);
+    }
+
+    if (certificateValue === "") {
+      setError(certificate, "Please enter Degree/Diploma Certificate");
+      status = false;
+    } else if (certificateValue.match(/^[A-Za-z0-9()& \s]{2,200}$/)) {
+      setSuccess(certificate);
+    } else {
+      setError(certificate, "Enter valid Degree/Diploma Certificate");
+      status = false;
+    }
+
 
 
     if (status) {
@@ -789,25 +809,7 @@ function Register() {
         formData1.append("file1", profilePhoto[0]);
       }
 
-      if (genderValue === "") {
-        setError(gender, "Select a Gender");
-        status = false;
-      } else if (genderValue === "Select Gender") {
-        setError(gender, "Select a Gender");
-        status = false;
-      } else {
-        setSuccess(gender);
-      }
-
-      if (certificateValue === "") {
-        setError(certificate, "Please enter Degree/Diploma Certificate");
-        status = false;
-      } else if (certificateValue.match(/^[A-Za-z0-9()& \s]{2,200}$/)) {
-        setSuccess(certificate);
-      } else {
-        setError(certificate, "Enter valid Degree/Diploma Certificate");
-        status = false;
-      }
+      
 
      
       formData1.append("title", titleValue);

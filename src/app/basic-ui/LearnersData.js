@@ -34,11 +34,11 @@ const languages = [
   //     name: 'Telugu',
   //     country_code: 'in'
   // },
-  {
-    code: "pu",
-    name: "Punjabi",
-    country_code: "in",
-  },
+  // {
+  //   code: "pu",
+  //   name: "Punjabi",
+  //   country_code: "in",
+  // },
   // {
   //     code : 'mr',
   //     name : 'Marathi',

@@ -91,7 +91,6 @@ import InstructorsData from './app/basic-ui/InstructorsData';
 import UserService from './services/UserService';
 import ContactWebsiteMessage from './app/basic-ui/ContactWebsiteMessage';
 import { Modal } from 'react-bootstrap';
-import { IdleTimerProvider } from 'react-idle-timer';
 import SessionExpire from './pages/404/SessionExpire';
 import Payment from './pages/courses/payment/Payment';
 import EventHandling from './app/basic-ui/EventHandling';
