@@ -42,7 +42,7 @@ import md5 from 'md5';
 import moment from 'moment';
 import ViewPdf from "../../../pages/instructor/ViewPdf.js";
 import CryptoJS from "crypto-js";
-import {DMS_URL, COURSE_URL, USER_API, Frontend_UI, Assessment_Authoring, DMS} from "./../../../services/service";
+import { DMS_URL, COURSE_URL, USER_API, Frontend_UI, Assessment_Authoring, DMS } from "./../../../services/service";
 
 const customStyles = {
     title: {
@@ -87,7 +87,7 @@ const languages = [
     //     name: 'Telugu',
     //     country_code: 'in'
     // },
-      // {
+    // {
     //     code: 'pu',
     //     name: 'Punjabi',
     //     country_code: 'in'
@@ -110,10 +110,32 @@ function InstCourseDetails(props) {
     //////console.log(um_api);
 
     const [ratingCount, setRatingCount] = useState(0);
+    const [getAvgRating, setAvgRating] = useState([]);
     let tenantId = 1;
     // var courseID = props.match.params.cId;
 
     let UserId = UserService.getUserid();
+
+
+    useEffect(() => {
+        if (isDecodeValid === "VALID") {
+
+            let rating = [{
+                itemId: courseId,
+                tenantId: 1
+            }]
+            ////console.log(rating);
+
+            service.averageRating(rating)
+                .then(res => {
+                    setAvgRating(res.data);
+                    ////console.log(res.data);
+                }).catch(error => {
+                    //console(('service_maintainance_down_alert'))
+                });
+        }
+    }, [])
+
 
     // for different languages
     const currentLanguageCode = cookies.get('i18next') || 'en'
@@ -1182,7 +1204,7 @@ function InstCourseDetails(props) {
             })
     }
 
-console.log("{DMS_URL} "+ DMS_URL + " mmmm  " + {DMS_URL});
+    console.log("{DMS_URL} " + DMS_URL + " mmmm  " + { DMS_URL });
 
     const videoJsOptions = {
         autoplay: false,
@@ -1192,7 +1214,7 @@ console.log("{DMS_URL} "+ DMS_URL + " mmmm  " + {DMS_URL});
         controls: true,
         sources: [
             {
-                src: DMS_URL +`/${getUrl}`,
+                src: DMS_URL + `/${getUrl}`,
                 type: 'video/mp4',
             },
         ]
@@ -3115,7 +3137,7 @@ console.log("{DMS_URL} "+ DMS_URL + " mmmm  " + {DMS_URL});
     }
 
 
-    
+
 
     return (
         <div className="main-wrapper course-details-page" onLoad={() => scrollWin()}>
@@ -3153,13 +3175,84 @@ console.log("{DMS_URL} "+ DMS_URL + " mmmm  " + {DMS_URL});
                                         <div className="rating">
                                             <h6>Rating</h6>
                                             <ul className="list-unstyled list-inline">
-                                                <li className="list-inline-item"><i className="las la-star"></i></li>
-                                                <li className="list-inline-item"><i className="las la-star"></i></li>
-                                                <li className="list-inline-item"><i className="las la-star"></i></li>
-                                                <li className="list-inline-item"><i className="las la-star"></i></li>
-                                                <li className="list-inline-item"><i className="las la-star-half-alt"></i>
-                                                </li>
-                                                <li className="list-inline-item">(4.5)</li>
+                                                {
+                                                    getAvgRating.map((d) => {
+                                                        return (
+                                                            <>
+                                                                {
+                                                                    tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 1 ?
+                                                                        <>
+                                                                            <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                        </>
+                                                                        : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 1.1 || d.avgScore == 1.2 || d.avgScore == 1.3 || d.avgScore == 1.4 || d.avgScore == 1.5 || d.avgScore == 1.6 || d.avgScore == 1.7 || d.avgScore == 1.8 || d.avgScore == 1.9 ?
+                                                                            <>
+                                                                                <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                <li className="list-inline-item"><i className="las la-star-half-alt"></i></li>
+                                                                            </>
+
+                                                                            : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 2 ?
+                                                                                <>
+                                                                                    <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                </>
+
+                                                                                : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 2.1 || d.avgScore == 2.2 || d.avgScore == 2.3 || d.avgScore == 2.4 || d.avgScore == 2.5 || d.avgScore == 2.6 || d.avgScore == 2.7 || d.avgScore == 2.8 || d.avgScore == 2.9 ?
+                                                                                    <>
+                                                                                        <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                        <li className="list-inline-item"><i className="las la-star-half-alt"></i></li>
+                                                                                    </>
+                                                                                    : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 3 ?
+                                                                                        <>
+                                                                                            <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                        </>
+                                                                                        : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 3.1 || d.avgScore == 3.2 || d.avgScore == 3.3 || d.avgScore == 3.4 || d.avgScore == 3.5 || d.avgScore == 3.6 || d.avgScore == 3.7 || d.avgScore == 3.8 || d.avgScore == 3.9 ?
+                                                                                            <>
+                                                                                                <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                                <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                <li className="list-inline-item"><i className="las la-star-half-alt"></i></li>
+                                                                                            </>
+                                                                                            : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 4 ?
+                                                                                                <>
+                                                                                                    <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                    <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                </>
+                                                                                                : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 4.1 || d.avgScore == 4.2 || d.avgScore == 4.3 || d.avgScore == 4.4 || d.avgScore == 4.5 || d.avgScore == 4.6 || d.avgScore == 4.7 || d.avgScore == 4.8 || d.avgScore == 4.9 ?
+                                                                                                    <>
+                                                                                                        <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                        <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                        <li className="list-inline-item"><i className="las la-star-half-alt"></i></li>
+                                                                                                    </>
+                                                                                                    : tenantId == d.tenantId && courseId == d.itemId ? d.avgScore == 5 ?
+                                                                                                        <>
+                                                                                                            <li className="list-inline-item" style={{ color: "#be5a0e", fontWeight: "bold" }}>({tenantId == d.tenantId && courseId == d.itemId ? d.avgScore : null})&nbsp;</li>
+                                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                            <li className="list-inline-item"><i className="las la-star"></i></li>
+                                                                                                        </>
+                                                                                                        : null : null : null : null : null : null : null : null : null : null
+                                                                }
+                                                            </>
+                                                        )
+                                                    })
+                                                }
                                             </ul>
                                         </div>
                                         <div className="price">
@@ -4460,10 +4553,10 @@ console.log("{DMS_URL} "+ DMS_URL + " mmmm  " + {DMS_URL});
                                 </div>
                             )
                                 : getContentType === "mp4" ? <div> <Videojs {...videoJsOptions} /></div>
-                                    : getContentType === "docx" ? <iframe width="100%" height="100%" src={DMS_URL+`/${getUrl}`} ></iframe>
-                                        : getContentType === "html" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`}></iframe>
-                                            : getContentType === "zip" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`} ></iframe>
-                                                : getContentType === "scorm" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`} ></iframe>
+                                    : getContentType === "docx" ? <iframe width="100%" height="100%" src={DMS_URL + `/${getUrl}`} ></iframe>
+                                        : getContentType === "html" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`}></iframe>
+                                            : getContentType === "zip" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`} ></iframe>
+                                                : getContentType === "scorm" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`} ></iframe>
                                                     : getContentType === "youtube" ? <ReactPlayer url={getYouTubeUrl} width="100%" height="800px" controls="true"
                                                         config={{
                                                             youtube: {

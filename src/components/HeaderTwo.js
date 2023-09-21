@@ -82,8 +82,8 @@ function HeaderTwo() {
                         <Col lg="7" md="9">
                             <div className="bar-left">
                                 <ul className="list-unstyled list-inline">
-                                    <li className="list-inline-item"><i className="las la-phone"></i><a href="tel:(079) 239 77103" style={{ fontSize: "14px", color: "#666666" }} >{t("call_us_phone")}</a></li>
-                                    <li className="list-inline-item"><i className="las la-envelope"></i><a href="mailto: info@nfsu.ac.in" style={{ fontSize: "14px", color: "#666666" }}>{t("enquiry_us_id")}</a></li>
+                                    <li className="list-inline-item"><i className="las la-phone"></i><a href="tel:+91-79-23977171" style={{ fontSize: "14px", color: "#666666" }} >{t("call_us_phone")}</a></li>
+                                    <li className="list-inline-item"><i className="las la-envelope"></i><a href="mailto: online@nfsu.ac.in" style={{ fontSize: "14px", color: "#666666" }}>{t("enquiry_us_id")}</a></li>
                                     {/* <li className="list-inline-item"><i className="las la-map-marker"></i>{t('cdac_add')}</li> */}
                                 </ul>
                             </div>

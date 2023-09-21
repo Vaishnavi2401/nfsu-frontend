@@ -84,8 +84,8 @@ function AboutUs() {
                                 <img src={DSC_5578} className="main-img" alt="" />
                                 <img src={process.env.PUBLIC_URL + "/assets/images/pattern.png"} className="pattern-img" alt="" />
                                 <div className="video-player" style={{ backgroundImage: `url(${DSC_5595})` }}>
-                                    <ModalVideo channel='youtube' isOpen={getAboutState.isOpen} videoId='ojNw1sCs5v4' onClose={() => setAboutState({ isOpen: false })} />
-                                    <button onClick={openModal} className="play-button"><i className="las la-play"></i></button>
+                                    {/* <ModalVideo channel='youtube' isOpen={getAboutState.isOpen} videoId='ojNw1sCs5v4' onClose={() => setAboutState({ isOpen: false })} />
+                                    <button onClick={openModal} className="play-button"><i className="las la-play"></i></button> */}
                                 </div>
                             </div>
                         </Col>
