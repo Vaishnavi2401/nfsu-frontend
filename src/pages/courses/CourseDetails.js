@@ -852,6 +852,8 @@ function CourseDetails(props) {
 
     const [getRate, setRate] = useState(state);
 
+    console.log("getRate -----------> " , getRate);
+
     // useEffect(() => {
     //     const form = document.getElementById("form6");
     //     const desc = document.getElementById("desc6");
@@ -891,7 +893,7 @@ function CourseDetails(props) {
     const saverating = () => {
         if (validate()) {
             setLoading(true);
-            let review = { rating: getRate.rating, reviewText: getRate.reviewText, learnerId: getRate.learnerId, itemId: getRate.itemId, reviewStatus: getRate.reviewStatus, reviewType: getRate.reviewType, tenantId: getRate.tenantId, reviewId: 0 };
+            let review = { rating: getRate.rating, reviewText: getRate.reviewText, learnerId: getRate.learnerId, itemId: courseId, reviewStatus: getRate.reviewStatus, reviewType: getRate.reviewType, tenantId: getRate.tenantId, reviewId: 0 };
             service.createrating(review).then(async response => {
                 setLoading(false);
                 await swal(t('review_submited_succesfully'), t('review_submited_succesfully_alert'), "success");

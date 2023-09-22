@@ -1,5 +1,5 @@
 import axios from "axios";
-import {DMS_URL, COURSE_URL} from "./service";
+import { DMS_URL, COURSE_URL, COURSE_CLUG, COURSE_CLONE } from "./service";
 
 //DMS_URL is document management service
 

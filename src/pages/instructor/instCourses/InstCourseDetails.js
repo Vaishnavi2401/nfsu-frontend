@@ -21,7 +21,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './styles/tree.css';
 import Timer from 'react-compound-timer';
-import service from '../../../services/service.js';
+import service, { CREATE_QUIZ_URL, DMS } from '../../../services/service.js';
 import UserService from '../../../services/UserService.js';
 import { UncontrolledCollapse } from "reactstrap";
 import '../styles.css';
@@ -42,7 +42,7 @@ import md5 from 'md5';
 import moment from 'moment';
 import ViewPdf from "../../../pages/instructor/ViewPdf.js";
 import CryptoJS from "crypto-js";
-import { DMS_URL, COURSE_URL, USER_API, Frontend_UI, Assessment_Authoring, DMS } from "./../../../services/service";
+import { DMS_URL, COURSE_URL, USER_API, Frontend_UI, Assessment_Authoring } from "./../../../services/service";
 
 const customStyles = {
     title: {
@@ -227,6 +227,8 @@ function InstCourseDetails(props) {
     const [getYouTubeUrl, setYouTubeUrl] = useState();
     const [completionType, setCompletionType] = useState('None');
     const [restriction, setRestriction] = useState(' ');
+    const [getStreamingUrl, setStreamingUrl] = useState();
+
 
 
     const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
@@ -680,14 +682,16 @@ function InstCourseDetails(props) {
         let menuData = [];
         instructorService.getCourseById(courseId)
             .then(res => {
-                //apiData.push([JSON.parse(res.data.courseStructureJson)]);
-                menuData = [JSON.parse(res.data.courseStructureJson)];
-                ////console.log(res.data.courseStructureJson);
-                let menuItems = menuData.map((item, i) => {
-                    let menuItem = returnMenuItem(item, i);
-                    return menuItem;
-                });
-                setItemsCourse(menuItems);
+                if(res.data.courseStructureJson != undefined){
+                    //apiData.push([JSON.parse(res.data.courseStructureJson)]);
+               menuData = [JSON.parse(res.data.courseStructureJson)];
+               ////console.log(res.data.courseStructureJson);
+               let menuItems = menuData.map((item, i) => {
+                   let menuItem = returnMenuItem(item, i);
+                   return menuItem;
+               });
+               setItemsCourse(menuItems);
+               }
             })
 
         const returnMenuItem = (item, i) => {
@@ -731,7 +735,10 @@ function InstCourseDetails(props) {
                                 item.nodetype == "png" || item.nodetype == "jpg" ? "fas fa-image fa-lg" : item.nodetype == "zip" ? "fas fa-file-archive fa-lg"
                                     : item.nodetype == "scorm" ? "fas fa-file-archive fa-lg" : item.nodetype == "html" ? "fab fa-html5 fa-lg" : item.nodetype == "youtube" ? "fab fa-youtube fa-lg"
                                         : item.nodetype == "mp4" ? "fas fa-video fa-lg" : item.nodetype == "folder" ? "fas fa-folder fa-lg"
-                                            : item.nodetype == "root" ? "fas fa-house-user fa-lg" : "fas fa-folder"
+                                            : item.nodetype == "root" ? "fas fa-house-user fa-lg"
+                                                : item.nodetype == "practiceQuiz" ? "fa fa-question"
+                                                    : item.nodetype == "streaming" ? "fas fa-file-video fa-lg"
+                                                        : "fas fa-folder"
                             } style={isActiveFolderId == item.id ? { fontSize: "18px", color: 'white' } : { fontSize: "18px", color: 'black' }}>
                             </i><span style={{ marginLeft: "10px" }} >{item.label} &nbsp;&nbsp;</span>
                             {item.nodetype == "root" ? <span style={{ position: 'relative', float: 'right' }} >
@@ -750,7 +757,7 @@ function InstCourseDetails(props) {
                                     <a class="hover-fx1" onClick={() => addAccessRestriction()}><i className="fas fa-lock" style={{ color: '#f0ad4e' }}></i></a>
                                 </OverlayTrigger> */}
                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('edit')}</Tooltip>}>
-                                    <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
+                                    <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate, item.nodetype)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
                                 </OverlayTrigger>
                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('remove')}</Tooltip>}>
                                     <a class="hover-fx1" onClick={() => RemoveContentOrStructure(item.id)}><i className="fas fa-trash-alt" style={{ color: '#d9534f' }}></i></a>
@@ -758,9 +765,9 @@ function InstCourseDetails(props) {
                             </span> : <span style={{ position: 'relative', float: 'right' }}>
 
 
-                                <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('view_content')}</Tooltip>}>
+                                {(item.nodetype != "practiceQuiz") && <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('view_content')}</Tooltip>}>
                                     <a class="hover-fx1" onClick={() => courseStructurContentView(item.nodetype, item.filePath, item.label)}><i className="fa fa-eye" style={{ color: '#94b8b8' }}></i></a>
-                                </OverlayTrigger>
+                                </OverlayTrigger>}
                                 {/* <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Feedback</Tooltip>}>
                                     <a class="hover-fx1" onClick={() => handleTopicFeedback(item.id)}><i className="fas fa-comments" style={{ color: '#f0ad4e' }}></i></a>
                                 </OverlayTrigger> */}
@@ -768,7 +775,7 @@ function InstCourseDetails(props) {
                                     <a class="hover-fx1" onClick={() => addActivityCompletion()}><i className="fas fa-clipboard-check" style={{ color: '#f0ad4e' }}></i></a>
                                 </OverlayTrigger> */}
                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('edit')}</Tooltip>}>
-                                    <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
+                                    <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate, item.nodetype)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
                                 </OverlayTrigger>
                                 <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('remove')}</Tooltip>}>
                                     <a class="hover-fx1" onClick={() => RemoveContentOrStructure(item.id)}><i className="fas fa-trash-alt" style={{ color: '#d9534f' }}></i></a>
@@ -814,7 +821,7 @@ function InstCourseDetails(props) {
                                             <a class="hover-fx1" onClick={() => addAccessRestriction()}><i className="fas fa-lock" style={{ color: '#f0ad4e' }}></i></a>
                                         </OverlayTrigger> */}
                                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('edit')}</Tooltip>}>
-                                            <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
+                                            <a class="hover-fx1" onClick={() => updateFolderOrContent(item.id, item.label, item.publishDate, item.nodetype)}><i className="fa fa-edit" style={{ color: '#f0ad4e' }}></i></a>
                                         </OverlayTrigger>
                                         <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">{t('remove')}</Tooltip>}>
                                             <a class="hover-fx1" onClick={() => RemoveContentOrStructure(item.id)}><i className="fas fa-trash-alt" style={{ color: '#d9534f' }}></i></a>
@@ -1204,7 +1211,7 @@ function InstCourseDetails(props) {
             })
     }
 
-    console.log("{DMS_URL} " + DMS_URL + " mmmm  " + { DMS_URL });
+    console.log("{DMS_URL} " + DMS_URL + " mmmm  " + DMS_URL, "/", getUrl);
 
     const videoJsOptions = {
         autoplay: false,
@@ -1293,7 +1300,8 @@ function InstCourseDetails(props) {
                                         : row.contentType === "doc" || row.contentType === "docx" ? <i class="fas fa-file-word" style={{ fontSize: "25px", color: "#1e62b4" }}></i>
                                             : row.contentType === "scorm" ? <i class="far fa-file-archive" style={{ fontSize: "25px", color: "green" }}></i>
                                                 : row.contentType === "youtube" ? <i class="far fa-youtube" style={{ fontSize: "25px", color: "green" }}></i>
-                                                    : null}
+                                                    : row.contentType === "streaming" ? <i class="fas fa-file-video" style={{ fontSize: "25px", color: "green" }}></i>
+                                                        : null}
             </a>
         },
         {
@@ -1651,14 +1659,21 @@ function InstCourseDetails(props) {
         show: false
     });
     const [getPdate, setPdate] = useState();
-    const updateFolderOrContent = (id, name, pDate) => {
-        setErrorMsg("");
-        setPdate(pDate);
-        setFolderOrContentDetUpdate({
-            show: true,
-            id: id,
-            name: name
-        });
+    const updateFolderOrContent = (id, name, pDate, nodetype) => {
+        if (nodetype == "practiceQuiz") {
+            // window.location.href = `http://samnayakawadi.hyderabad.cdac.in:3001/assessment/authoring/dashboard/courseId/${courseId}`;
+            window.location.href = CREATE_QUIZ_URL + `${courseId}`;
+
+        }
+        else {
+            setErrorMsg("");
+            setPdate(pDate);
+            setFolderOrContentDetUpdate({
+                show: true,
+                id: id,
+                name: name
+            });
+        }
     }
     const UpdateContentOrFolderModalHide = () => {
         setFolderOrContentDetUpdate({ show: false })
@@ -4538,7 +4553,9 @@ function InstCourseDetails(props) {
                                                 : getContentType === "doc" || getContentType === "docx" ? <i class="fas fa-file-word" style={{ fontSize: "25px", color: "#1e62b4" }}> {getContentName}</i>
                                                     : getContentType === "scorm" ? <i class="far fa-file-archive" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
                                                         : getContentType === "youtube" ? <i class="far fa-youtube" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
-                                                            : null}
+                                                            : getContentType === "streaming" ? <i class="fas fa-file-video" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
+
+                                                                : null}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -4564,7 +4581,16 @@ function InstCourseDetails(props) {
                                                             }
                                                         }}
                                                     />
-                                                        : <p>{t('no_content_available')}</p>
+                                                        : getContentType === "streaming" ? (
+                                                            <iframe
+                                                                title="Embedded HTML Page"
+                                                                src={getStreamingUrl}
+                                                                width="100%"
+                                                                height="800"
+                                                                allowFullScreen
+                                                            />
+                                                        )
+                                                            : <p>{t('no_content_available')}</p>
                     }
                 </Modal.Body>
             </Modal>

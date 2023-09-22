@@ -111,6 +111,8 @@ const NEW_DISCUSSION = DISCUSSION +"/Discussion";
 // const USER_DASHBOARD = Communication + "/dashboard";
 
 const LEARNER_REQUEST_APPROVAL_For_Course = COURSE_CLUG+"/api";
+export  let ADMIN_DELIVERY_URL = Assessment_Delivery + "/assessment/delivery/dashboard/conductor/quiz/ready/"
+export let CREATE_QUIZ_URL = Assessment_Authoring + "/assessment/authoring/dashboard/courseId/"
 
 
 class service {

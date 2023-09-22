@@ -17,7 +17,7 @@ import StickyMenu from '../../../../components/common/StickyMenu';
 import UserService from '../../../../services/UserService';
 import CourseFeedback from '../../../account/CourseFeedback';
 import Query from '../../Query/Query';
-import service from '../../../../services/service';
+import service, { Assessment_Delivery, DMS } from '../../../../services/service';
 import TopicFeedbackResponseByLearner from '../../../account/TopicFeedbackResponseByLearner';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -31,7 +31,7 @@ import ViewPdf from "../../../instructor/ViewPdf";
 import CryptoJS from "crypto-js";
 import swal from 'sweetalert';
 import { Col, Container, Row } from 'react-bootstrap';
-import { DMS_URL, COURSE_URL, Frontend_UI, DMS } from "./../../../../services/service";
+import { DMS_URL, COURSE_URL, Frontend_UI } from "./../../../../services/service";
 
 
 const languages = [
@@ -412,6 +412,22 @@ const ContentDelivery = (props) => {
                 };
             });
 
+        } 
+        else if (nodeType === "practiceQuiz") {
+
+            setGlobalContextState((prev) => {
+                return {
+                    ...prev,
+                    currentId: ind,
+                    currentPath: path,
+                    currentLabel: label,
+                    selectedIndex: ind1,
+                    currentNodeType: nodeType,
+                    activityProgress: activityProgress,
+                    DependencyActivityProgress: DependencyActivityProgress
+                };
+            });
+
         }
         else {
             setGlobalContextState((prev) => {
@@ -419,6 +435,7 @@ const ContentDelivery = (props) => {
                     ...prev,
                     currentId: ind,
                     currentPath: " ",
+                    // currentPath : path,
                     currentLabel: label,
                     selectedIndex: ind1,
                     currentNodeType: nodeType,
@@ -431,27 +448,30 @@ const ContentDelivery = (props) => {
     };
 
     const [prevId, setPrevId] = useState('');
+    const [prevNodeType, setPrevNodeType] = useState('');
+    const [quizAchievedPercentage, setQuizAchievedPercentage] = useState('0');
 
     const handleContentVisit = (userId, courseId, id, label, sessionId, nodetype, activityProgress, DependencyActivityProgress) => {
         setContentId(id);
         if (DependencyActivityProgress === 100) {
             if (prevId !== id) {
                 if (prevId !== '') {
-                    //////console.log(prevId, userId, sessionId);
+                    ////console.log(prevId, userId, sessionId);
                     service.updateContentVisitOutTime(userId, sessionId);
                 }
-                //////console.log(userId, courseId, id, label, sessionId, nodetype);
+                ////console.log(userId, courseId, id, label, sessionId, nodetype);
                 service.saveContentVisit(userId, courseId, id, label, sessionId, nodetype);
             }
             setPrevId(id);
+            setPrevNodeType(nodetype);
         }
         else {
             if (prevId !== id) {
                 if (prevId !== '') {
-                    //////console.log(prevId, userId, sessionId);
+                    ////console.log(prevId, userId, sessionId);
                     service.updateContentVisitOutTime(userId, sessionId);
                 }
-                //////console.log(userId, courseId, id, label, sessionId, nodetype);
+                ////console.log(userId, courseId, id, label, sessionId, nodetype);
             }
             setPrevId('');
         }
@@ -483,6 +503,8 @@ const ContentDelivery = (props) => {
                             globalState.length = 0;
                             globalState.push(itemContent.label, itemtype.label);
                             setIsActive({ folder: itemContent.label, file: array[globalContextState.selectedIndex + 1].ind });
+                            ////console.log("array[globalContextState.selectedIndex + 1].ind  ", array[globalContextState.selectedIndex + 1].ind);
+                            ////console.log(userId, courseId, itemtype.id, itemtype.label, sessionId, itemtype.nodetype);
                             handleContentVisit(userId, courseId, itemtype.id, itemtype.label, sessionId, itemtype.nodetype, getActivitiesStatus[array[globalContextState.selectedIndex + 1].ind].activityProgress,
                                 getActivitiesStatus[array[globalContextState.selectedIndex + 1].ind].activityProgressforDependency);
                         }
@@ -564,12 +586,27 @@ const ContentDelivery = (props) => {
                     act = getActivitiesStatus[item.id].activityProgress;
                     depAct = getActivitiesStatus[item.id].activityProgressforDependency;
                 }
+                // if (item.nodetype == "practiceQuiz") {
+
+                //     let filepath = item.filePath;
+
+                //     const arr = filepath.split('/');
+
+                //     service.getQuizScoringStatus(userId, arr[0])
+                //         .then((res) => {
+                //             console.log("quiz Achieved Percentage " + res.data.quizAchievedPercentage);
+                //             setQuizAchievedPercentage(res.data.quizAchievedPercentage);
+                //         })
+                //         .catch((err) => {
+
+                //         })
+                // }
                 menuItem = (
                     <div key={item.id}
                     //disabled={getActivitiesStatus[item.id.activityProgressforDependency] === 100 ? "true" : "false"}
                     >
-                        {/* {////console.log("item.id--------------------->", item.id)} */}
-                        {/* {////console.log("getActivitiesStatus--------------------->", getActivitiesStatus[item.id])}  */}
+                        {/* {//console.log("item.id--------------------->", item.id)} */}
+                        {/* {//console.log("getActivitiesStatus--------------------->", getActivitiesStatus[item.id])}  */}
                         {item.nodetype == "pdf" ? (
                             <div
                                 onClick={() => {
@@ -603,6 +640,13 @@ const ContentDelivery = (props) => {
                                         act,
                                         depAct
                                     );
+                                    console.log(item.id,
+                                        item.filePath,
+                                        item.label,
+                                        ind1,
+                                        item.nodetype,
+                                        act,
+                                        depAct)
 
                                 }}
                                 style={{
@@ -667,14 +711,14 @@ const ContentDelivery = (props) => {
                                         itemTopic.nodes.map((itemContent) => {
                                             itemContent.nodes &&
                                                 itemContent.nodes.map((itemtype) => {
-                                                    // ////console.log(itemtype.id, item.id)
+                                                    // //console.log(itemtype.id, item.id)
                                                     if (itemtype.id === item.id) {
                                                         globalState.length = 0;
 
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        //////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
                                                     }
                                                 });
                                         });
@@ -688,6 +732,13 @@ const ContentDelivery = (props) => {
                                         act,
                                         depAct
                                     );
+                                    console.log(item.id,
+                                        item.filePath,
+                                        item.label,
+                                        ind1,
+                                        item.nodetype,
+                                        act,
+                                        depAct)
                                 }}
                                 style={{
                                     marginTop: "8px",
@@ -750,7 +801,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        //////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
                                                     }
                                                 });
                                         });
@@ -826,7 +877,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        //////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
                                                     }
                                                 });
                                         });
@@ -961,7 +1012,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        //////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
 
                                                     }
                                                 });
@@ -1038,7 +1089,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        //////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
 
                                                     }
                                                 });
@@ -1175,11 +1226,89 @@ const ContentDelivery = (props) => {
                                     <span style={{ float: 'right' }}>{item.duration}:00</span>
                                 </span>
                             </div>
-                        ) : (
-                            <span>
-                                {/* {item.label} */}
-                            </span>
-                        )}
+			    ) : item.nodetype == "practiceQuiz" ? (
+                                <div
+                                    onClick={() => {
+                                        var ind1 = array.findIndex(
+                                            (arrayItem) => arrayItem.ind === item.id
+                                        );
+                                        menuData.map((itemTopic) => {
+                                            itemTopic.nodes.map((itemContent) => {
+                                                itemContent.nodes &&
+                                                    itemContent.nodes.map((itemtype) => {
+                                                        if (itemtype.id === item.id) {
+                                                            globalState.length = 0;
+
+                                                            globalState.push(itemContent.label, itemtype.label);
+                                                            setIsActive({ folder: itemContent.label, file: item.id })
+                                                            handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
+                                                            ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
+                                                        }
+                                                    });
+                                            });
+                                        });
+                                        setCurrentPathHandler(
+                                            item.id,
+                                            item.filePath,
+                                            item.label,
+                                            ind1,
+                                            item.nodetype,
+                                            act,
+                                            depAct
+                                        );
+                                    }}
+                                    style={{
+                                        marginTop: "8px",
+                                        verticalAlign: "middle",
+                                    }}
+                                >
+                                    <span
+                                        style={
+                                            isActiveFile.file === item.id
+                                                ? {
+                                                    padding: "8px",
+                                                    display: "block",
+                                                    border: "1px solid #d3d3d3",
+                                                    borderRadius: "5px",
+                                                    marginTop: "8px",
+                                                    verticalAlign: "middle",
+                                                    cursor: "pointer",
+                                                    backgroundColor: "#11B67A",
+                                                    color: "rgb(255, 255, 255)",
+                                                }
+                                                : {
+                                                    padding: "8px",
+                                                    display: "block",
+                                                    border: "1px solid #d3d3d3",
+                                                    borderRadius: "5px",
+                                                    marginTop: "8px",
+                                                    verticalAlign: "middle",
+                                                    cursor: "pointer",
+                                                    backgroundColor: "white",
+                                                    color: "black",
+                                                }
+                                        }
+                                    >
+                                        <span>
+                                            <i className="fa fa-question"></i>
+                                        </span>
+                                        <span style={{ float: 'right', width: "24px", margin: "5px", marginTop: "-2px" }}>
+                                            <CircularProgressbar value={act} strokeWidth={50}
+                                                styles={buildStyles({
+                                                    strokeLinecap: "butt", pathColor: "#f0ad4e",
+                                                })} />
+                                        </span>
+                                        <span style={{ marginLeft: "10px" }}>{item.label}</span>
+                                        {/* <span style={{ float: 'right' }}>{item.duration}:00</span> */}
+                                    </span>
+                                </div>
+                            ) :
+                                (
+                                    <span>
+                                        {/* {item.label} */}
+                                    </span>
+                                )}
                     </div>
                 );
             }
@@ -1189,6 +1318,21 @@ const ContentDelivery = (props) => {
                 if (getActivitiesStatus[item.id] !== undefined) {
                     act = getActivitiesStatus[item.id].activityProgress;
                     depAct = getActivitiesStatus[item.id].activityProgressforDependency;
+                }
+                if (item.nodetype == "practiceQuiz") {
+
+                    let filepath = item.filePath;
+
+                    const arr = filepath.split('/');
+
+                    service.getQuizScoringStatus(userId, arr[0])
+                        .then((res) => {
+                            console.log("quiz Achieved Percentage " + res.data.quizAchievedPercentage);
+                            setQuizAchievedPercentage(res.data.quizAchievedPercentage);
+                        })
+                        .catch((err) => {
+
+                        })
                 }
                 let menuItemChildren = item.nodes.map((item, i) => {
                     let menuItem = returnMenuItem(item, i);
@@ -1255,6 +1399,83 @@ const ContentDelivery = (props) => {
 
                                     </span>
                                 </div>
+                            ) : item.nodetype == "practiceQuiz" ? (
+                                <div
+                                    onClick={() => {
+                                        var ind1 = array.findIndex(
+                                            (arrayItem) => arrayItem.ind === item.id
+                                        );
+                                        menuData.map((itemTopic) => {
+                                            itemTopic.nodes.map((itemContent) => {
+                                                itemContent.nodes &&
+                                                    itemContent.nodes.map((itemtype) => {
+                                                        if (itemtype.id === item.id) {
+                                                            globalState.length = 0;
+
+                                                            globalState.push(itemContent.label, itemtype.label);
+                                                            setIsActive({ folder: itemContent.label, file: item.id })
+                                                            handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
+                                                            ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
+                                                        }
+                                                    });
+                                            });
+                                        });
+                                        setCurrentPathHandler(
+                                            item.id,
+                                            item.filePath,
+                                            item.label,
+                                            ind1,
+                                            item.nodetype,
+                                            act,
+                                            depAct
+                                        );
+                                    }}
+                                    style={{
+                                        marginTop: "8px",
+                                        verticalAlign: "middle",
+                                    }}
+                                >
+                                    <span
+                                        style={
+                                            isActiveFile.file === item.id
+                                                ? {
+                                                    padding: "8px",
+                                                    display: "block",
+                                                    border: "1px solid #d3d3d3",
+                                                    borderRadius: "5px",
+                                                    marginTop: "8px",
+                                                    verticalAlign: "middle",
+                                                    cursor: "pointer",
+                                                    backgroundColor: "#11B67A",
+                                                    color: "rgb(255, 255, 255)",
+                                                }
+                                                : {
+                                                    padding: "8px",
+                                                    display: "block",
+                                                    border: "1px solid #d3d3d3",
+                                                    borderRadius: "5px",
+                                                    marginTop: "8px",
+                                                    verticalAlign: "middle",
+                                                    cursor: "pointer",
+                                                    backgroundColor: "white",
+                                                    color: "black",
+                                                }
+                                        }
+                                    >
+                                        <span>
+                                            <i className="fa fa-question"></i>
+                                        </span>
+                                        <span style={{ float: 'right', width: "24px", margin: "5px", marginTop: "-2px" }}>
+                                            <CircularProgressbar value={act} strokeWidth={50}
+                                                styles={buildStyles({
+                                                    strokeLinecap: "butt", pathColor: "#f0ad4e",
+                                                })} />
+                                        </span>
+                                        <span style={{ marginLeft: "10px" }}>{item.label}</span>
+                                        {/* <span style={{ float: 'right' }}>{item.duration}:00</span> */}
+                                    </span>
+                                </div>
                             ) : item.nodetype == "root" ? (
                                 <div
                                     style={{
@@ -1271,8 +1492,7 @@ const ContentDelivery = (props) => {
                                                     setIsActive({ folder: itemTopic.label, file: item.id })
                                                 }
                                             });
-                                        }
-                                        }
+                                        }}
                                         style={
                                             {
                                                 padding: "8px",
@@ -1318,12 +1538,19 @@ const ContentDelivery = (props) => {
 
     useEffect(() => {
 
-        ////console.log("globalContextState.currentPath====", globalContextState.currentPath);
+        //console.log("globalContextState.currentPath====", globalContextState.currentPath);
 
         if (globalContextState.currentNodeType === "youtube") {
             setUrl(globalContextState.currentPath);
         }
+        else if (globalContextState.currentNodeType === "practiceQuiz") {
+            setUrl("assessment/delivery/dashboard/conductor/quiz/ready/" + globalContextState.currentPath);
+        }
+        else if (globalContextState.currentNodeType === "streaming") {
+            setUrl(globalContextState.currentPath);
+        }
         else if (globalContextState.currentNodeType === "pdf") {
+            console.log("pdf url", DMS_URL + `${globalContextState.currentPath}`, globalContextState)
 
             axios
                 .get(DMS_URL + `${globalContextState.currentPath}`)
@@ -1339,7 +1566,7 @@ const ContentDelivery = (props) => {
                     const pdfDomain = DMS
                     const finalSubDomain = pdfDomain + "/" + safeEncodedString
 
-                    ////console.log("finalSubDomain", finalSubDomain)
+                    //console.log("finalSubDomain", finalSubDomain)
 
                     setUrl(finalSubDomain);
 
@@ -1363,6 +1590,9 @@ const ContentDelivery = (props) => {
             extension = "youtube";
         } else if (globalContextState.currentNodeType === "pdf") {
             extension = "pdf";
+        }
+        else if (globalContextState.currentNodeType === "practiceQuiz") {
+            extension = "practiceQuiz";
         }
         else {
             extension = url.split(".").pop();
@@ -1500,6 +1730,45 @@ const ContentDelivery = (props) => {
 
                 );
             } else if (
+                extension === "practiceQuiz"
+            ) {
+	    const progressPercentage = getActivitiesStatus[globalContextState.currentId]?.activityProgress;
+                return (
+
+                    // window.location.href = `http://samnayakawadi.hyderabad.cdac.in:3002/${url}`
+                    (globalContextState.DependencyActivityProgress === 100)?
+                        window.location.href = Assessment_Delivery + `/${url}`
+                    :<>
+                    <div>
+                            <h6>
+                                {t('view_previous_content')}
+                            </h6>
+                        </div>
+                    </>
+                    
+
+
+                    // <>
+                    //     {(globalContextState.DependencyActivityProgress === 100) ?(<div>
+                    //         <AssessmentFrame Url={`http://samnayakawadi.hyderabad.cdac.in:3002/${url}`} />
+                    //         {/* <iframe
+                    //             srcdoc={`http://samnayakawadi.hyderabad.cdac.in:3002/${url}`}
+                    //             width="100%"
+                    //             height="100%"
+                    //             allowFullScreen={true}
+                    //             style={{ minHeight: "700px", overflow: "auto" }}
+                    //         /> */}
+                    //     </div>): (<div>
+                    //         <h6>
+                    //             {t('view_previous_content')}
+                    //         </h6>
+                    //     </div>)}
+                    // </>
+
+
+                );
+            }
+            else if (
                 extension === "pdf"
             ) {
                 const progressPercentage = getActivitiesStatus[globalContextState.currentId]?.activityProgress;

@@ -6,7 +6,7 @@ import FooterTwo from '../../components/FooterTwo';
 //import { Styles } from '../../pages/instructor/instCourses/styles/coursedetails.js';
 import { Styles } from './styles/course1.js';
 import { Styles1 } from './styles/reviewForm.js';
-import service from '../../services/service';
+import service, { ADMIN_DELIVERY_URL, DMS } from '../../services/service';
 import UserService from '../../services/UserService';
 import ReplyForm from '../../pages/courses/components/ReplyForm';
 import UpdateReviewform from '../../pages/courses/components/UpdateReviewForm';
@@ -52,7 +52,7 @@ import "jspdf-autotable";
 import logo from "../../assets/images/logo.png";
 import ViewPdf from "../../pages/instructor/ViewPdf";
 import CryptoJS from "crypto-js";
-import {DMS_URL, COURSE_URL, USER_API, Frontend_UI, COURSE_CLUG, CERTIFICATION, DMS} from "./../../services/service";
+import { DMS_URL, COURSE_URL, USER_API, Frontend_UI, COURSE_CLUG, CERTIFICATION } from "./../../services/service";
 
 const customStyles = {
     title: {
@@ -754,7 +754,8 @@ function AdminCourseDetail(props) {
                                         : row.contentType === "doc" || row.contentType === "docx" ? <i class="fas fa-file-word" style={{ fontSize: "25px", color: "#1e62b4" }}></i>
                                             : row.contentType === "scorm" ? <i class="far fa-file-archive" style={{ fontSize: "25px", color: "green" }}></i>
                                                 : row.contentType === "youtube" ? <i class="far fa-youtube" style={{ fontSize: "25px", color: "green" }}></i>
-                                                    : null}
+                                                    : row.contentType === "streaming" ? <i class="fas fa-file-video" style={{ fontSize: "25px", color: "green" }}></i>
+                                                        : null}
             </a>
         },
         {
@@ -954,7 +955,9 @@ function AdminCourseDetail(props) {
                                 item.nodetype == "png" || item.nodetype == "jpg" ? "fas fa-image fa-lg" : item.nodetype == "zip" ? "fas fa-file-archive fa-lg"
                                     : item.nodetype == "scorm" ? "fas fa-file-archive fa-lg" : item.nodetype == "html" ? "fab fa-html5 fa-lg" : item.nodetype == "youtube" ? "fab fa-youtube fa-lg"
                                         : item.nodetype == "mp4" ? "fas fa-video fa-lg" : item.nodetype == "folder" ? "fas fa-folder fa-lg"
-                                            : item.nodetype == "root" ? "fas fa-house-user fa-lg" : "fas fa-folder"
+                                            : item.nodetype == "practiceQuiz" ? "fa fa-question"
+                                                : item.nodetype == "streaming" ? "fas fa-file-video fa-lg"
+                                                    : item.nodetype == "root" ? "fas fa-house-user fa-lg" : "fas fa-folder"
                             } style={isActiveFolderId == item.id ? { fontSize: "18px", color: 'white' } : { fontSize: "18px", color: 'black' }}>
                             </i><span style={{ marginLeft: "10px" }} >{item.label} &nbsp;&nbsp;</span>
                             {item.nodetype == "root" ? <span style={{ position: 'relative', float: 'right' }} >
@@ -1320,9 +1323,10 @@ function AdminCourseDetail(props) {
         return d;
     }
 
-    const fee_validator = (fees) => {
+    const fee_validator = (fees, courseType) => {
         if (fees === 0) {
-            return <p>{t('free')}</p>
+            if (courseType.toLowerCase() === "free") return <p>{t('free')}</p>
+            else return <p>Restricted</p>
         }
         else {
             return <p>&#8377;{fees}</p>
@@ -1670,6 +1674,7 @@ function AdminCourseDetail(props) {
     const [getRemark, setRemark] = useState();
     const [getContentName, setContentName] = useState();
     const [getUrl, setUrl] = useState();
+    const [getStreamingUrl, setStreamingUrl] = useState();
     const [getContentType, setContentType] = useState();
     const courseStructurContentView = (contentType, fileUrl, label) => {
         if (contentType == "youtube") {
@@ -1677,6 +1682,19 @@ function AdminCourseDetail(props) {
             setContentType(contentType);
             setContentName(label);
             setUrlModal({ show: true });
+        }
+        else if (contentType == "streaming") {
+            setStreamingUrl(fileUrl);
+            setContentType(contentType);
+            setContentName(label);
+            setUrlModal({ show: true });
+        }
+        else if (contentType == "practiceQuiz") {
+
+            // window.location.href = `http://samnayakawadi.hyderabad.cdac.in:3002/assessment/delivery/dashboard/conductor/quiz/ready/${fileUrl}`;
+            // ADMIN_DELIVERY_URL
+            window.location.href = ADMIN_DELIVERY_URL +`${fileUrl}`;
+
         } else {
             instructorService.contentAccess(DMS_URL + fileUrl)
                 .then(res => {
@@ -1915,7 +1933,7 @@ function AdminCourseDetail(props) {
         controls: true,
         sources: [
             {
-                src: DMS_URL+`/${getUrl}`,
+                src: DMS_URL + `/${getUrl}`,
                 type: 'video/mp4',
             },
         ]
@@ -2300,7 +2318,7 @@ function AdminCourseDetail(props) {
                                             </div>
                                             <div className="price">
                                                 <h6>{t('course_fee')}</h6>
-                                                {fee_validator(courseValue.courseFee)}
+                                                {fee_validator(courseValue.courseFee, courseValue.courseType)}
                                             </div>
 
                                         </div>
@@ -3206,7 +3224,8 @@ function AdminCourseDetail(props) {
                                                     : getContentType === "doc" || getContentType === "docx" ? <i class="fas fa-file-word" style={{ fontSize: "25px", color: "#1e62b4" }}> {getContentName}</i>
                                                         : getContentType === "scorm" ? <i class="far fa-file-archive" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
                                                             : getContentType === "youtube" ? <i class="fab fa-youtube" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
-                                                                : null}
+                                                                : getContentType === "streaming" ? <i class="fas fa-file-video" style={{ fontSize: "25px", color: "green" }}> {getContentName}</i>
+                                                                    : null}
                         </Modal.Title>
                         <Button onClick={() => UrlModalHide()} style={{ background: "green" }}> X </Button>
                     </Modal.Header>
@@ -3222,17 +3241,26 @@ function AdminCourseDetail(props) {
                                     </div>
                                 )
                                     : getContentType === "mp4" ? <div> <Videojs {...videoJsOptions} /></div>
-                                        : getContentType === "docx" ? <iframe width="100%" height="100%" src={DMS_URL+`/${getUrl}`} ></iframe>
-                                            : getContentType === "html" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`} ></iframe>
-                                                : getContentType === "zip" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`} ></iframe>
-                                                    : getContentType === "scorm" ? <iframe width="1100" height="800" src={DMS_URL+`/${getUrl}`} ></iframe>
+                                        : getContentType === "docx" ? <iframe width="100%" height="100%" src={DMS_URL + `/${getUrl}`} ></iframe>
+                                            : getContentType === "html" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`} ></iframe>
+                                                : getContentType === "zip" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`} ></iframe>
+                                                    : getContentType === "scorm" ? <iframe width="1100" height="800" src={DMS_URL + `/${getUrl}`} ></iframe>
                                                         : getContentType === "youtube" ? <ReactPlayer url={getUrl} width="100%" height="800px" controls="true"
                                                             config={{
                                                                 youtube: {
                                                                     playerVars: { showinfo: 1 }
                                                                 }
                                                             }}
-                                                        />
+                                                        /> : getContentType === "streaming" ? (
+                                                            <iframe
+                                                                title="Embedded HTML Page"
+                                                                src={getStreamingUrl}
+                                                                width="100%"
+                                                                height="800"
+                                                                allowFullScreen
+                                                            />
+
+                                                        )
 
                                                             : <p>{t('no_content_available')}</p>
                         }
