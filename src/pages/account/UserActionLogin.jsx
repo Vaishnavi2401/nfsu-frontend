@@ -66,7 +66,7 @@ export default function UserActionLogin() {
 
      const getIP = async () => {
             const res = await axios.get("https://geolocation-db.com/json/");
-            ////console.log(res.data);
+            
             setData((prevState) => {
               return { ...prevState, ip: res.data.IPv4 };
             });
@@ -98,7 +98,7 @@ export default function UserActionLogin() {
     let ip = data.ip;
 
      if(browser !== null && os !== null && resolution !== null && ip !== null){
-      ////console.log(data);
+      
       ////console.log(browser, os, resolution, ip);
      }
     

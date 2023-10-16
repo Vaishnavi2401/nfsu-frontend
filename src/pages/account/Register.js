@@ -94,7 +94,7 @@ function Register() {
 
   useEffect(() => {
     service.getRegisterCaptcha().then((res) => {
-      //console.log(res.data);
+      
       setData(res.data.captchaImage);
       setCaptchaHash(res.data.captchaHash);
       setCaptchaToken(res.data.captchaToken);
@@ -112,7 +112,7 @@ function Register() {
         setCountry(res.data);
       })
       .catch((err) => {
-        //console.log(err);
+       
       });
   }, []);
 
@@ -124,16 +124,16 @@ function Register() {
       .getState()
       .then((res) => {
         setStates(res.data);
-        ////console.log(res.data);
+        
       })
       .catch((err) => {
-        //console.log(err);
+       
       });
   }, []);
 
   const handleRefereshCaptcha = () => {
     service.getRegisterCaptcha().then((res) => {
-      //console.log(res.data);
+      
       setData(res.data.captchaImage);
       setCaptchaHash(res.data.captchaHash);
       setCaptchaToken(res.data.captchaToken);
@@ -157,7 +157,6 @@ function Register() {
 
   const onBlurtitleHandler = () => {
     const title = document.getElementById("registration_title");
-    console.log("title", title);
     const titleValue = title.value.trim();
 
     if (titleValue === "") {
@@ -391,11 +390,16 @@ function Register() {
     const certificateValue = certificate.value.trim();
 
     if (certificateValue === "") {
-      setError(certificate, "Please enter Degree/Diploma Certificate");
-    } else if (certificateValue.match(/^[A-Za-z0-9()& \s]{2,200}$/)) {
-      setSuccess(certificate);
-    } else {
-      setError(certificate, "Enter valid Degree/Diploma Certificate");
+      ////console.log(PhotoValue);
+      setError(certificate, "upload Degree/Diploma Certificate");
+     
+    }
+    else {
+      if(show == false){
+       
+        setSuccess(certificate);
+        setShow(true);
+      }
     }
   };
 
@@ -496,20 +500,20 @@ function Register() {
     service
       .RegisterQualification()
       .then((res) => {
-        ////console.log(res.data);
+        
         setQualification(res.data);
       })
       .catch((err) => {
-        //console.log(err);
+       
       });
     service
       .RegisterDesignation()
       .then((res) => {
-        ////console.log(res.data);
+        
         setDesignation(res.data);
       })
       .catch((err) => {
-        //console.log(err);
+       
       });
     //console.log("REGISTRATION _______ ", getRegistrationIdInfo)
   }, [getRegistrationIdInfo]);
@@ -701,6 +705,21 @@ function Register() {
       setSuccess(Photo);
     }
 
+    if (certificateValue === "") {
+      ////console.log(PhotoValue);
+      setError(certificate, "upload Degree/Diploma Certificate");
+      status = false;
+    }
+    else {
+      if(show == false){
+        
+        setSuccess(certificate);
+        setShow(true);
+      }
+    }
+
+
+
     // if (IdentityPhotoValue === "") {
     //     setError(IdentityPhoto, "Select your Identity with Photograph");
     //     status = false;
@@ -769,15 +788,15 @@ function Register() {
       setSuccess(gender);
     }
 
-    if (certificateValue === "") {
-      setError(certificate, "Please enter Degree/Diploma Certificate");
-      status = false;
-    } else if (certificateValue.match(/^[A-Za-z0-9()& \s]{2,200}$/)) {
-      setSuccess(certificate);
-    } else {
-      setError(certificate, "Enter valid Degree/Diploma Certificate");
-      status = false;
-    }
+    // if (certificateValue === "") {
+    //   setError(certificate, "Please enter Degree/Diploma Certificate");
+    //   status = false;
+    // } else if (certificateValue.match(/^[A-Za-z0-9()& \s]{2,200}$/)) {
+    //   setSuccess(certificate);
+    // } else {
+    //   setError(certificate, "Enter valid Degree/Diploma Certificate");
+    //   status = false;
+    // }
 
 
 
@@ -789,6 +808,7 @@ function Register() {
 
       let idcard = getIdentity;
       let profilePhoto = getPhoto;
+      let certificate = getCertificate;
 
       ////console.log("profilePhoto", profilePhoto);
       //console.log("profilePhoto", profilePhoto[0]);
@@ -809,7 +829,7 @@ function Register() {
         formData1.append("file1", profilePhoto[0]);
       }
 
-      
+      formData1.append("file3", certificate[0]);
 
      
       formData1.append("title", titleValue);
@@ -828,7 +848,6 @@ function Register() {
       formData1.append("captchaToken", captchaToken);
       formData1.append("mobile1", mobile1Value);
       formData1.append("IDProofNumber", IDNumberValue);
-      formData1.append("DDCertificate", certificateValue);
       formData1.append("instituteName", organizationValue);
       formData1.append("pincode", pincodeValue);
       formData1.append("stateId", getStateId);
@@ -868,7 +887,7 @@ function Register() {
         })
         .catch((err) => {
           setLoading(false);
-          console.log(err.response);
+          // console.log(err.response);
           if(err.response.data !== undefined){
             if (err.response.data.status === 406) {
               setError(captcha, t("enter_correct_captcha"));
@@ -949,7 +968,42 @@ function Register() {
 
   const [show, setShow] = useState();
   const [getIdentity, setIdentity] = useState();
+  const [getCertificate, setCertificate] = useState();
   const [getPhoto, setPhoto] = useState();
+
+  const selectCertificate = (event) => {
+    const certificate = document.getElementById("registration_certificate");
+    var files = event.target.files;
+   
+    const validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+    ////console.log(files);
+    for (var i = 0; i < files.length; i++) {
+      
+      const fileType = files[i].type;
+      // console.log(files[i].type +"------"+!validImageTypes.includes(fileType)+"------"+validImageTypes);
+      if (
+        files[i].type == "application/msword" ||
+        files[i].type == "application/vnd.rar" ||
+        files[i].type == "application/x-msdownload" ||
+        files[i].type == "text/plain" ||
+        files[i].type == "application/x-zip-compressed" ||
+        files[i].type == "application/zip"
+      ) {
+        setShow(true);
+        setError(certificate, "upload a valid Certificate file");
+        return swal(t("warnings"), "Invalid file selected", "warning");
+      } else if (
+        !validImageTypes.includes(fileType)
+      ) {
+        setShow(true);
+        setError(certificate, `upload a valid Certificate file`);
+        return swal(t("warnings"), "Invalid file selected", "warning");
+      } else{
+        setShow(false);
+      }
+    }
+    setCertificate(event.target.files);
+  };
 
   const selectFile = (event) => {
     setCameraIdentityCondition(false);
@@ -1370,7 +1424,7 @@ function Register() {
                         </Col>
                         <Col sm={6}>
                           <p className="form-control">
-                            <label style={{ fontWeight: "bold" }}>
+                            <label style={{ fontWeight: "bold" }} htmlFor="registration_IdentityPhoto">
                               Upload ID Proof :
                             </label>
                             <input
@@ -1381,7 +1435,6 @@ function Register() {
                               accept="image/* , application/pdf"
                               style={{ padding: "10px" }}
                             />
-                            {/* <i id="registration_Photo_Camera" class="fa fa-camera " style={{ marginLeft: "-45px", fontSize: "20px" }} onClick={() => { CaptureIdentity() }}></i> */}
                             <span className="registration_input-msg"></span>
                             <br></br>
                             <p> {t("image_size_less_200kb")}</p>
@@ -1424,19 +1477,21 @@ function Register() {
                         </Col>
                         <Col sm={6}>
                           <p className="form-control">
-                            <label htmlFor="registration_certificate">
+                            <label htmlFor="registration_certificate" style={{ fontWeight: "bold" }}>
                               Degree/Diploma Certificate
                             </label>
                             <input
-                              type="test"
+                              type="file"
                               name="Certificate"
-                              placeholder={"Degree/Diploma Certificate"}
                               id="registration_certificate"
+                              onChange={selectCertificate}
                               onBlur={onBlurCertificateHandler}
-                              minLength="2"
-                              maxLength="40"
+                              accept="image/*"
+                              style={{ padding: "10px" }}
                             />
                             <span className="registration_input-msg"></span>
+                            <br></br>
+                            <p>Image size must be less than 500KB(.jpg, .jpeg, or .png format).</p>
                           </p>
                         </Col>
                       </Row>

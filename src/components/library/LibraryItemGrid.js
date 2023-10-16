@@ -10,7 +10,7 @@ import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import service from '../../services/service';
+import service, {USER_API} from '../../services/service';
 import UserService from '../../services/UserService';
 import { colors } from '../common/element/elements';
 
@@ -75,8 +75,8 @@ function LibraryItemGrid(props) {
     let freeStat = useSelector(state => state.freeCourse);
     let categoryValue = useSelector(state => state.categoryValue);
     let searchEngine = useSelector(state => state.searchEngine);
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api = USER_API;
+    
     ////console.log("============="+searchEngine);
     let dummyCategory = [];
     if (categoryValue) {
@@ -99,7 +99,7 @@ function LibraryItemGrid(props) {
         setLoading(true);
         const res = await service.getAllLibrary();
         setCourseState(res.data);
-        ////console.log(res.data);
+        
         setPaidJsonState(res.data.filter(function (ele) {
             return ele.fees > 0;
         }));

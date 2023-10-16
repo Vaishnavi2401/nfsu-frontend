@@ -97,7 +97,7 @@ export default function ManageCadre() {
         adminServices.getAllCadre().then((resp) => {
             setCadre(resp.data);
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -126,10 +126,10 @@ export default function ManageCadre() {
                 swal(`${t('success')}`, `${t('cadre_delete')}`, 'success')
                 getAllCadre();
             }
-            ////console.log(resp.data);
+           
         }).catch((err) => {
             setDeleteLoading({ isLoading: false });
-            //console.log(err)
+           
         })
     }
 
@@ -147,7 +147,7 @@ export default function ManageCadre() {
                 getAllCadre();
                 setAddModalShow(false);
             }).then((err) => {
-                //console.log(err);
+               
             })
         }
     }
@@ -163,7 +163,7 @@ export default function ManageCadre() {
             setAddModalShow(true);
         }).then((err) => {
             setEditLoading({ isLoading: false });
-            //console.log(err)
+           
         })
 
     }
@@ -243,14 +243,14 @@ export default function ManageCadre() {
             const cadreAdd = {
                 cadre: `${cadreName}`
             }
-            ////console.log(cadreAdd)
+            
             adminServices.addCadre(cadreAdd).then((resp) => {
-                ////console.log(resp.data);
+               
                 swal(`${t('success')}`, `${t('cadre_add')}`, 'success')
                 getAllCadre();
                 setAddModalShow(false)
             }).catch((err) => {
-                //console.log(err)
+               
             })
         }
     }

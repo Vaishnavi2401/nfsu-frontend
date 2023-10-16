@@ -8,15 +8,13 @@ import Navbar from '../shared/Navbar';
 import SettingsPanel from '../shared/SettingsPanel';
 import Sidebar from '../shared/Sidebar';
 import DataTable from "react-data-table-component";
-import service from '../../services/service';
+import service, {USER_API} from '../../services/service';
 import swal from 'sweetalert';
 import { Button, Modal } from 'react-bootstrap';
 import UserService from '../../services/UserService';
 import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 import moment from 'moment';
-import {USER_API} from '../../services/service';
-
 
 const languages = [
 
@@ -89,7 +87,7 @@ function LearnerListToApprove() {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
     const [getLearnerData, setlearnerData] = useState([]);
     const [getLearnerDataStatus, setlearnerDataStatus] = useState(false);
     useEffect(() => {
@@ -100,10 +98,10 @@ function LearnerListToApprove() {
         try {
             let result = await adminServices.getAllRequestForLearner()
             setlearnerData(result.data);
-            ////console.log(result.data);
+            
             setlearnerDataStatus(false);
         } catch (e) {
-            //console.log(e);
+            
             setlearnerDataStatus(false);
         }
     }
@@ -142,7 +140,7 @@ function LearnerListToApprove() {
             }
         }).catch((e) => {
             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-            //console.log(e)
+            
             setApproveLoading({ isLoading: false });
         })
 
@@ -153,7 +151,7 @@ function LearnerListToApprove() {
         //     let result = await service.assignLearnerRole(formData);
         //     //Previously there is an 'data' in Parameter 
         //     // //console.log(learnerId);
-        //     ////console.log(result.data);
+        //     
         //     if (result.data == "Success") {
         //         await swal(`${t('success')}`, `${t('learner_approved')}`, "success");
         //         // InstructorRequestDatas();
@@ -162,7 +160,7 @@ function LearnerListToApprove() {
         //     }
         // } catch (e) {
         //     swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-        //     //console.log(e)
+        //     
         //     setApproveLoading({ isLoading: false });
         // }
     }
@@ -238,6 +236,11 @@ function LearnerListToApprove() {
                         type="button" class="btn btn-info m-2" disabled={IDLoading.isLoading ? "true" : ""}>
                         {IDLoading.isLoading ? IDEmail === row.email ? (<><i class="fa fa-spinner fa-spin" style={{ fontSize: '24px' }}></i></>) : (<><i class="fas fa-id-card fa-2x"></i></>) : (<><i class="fas fa-id-card fa-2x"></i></>)}
                     </button>
+                    <button
+                        onClick={() => viewCertificate(row.certificatepath, row.email)}
+                        type="button" class="btn btn-info m-2" disabled={CertificateLoading.isLoading ? "true" : ""}>
+                        {CertificateLoading.isLoading ? IDEmail === row.email ? (<><i class="fa fa-spinner fa-spin" style={{ fontSize: '24px' }}></i></>) : (<><i class="fa fa-certificate fa-2x"></i></>) : (<><i class="fa fa-certificate fa-2x"></i></>)}
+                    </button>
                 </div>
 
             </div>
@@ -247,12 +250,12 @@ function LearnerListToApprove() {
             name: "Action",
             sortable: true,
             wrap: true,
-            width: '300px',
+            // width: '300px',
             cell: (row) => <div>
                 <div className="d-inline-block">
                     <button onClick={() => shareUrlModalShow(row.firstName, row.lastName, row.email, row.mobile, row.gender, row.address, row.city, row.districtName, row.stateName, row.pincode, row.countryName, row.eduQualification, row.instituteName, row.dob,
-                    row.title, row.mobile1, row.ddcertificate, row.idproofNumber, row.designation)} style={{ marginRight: "6px" }}
-                        type="button" class="btn btn-info" disabled={infoLoading.isLoading ? "true" : ""}>
+                    row.title, row.mobile1, row.idproofNumber, row.designation)} style={{ marginRight: "6px" }}
+                        type="button" class="btn btn-info m-2" disabled={infoLoading.isLoading ? "true" : ""}>
                         {infoLoading.isLoading ? ShareUrlModal.email === row.email ? (<>{t('loading')}</>) : (<><i class="fa fa-info-circle"></i>  {t('info')}</>) : (<><i class="fa fa-info-circle"></i>  {t('info')}</>)}
                     </button>
                     {/* in parameter of ApproveAsInstructor previously there is " row.email " */}
@@ -313,7 +316,7 @@ function LearnerListToApprove() {
         setShareUrlModal({ show: false });
         setInfoLoading({ isLoading: false });
     }
-    const shareUrlModalShow = (firstname, lastname, email, mobile, gender, address, city, district, state, pincode, country, qualification, instituteName, dob, title, mobile1, ddcertificate, idproofNumber, designation) => {
+    const shareUrlModalShow = (firstname, lastname, email, mobile, gender, address, city, district, state, pincode, country, qualification, instituteName, dob, title, mobile1, idproofNumber, designation) => {
         setInfoLoading({ isLoading: true });
         setShareUrlModal({
             show: true,
@@ -333,7 +336,6 @@ function LearnerListToApprove() {
             city : city,
             title : title, 
             mobile1 : mobile1, 
-            ddcertificate : ddcertificate, 
             idproofNumber : idproofNumber,
             designation: designation
         });
@@ -342,18 +344,27 @@ function LearnerListToApprove() {
     const [getViewID, setViewID] = useState({
         show: false
     });
+    const [getViewCertificate, setViewCertificate] = useState({
+        show: false
+    });
     const [getViewPhoto, setViewPhoto] = useState({
         show: false
     });
     const [IDLoading, setIDLoading] = useState({
         isLoading: false
     })
+    const [CertificateLoading, setCertificateLoading] = useState({
+        isLoading: false
+    })
+    
     const [PhotoLoading, setPhotoLoading] = useState({
         isLoading: false
     })
 
     const [PhotoEmail, setPhotoEmail] = useState();
     const [IDEmail, setIDEmail] = useState();
+    const [CertificateEmail, setCertificateEmail] = useState();
+    
 
     const IDCardHide = () => {
         setViewID({ show: false });
@@ -381,6 +392,24 @@ function LearnerListToApprove() {
             idproofpicpath: idproofpicpath,
         });
     }
+
+    const viewCertificate = (certificatepath, email) => {
+        setCertificateEmail(email);
+        setCertificateLoading({ isLoading: true });
+        setViewCertificate({
+            show: true,
+            certificatepath: certificatepath,
+        });
+    }
+
+    const CertificateHide = () => {
+        setViewCertificate({ show: false });
+        setCertificateLoading({ isLoading: false });
+        //setInfoLoading({ isLoading: false });
+    }
+
+    
+
     const onHideRejectModel = () => {
         setRejectCondition({
             show: false
@@ -404,7 +433,7 @@ function LearnerListToApprove() {
             let result = await service.rejectLearnerRole(formData);
             //Previously there is an 'data' in Parameter 
             // //console.log(learnerId);
-            ////console.log(result.data);
+            
             if (result.data == "success") {
                 await swal(`${t('success')}`, `${t('learner_rejected_successfully')}`, "success");
                 // InstructorRequestDatas();
@@ -414,7 +443,7 @@ function LearnerListToApprove() {
             }
         } catch (e) {
             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "success");
-            //console.log(e)
+            
             setRejectLoading({ isLoading: false });
             onHideRejectModel();
         }
@@ -514,10 +543,6 @@ function LearnerListToApprove() {
                                 <td>{ShareUrlModal.idproofNumber}</td>
                             </tr>
                             <tr>
-                                <td>Degree/Diploma Certificate : </td>
-                                <td>{ShareUrlModal.ddcertificate}</td>
-                            </tr>
-                            <tr>
                                 <td>Organization : </td>
                                 <td>{ShareUrlModal.instituteName}</td>
                             </tr>
@@ -597,6 +622,30 @@ function LearnerListToApprove() {
                 </Modal.Body>
                 <Modal.Footer style={{ justifyContent: "right" }}>
                     <Button variant="secondary" onClick={() => ProfilePicHide()}>
+                        {t('cancel')}
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal centered show={getViewCertificate.show} onHide={() => CertificateHide()} backdrop="static" size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter" style={{ alignContent: "center" }}>
+                        {t('id_card')}
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body >
+                    <div style={{ textAlign: "center" }}>
+                        {getViewCertificate.certificatepath && (
+                            <img
+                                className="img-fluid rounded"
+                                src={um_api + `getcertificateforadminverification/${getViewCertificate.certificatepath}`}
+                                style={{ maxWidth: '100%' }}
+                            />
+                        )}
+                    </div>
+                </Modal.Body>
+                <Modal.Footer style={{ justifyContent: "right" }}>
+                    <Button variant="secondary" onClick={() => CertificateHide()}>
                         {t('cancel')}
                     </Button>
                 </Modal.Footer>

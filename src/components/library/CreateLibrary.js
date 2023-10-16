@@ -221,7 +221,7 @@ function CreateLibrary(props) {
                     handleTimer();
                 }
             }).catch((err) => {
-                //console.log(err);
+               
                 setLoading(false);
             })
         }
@@ -330,7 +330,7 @@ function Step1(props) {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 

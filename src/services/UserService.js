@@ -59,7 +59,7 @@ const _kc = new Keycloak('/keycloak.json');
 
   const getIP = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
-    ////console.log(res.data);
+    
     // setData((prevState) => {
     //   return { ...prevState, ip: res.data.IPv4 };
     // });
@@ -93,7 +93,7 @@ const _kc = new Keycloak('/keycloak.json');
       // call service over here
       service.saveUserActionDetails(data.browser, data.os, data.resolution, userId, data.ip, sessionId)
      
-      ////console.log(data);
+      
       ////console.log(ip);
       ////console.log(userId, sessionId);      
     };

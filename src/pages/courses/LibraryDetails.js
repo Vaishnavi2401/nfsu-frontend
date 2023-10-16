@@ -143,9 +143,9 @@ function LibraryDetails(props) {
     // let tenantId = tenantID.substring(10);;
     // //console.log("tenantId in course details file" + tenantId);
     const um_api = USER_API;
-    ////console.log(um_api);
+    
     const dms_url = instructorService.DMS_URL;
-    ////console.log(dms_url);
+    //
 
 
     const [libraryName, setLibraryName] = useState(false)
@@ -195,7 +195,7 @@ function LibraryDetails(props) {
             setUrlModal(true);
             service.saveContentVisit(userId, courseId, id, contentlabel, sessionId, contentType);
         }).catch((err) => {
-            //console.log(err);
+           
         })
         ////console.log(getUrl + "FILE PATH   ")
 
@@ -219,24 +219,24 @@ function LibraryDetails(props) {
 
     const getContentList = () => {
         // instructorService.getLibraryContent(courseId).then((resp) => {
-        //     //console.log(resp.data)
+        //    
         //     setContentData(resp.data.nodes[0].nodes)
         // }).catch((err) => {
-        //     //console.log(err)
+        //    
         // })
         learnerService.getLibraryStructureById(courseId).then((resp) => {
             //console.log("getLibraryStructureById",resp.data);
             setContentData(resp.data.nodes[0].nodes)
             setLibraryName(resp.data);
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
     const getViewCount = () => {
-        //console.log(courseId);
+        
         service.getCourseViewCount(courseId).then((res) =>{
-            //console.log(res.data);
+            
             setViewCount(res.data)
         })
     }
@@ -254,7 +254,7 @@ function LibraryDetails(props) {
 
 
 
-    console.log(DMS_URL);
+    
     const videoJsOptions = {
         autoplay: false,
         playbackRates: [0.5, 1, 1.25, 1.5, 2],

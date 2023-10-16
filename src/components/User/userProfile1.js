@@ -37,11 +37,11 @@ const UserProfile = (props) => {
     useEffect(() => {
         service.getUserById(id)
             .then(res => {
-                ////console.log(res);
+                
                 setUserDetails(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -55,12 +55,12 @@ const UserProfile = (props) => {
     useEffect(() => {
         service.getCountry()
             .then(res => {
-                ////console.log(res);
+                
                 setCountry(res.data);
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -68,12 +68,12 @@ const UserProfile = (props) => {
     useEffect(() => {
         service.getState()
             .then(res => {
-                ////console.log(res);
+                
                 setStates(res.data);
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -82,12 +82,12 @@ const UserProfile = (props) => {
     const getDistricts = (stateId) => {
         service.getDistrict(stateId)
             .then(res => {
-                ////console.log(res);
+                
                 setdistrict(res.data);
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

@@ -111,7 +111,7 @@ function BulkUserRegistration() {
     const uploadFileData = async () => {
         setLoading(true)
         try {
-            ////console.log(getFileData);
+            
             let result = await adminServices.bulkUserUpload(getFileData.fileData, userId);
             if (result.status == 200) {
                 setLoading(false);
@@ -126,9 +126,9 @@ function BulkUserRegistration() {
             } else {
                 //console.log("fail to load data")
             }
-            ////console.log(result.data)
+            
         } catch (error) {
-            //console.log(error);
+            
             setLoading(false);
             setFileData({
                 ...getFileData,

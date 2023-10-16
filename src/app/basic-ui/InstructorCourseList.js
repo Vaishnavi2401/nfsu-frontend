@@ -4,7 +4,6 @@ import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import DataTable from 'react-data-table-component';
 import { downloadExcel } from 'react-export-table-to-excel';
 import { For } from 'react-loops';
-
 import StickyMenu from '../../components/common/StickyMenu';
 import adminServices from '../../services/adminServices';
 import service from '../../services/service';
@@ -98,7 +97,7 @@ export default function InstructorCourseList() {
     adminServices.getAllInstructors().then((resp) => {
       setInstructorList(resp.data);
     }).catch((err) => {
-      //console.log(err);
+     
     })
   }
 
@@ -129,9 +128,9 @@ export default function InstructorCourseList() {
     })
     service.getUserEnrolledCourses(instId, 2).then((resp) => {
       setInstCourse(resp.data);
-      //console.log(resp.data);
+     
     }).then((err) => {
-      //console.log(err);
+     
     })
   }
 

@@ -80,7 +80,7 @@ const CourseCategory = () => {
             })
 
             .catch(err => {
-                //console.log(err)
+               
             })
 
 

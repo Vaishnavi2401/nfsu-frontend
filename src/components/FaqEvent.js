@@ -76,7 +76,7 @@ function FaqEvent() {
             .then(res => {
                 // alert("check inside the Faq event222::" + res.data);
                 setupcomingeventdata(res.data);
-                // //console.log(res.data);
+                // 
             }).catch(error => setmsg(t('service_down')));
 
     }, []);

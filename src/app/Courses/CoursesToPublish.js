@@ -94,7 +94,7 @@ function CoursesToPublish() {
 
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getLearnerData, setlearnerData] = useState([]);
     const [getLearnerDataStatus, setlearnerDataStatus] = useState(false);
@@ -106,10 +106,10 @@ function CoursesToPublish() {
     const getAllCourseList = () => {
         services.getAllCourses().then((resp) => {
             //setLearnerList(resp.data);
-            //console.log(resp.data)
+           
             setCourseList(resp.data);
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
@@ -125,10 +125,10 @@ function CoursesToPublish() {
         try {
             let result = await adminServices.getRequestOfLearnerForCourse(id)
             setlearnerData(result.data);
-            ////console.log(result.data);
+            
             setlearnerDataStatus(false);
         } catch (e) {
-            //console.log(e);
+            
             setlearnerDataStatus(false);
         }
     }
@@ -155,7 +155,7 @@ function CoursesToPublish() {
 
             let result = await service.approveCourseLearnerRequest(courseId, userId);
 
-            ////console.log(result.data);
+            
             if (result.data == "success") {
                 await swal(`${t('success')}`, `${t('learner_approved')}`, "success");
                 // InstructorRequestDatas();
@@ -164,7 +164,7 @@ function CoursesToPublish() {
             }
         } catch (e) {
             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-            //console.log(e)
+            
             setApproveLoading({ isLoading: false });
             setlearnerDataStatus(true);
         }

@@ -235,9 +235,9 @@ function Dashborad() {
     const getEnrolledCourseList = () => {
         service.getUserEnrolledCourses(UserService.getUserid(), 1).then((resp) => {
             setEnrolledCourseList(resp.data);
-            ////console.log(resp.data);
+           
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -591,10 +591,10 @@ function Dashborad() {
                 setTimeSpendReportShow(true);
                 setTimeSpentReportData(resp.data);
                 resetError();
-                ////console.log(resp.data);
+               
                 setOnClickSubmit({ isLoading: false });
             }).catch((err) => {
-                //console.log(err);
+               
             })
         }
     }
@@ -664,9 +664,9 @@ function Dashborad() {
                 setContentAccessLogData(resp.data);
                 resetError();
                 setOnClickContentSubmit({ isLoading: false });
-                ////console.log(resp.data)
+               
             }).catch((err) => {
-                //console.log(err);
+               
             })
         }
 
@@ -741,7 +741,7 @@ function Dashborad() {
                     resetError();
                     setOnClickSubmitActivity({ isLoading: false });
                 }).catch((err) => {
-                    //console.log(err);
+                   
                 })
         }
     }

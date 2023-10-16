@@ -69,7 +69,7 @@ const UserEnrolledCoursesList = (props) => {
     }, [currentLanguage, t])
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
 
     const [loading, setLoading] = useState(false);

@@ -5,7 +5,7 @@ import { Styles } from "./styles/mobileMenu.js";
 import RenderOnAnonymous from '../../pages/account/RenderOnAnonymous';
 import RenderOnAuthenticated from '../../pages/account/RenderOnAuthenticated'
 import UserService from '../../services/UserService'
-import service from '../../services/service'
+import service, {USER_API}  from '../../services/service'
 import { useHistory } from 'react-router-dom';
 import ProfileUpdate from '../User/ProfileUpdate'
 import axios from 'axios';
@@ -52,8 +52,8 @@ function MobileMenu() {
         UserService.generateToken();
     }, []);
 
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api = USER_API;
+    
 
     const currentLanguageCode = cookies.get('i18next') || 'en'
     const currentLanguage = languages.find((l) => l.code === currentLanguageCode)
@@ -157,7 +157,7 @@ function MobileMenu() {
                 setUserDetails(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

@@ -89,7 +89,7 @@ function RequestForInstructor() {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getLearnerData, setlearnerData] = useState([]);
     useEffect(() => {
@@ -101,7 +101,7 @@ function RequestForInstructor() {
         try {
             let result = await adminServices.getAllInstructorRequest();
             setlearnerData(result.data);
-            ////console.log(result.data);
+            
             // let fetchUsersInfoRemote = Promise.all(result.data.map(async (data, index) => {
             //     try {
             //         let response = await axios.get( um_api + `learner/byId?userid=${data.userId}`);
@@ -113,7 +113,7 @@ function RequestForInstructor() {
             // }));
             // fetchUsersInfoRemote.then(data => setlearnerData(data));
         } catch (e) {
-            //console.log(e)
+            
         }
     }
 
@@ -135,7 +135,7 @@ function RequestForInstructor() {
             let result = await service.assignInstructorRole(learnerId)
             //Previously there is an 'data' in Parameter 
             // //console.log(learnerId);
-            // //console.log(result.data);
+            // 
             if (result.data == "Success") {
                 await swal(`${t('success')}`, `${t('instructor_approved')}`, "success");
                 InstructorRequestDatas();
@@ -143,7 +143,7 @@ function RequestForInstructor() {
             }
         } catch (e) {
             swal(`${t('error')}`, `${t('something_went_wrong_try_later')}`, "error")
-            //console.log(e)
+            
             setApproveLoading({ isLoading: false });
         }
     }
@@ -155,7 +155,7 @@ function RequestForInstructor() {
     //             InstructorRequestDatas();
     //         }
     //     } catch (e) {
-    //         //console.log(e)
+    //         
     //     }
     // }
 

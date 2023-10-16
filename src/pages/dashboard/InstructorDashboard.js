@@ -119,10 +119,10 @@ function InstructorDashboard(props) {
             attemptNumber: 0,
             courseId: getCourseId
         }
-        ////console.log(data);
+        
         service.getQuizCompleteResult(data)
             .then(res => {
-                ////console.log(res.data);
+                
                 setQuizReportCard(res.data);
             })
             .catch(err => {
@@ -371,9 +371,9 @@ function InstructorDashboard(props) {
     const getAuthoredCourseList = () => {
         service.getUserEnrolledCourses(userId, 2).then((resp) => {
             setAuthoredCourseList(resp.data);
-            ////console.log(resp.data);
+           
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -384,11 +384,11 @@ function InstructorDashboard(props) {
         ////console.log("userId -> "+userId+" CourseID -> "+courseId);
         service.quizReport(userId, courseId)
             .then((resp) => {
-                ////console.log(resp.data);
+               
                 setCurrentUserId(resp.data);
                 setQuizReportList(resp.data.assignedQuizzes);
             }).catch((err) => {
-                //console.log(err);
+               
             })
     }
 
@@ -596,14 +596,14 @@ function InstructorDashboard(props) {
     const getUserEnrolledByCourse = (courseId) => {
         setQuizReportList([]);
         setCourseId(courseId);
-        ////console.log(courseId);
+       
         learnerService.getUserEnrolledByCourse(courseId, tenantId)
             .then(res => {
                 setlearnerData(res.data);
                 setMoreDetailsLoading({ isLoading: false });
-                ////console.log(res.data);
+                
             }).catch(err => {
-                //console.log(err);
+               
                 setMoreDetailsLoading({ isLoading: false });
             })
     }

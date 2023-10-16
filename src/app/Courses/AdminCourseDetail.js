@@ -154,7 +154,7 @@ function AdminCourseDetail(props) {
     // //console.log("tenantId in course details file" + tenantId);
     const um_api = USER_API;
     ////console.log(courseId + " " + tenantId);
-    //////console.log(um_api);
+    //
     const [isDecodeValid, setIsDecodeValid] = useState("NOTVALID")
 
     const decodeHandler = () => {
@@ -321,7 +321,7 @@ function AdminCourseDetail(props) {
                     setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                     ////console.log("setCourseStructureJson " + res.data.courseStructureJson);
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
             const fatchUserCount = async () => {
@@ -329,7 +329,7 @@ function AdminCourseDetail(props) {
                     const res = await service.userCount(courseId, tenantId);
                     setUserCount(res.data.userCount);
                 } catch (error) {
-                    //console.log(error)
+                    
                 }
             }
 
@@ -338,9 +338,9 @@ function AdminCourseDetail(props) {
                     const res = await service.getoverallRating(courseId, tenantId);
                     setRating(res.data);
                     setRatingCount(res.data.length);
-                    ////console.log(res.data);
+                    
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
             const fatchServerTime = async () => {
@@ -348,7 +348,7 @@ function AdminCourseDetail(props) {
                     const res = await instructorService.getServerTime();
                     setStartDate(new Date(res.data));
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
 
@@ -442,7 +442,7 @@ function AdminCourseDetail(props) {
                 .then(res => {
                     setUserCount(res.data.userCount);
                 }).catch(error => {
-                    //console.log(error)
+                    
                 }
 
                 )
@@ -471,7 +471,7 @@ function AdminCourseDetail(props) {
                     ////console.log('UserDetail-------------'+res.data);
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 });
 
             ////console.log("input data "+ userId + courseId + tenantId);
@@ -509,7 +509,7 @@ function AdminCourseDetail(props) {
             service.averageRating(rating)
                 .then(res => {
                     setAvgRating(res.data);
-                    ////console.log(res.data);
+                    
                 }).catch(error => {
                     //console.log(('service_maintainance_down_alert'))
                 }
@@ -685,7 +685,7 @@ function AdminCourseDetail(props) {
                                 folderStructureTreeCourse();
                             }
                         }).catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             });
@@ -712,7 +712,7 @@ function AdminCourseDetail(props) {
                                 folderStructureTreeCourse();
                             }
                         }).catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             });
@@ -1144,7 +1144,7 @@ function AdminCourseDetail(props) {
                         folderStructureTreeCourse();
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1186,10 +1186,10 @@ function AdminCourseDetail(props) {
                                 })
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1204,10 +1204,10 @@ function AdminCourseDetail(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1223,10 +1223,10 @@ function AdminCourseDetail(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1235,17 +1235,13 @@ function AdminCourseDetail(props) {
         if (userId !== " ") {
             service.getRoleIdbyCourseIdandUserId(courseId, userId)
                 .then((res) => {
-                    ////console.log("role id " + res.data);
-                    ////console.log("role status " + res.status);
                     if (res.status === 200) {
                         setRoleId(res.data);
                     }
                     else {
-                        ////console.log("role id " + res.data);
                     }
                 })
                 .catch((err) => {
-                    //console.log("role id error " + err);
                 })
         }
     }
@@ -1266,25 +1262,22 @@ function AdminCourseDetail(props) {
                 res.data.assignedQuizzes.map((data) => {
 
                     if (data.isPassed === true) {
-                        ////console.log("Inside True of getAssignedQuizzesStatus");
                         setCertificateViewButton(true);
                         setStatusCer(true);
-                        ////console.log(certificateViewButton);
-                        ////console.log("true................."); 
+                        
                     }
                     else {
-                        ////console.log("Inside Else of getAssignedQuizzesStatus")
+                        
                         setCertificateViewButton2(false);
-                        ////console.log(certificateViewButton2);
                     }
-                    ////console.log(data.isPassed+'----------------------------------');
-                    ////console.log(certificateViewButton + ' certificateViewButton');
-                    ////console.log(certificateViewButton2 + ' certificateViewButton2');
+                    
+                    
+                   
                 })
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -1499,7 +1492,7 @@ function AdminCourseDetail(props) {
                 _checkthis(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1618,7 +1611,7 @@ function AdminCourseDetail(props) {
                 setInstructor(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1647,7 +1640,7 @@ function AdminCourseDetail(props) {
                 if (res.status == '200') {
 
                     ////console.log("toGenerateCertificate123", res);
-                    ////console.log(res.data);
+                    
                     setCertificateUrl(res.data);
 
 
@@ -1763,7 +1756,7 @@ function AdminCourseDetail(props) {
     }
 
     const tableExportExcel = () => {
-        ////console.log(getLearnerData);
+       
         var checkData = [];
         const header = ["Name", "E-mail", "Mobile"]
         getLearnerData.map((data) => {
@@ -1829,7 +1822,7 @@ function AdminCourseDetail(props) {
     }
 
     const tableExportExcelforReview = () => {
-        ////console.log(getLearnerData);
+       
         var checkData = [];
         const header = ["Name", "Creation Time", "Rating"]
         getRating.map((data) => {
@@ -1877,7 +1870,7 @@ function AdminCourseDetail(props) {
 
 
     const tableExportExcelforFeedback = () => {
-        ////console.log(getLearnerData);
+       
         var checkData = [];
         const header = ["Name", "Creation Time", "Rating"]
         getFeedbackResponse.map((data) => {
@@ -2157,7 +2150,7 @@ function AdminCourseDetail(props) {
             .then(res => {
                 setlearnerData(res.data);
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -2937,7 +2930,7 @@ function AdminCourseDetail(props) {
                                                 <div className="instructor-item">
                                                     {
                                                         getInstructor.map((data, i) => {
-                                                            // //console.log(data);
+                                                            
                                                             return (
                                                                 <Row>
                                                                     {/* <Col md="4"> */}

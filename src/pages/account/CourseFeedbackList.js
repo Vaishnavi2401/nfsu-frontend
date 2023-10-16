@@ -65,7 +65,7 @@ export default function CourseFeedbackList(props) {
 
     const getFeedbackList = () => {
         service.getFeedback(typeid, cid, UserService.getUserid()).then((resp) => {
-            //console.log(resp.data);
+           
             setFeedback(resp.data);
         }).catch((err) => {
 
@@ -75,10 +75,10 @@ export default function CourseFeedbackList(props) {
     const getUserFeedbackStatus = () => {
 
         service.getUserFeedbackStatus(cid, UserService.getUserid()).then((resp) => {
-            //console.log(resp.data);
+           
             setFeedbackStatus(resp.data);
         }).catch((err) => {
-            //console.log(err)
+           
         })
 
 
@@ -161,7 +161,7 @@ export default function CourseFeedbackList(props) {
             .then(async res => {
                 await swal(t('feedback_submit_msg'), t('feedback_submit_msg_desc'), "success");
                 window.location.reload();
-                // //console.log(res);
+                // 
             })
             .catch(err => {
                 feedBackJson = [];

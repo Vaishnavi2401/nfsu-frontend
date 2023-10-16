@@ -11,7 +11,6 @@ import services from '../../services/service.js';
 import moment from 'moment';
 import adminServices from '../../services/adminServices';
 import UserService from '../../services/UserService';
-
 import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 
@@ -125,10 +124,10 @@ function CoursePaymentDetails() {
     const getAllCourseList = () => {
         services.getAllCourses().then((resp) => {
             //setLearnerList(resp.data);
-            ////console.log(resp.data)
+           
             setCourseList(resp.data);
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
@@ -255,8 +254,6 @@ function CoursePaymentDetails() {
     const onClickSubmitCourseDetails = async () => {
         // setUpdateCoursePayments(false)
         // setPaymentDetails([])
-        // //console.log(UserService.getUserid())
-        ////console.log(coursePayment);
         const condition = coursePaymentRangeValidate();
         if (condition) {
             setCoursePaymentRangeError({
@@ -270,7 +267,7 @@ function CoursePaymentDetails() {
             services.getCoursePaymentDetailsByDate(getCourseIdName.id, coursePayment.fromDate, coursePayment.toDate)
                 .then((resp) => {
                     const newPaymentEntry = [];
-                    // //console.log(resp.data);
+                    //
                     if (resp.data.length === 0) {
                         setSubmitLoading({ isLoading: false });
                     }
@@ -280,21 +277,19 @@ function CoursePaymentDetails() {
 
                             var t = new Date(data1.transactionDate);
                             var formatted = moment(t).format('lll');
-                            ////console.log(data1);
-                            ////console.log(formatted);
+                            
+                            
                             //setFormattedDate(prevState => { return [...prevState, formatted] })
 
                             adminServices.getLearnerByid(data1.userId)
                                 .then(res => {
                                     //setUserName(prevState => { return [...prevState, res.data.firstName] })
                                     newPaymentEntry.push({ ...data1, userName: res.data.firstName, formattedDate: formatted })
-                                    ////console.log(newPaymentEntry);
                                     //setPaymentDetails(prevState => { return [...prevState, newPaymentEntry] })
                                     setPaymentDetails([...newPaymentEntry]);
                                     setSubmitLoading({ isLoading: false });
                                 })
                                 .catch(err => {
-                                    ////console.log("Username By Id " + err)
                                 })
 
                         })
@@ -302,12 +297,12 @@ function CoursePaymentDetails() {
                     }
                 })
                 .catch((err) => {
-                    //console.log(err);
+                   
                 })
         }
     }
 
-    ////console.log(paymentDetails);
+    
 
     return (
         <div className="container-scroller">

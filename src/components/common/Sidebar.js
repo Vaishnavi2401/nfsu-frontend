@@ -16,6 +16,7 @@ import RenderOnInstructor from '../../pages/account/RenderOnInstructor.jsx';
 import RenderOnLearner from '../../pages/account/RenderOnLearner.jsx';
 import logo from "../../../src/assets/images/logo.png"
 import resume from "../../../src/assets/images/resume.png";
+import {Communication, USER_API, Assessment_Delivery} from '../../services/service.js';
 
 const languages = [
 
@@ -70,8 +71,8 @@ function Sidebar(props) {
 
 
 
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api = USER_API;
+    
 
 
 
@@ -150,11 +151,11 @@ function Sidebar(props) {
             .then(res => {
                 setUserDetails(res.data);
                 setProfilePicPath(res.data.profilePicPath);
-                //console.log(res.data);
+                
                 checkInstRequest();
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -214,13 +215,13 @@ function Sidebar(props) {
             service.getUserById(id)
                 .then(res => {
                     setUserDetails(res.data);
-                    //console.log(res.data);
+                    
                     if (res.data.placeOfPosting === null || res.data.gpfNumber === null || res.data.beltNumber === null) {
                         setProfileStatus({ show: true })
                     }
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }, [])
@@ -231,7 +232,7 @@ function Sidebar(props) {
                 if (resp.data === "pending") {
                     // //console.log("PENDING")
                     setCondition("Pending")
-                    // //console.log(resp.data)
+                    //
                     // condition = true
                     // setCondition(<><h6 className='alert alert-warning' role="alert" >Already Request Submitted Please Wait for Mail or Contact Admin</h6></>)
                 }
@@ -243,7 +244,7 @@ function Sidebar(props) {
                 //     // setCondition(<><Button onClick={() => requestAsInstructor()} className="btn btn-light" >Request For Instructor</Button></>)
                 // }
             }).catch(err => {
-                //console.log(err)
+               
             }
             );
     }

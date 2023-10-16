@@ -94,7 +94,7 @@ export default function ManageQualification() {
         adminServices.getAllQualification().then((resp) => {
             setQualification(resp.data);
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -123,13 +123,13 @@ export default function ManageQualification() {
             }
             else if(resp.status == 200){
                 setDeleteLoading({ isLoading: false });
-                ////console.log(resp.data);
+               
                 swal(`${t('success')}`, `${t('qualification_delete')}`, 'success')
                 getAllQualification();
             }
         }).catch((err) => {
             setDeleteLoading({ isLoading: false });
-            //console.log(err)
+           
         })
     }
 
@@ -147,7 +147,7 @@ export default function ManageQualification() {
                 getAllQualification();
                 setAddModalShow(false);
             }).then((err) => {
-                //console.log(err);
+               
             })
         }
     }
@@ -164,7 +164,7 @@ export default function ManageQualification() {
             setAddModalShow(true);
         }).then((err) => {
             setEditLoading({ isLoading: false });
-            //console.log(err)
+           
         })
 
     }
@@ -246,12 +246,12 @@ export default function ManageQualification() {
             }
             ////console.log(qualificationAdd)
             adminServices.addQualification(qualificationAdd).then((resp) => {
-                ////console.log(resp.data);
+               
                 swal(`${t('success')}`, `${t('qualification_add')}`, 'success')
                 getAllQualification();
                 setAddModalShow(false)
             }).catch((err) => {
-                //console.log(err)
+               
             })
         }
     }

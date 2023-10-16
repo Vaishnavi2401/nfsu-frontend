@@ -17,7 +17,7 @@ module.exports.CheckEmail = (getMail) => {
 
     }).catch((err) => {
         //console.log("under catch")
-        //console.log(err);
+       
     })
 
     //console.log("Outside")

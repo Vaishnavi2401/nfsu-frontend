@@ -63,7 +63,7 @@ function CompletionCriteria(props) {
     useEffect(() => {
         axios.get(`${COURSE_URL}/courseOrganizer/getCourseStructure/${courseId}`)
             .then((res) => {
-                ////console.log(res.data);
+                
                 setApiData1(res.data);
             })
             .catch((error) => console.error(error));
@@ -212,7 +212,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -280,7 +280,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -348,7 +348,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -469,7 +469,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
 
                                                     }
                                                 });
@@ -538,7 +538,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
 
                                                     }
                                                 });
@@ -607,7 +607,7 @@ function CompletionCriteria(props) {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });

@@ -69,7 +69,7 @@ function CourseFeedback(props) {
                 if (res.data != '') {
                     setQuestionState(res.data);
                     setShowButton(true);
-                    //console.log(res);
+                    
                 }
                 else {
                     setVisibility(true);
@@ -77,7 +77,7 @@ function CourseFeedback(props) {
                 }
             })
             .catch(err => {
-                //console.log(err)
+               
 
             })
 
@@ -91,7 +91,7 @@ function CourseFeedback(props) {
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }, [])
     let dummyJson = {};
@@ -166,10 +166,10 @@ function CourseFeedback(props) {
                 await swal(t('feedback_submit_msg'), t('feedback_submit_msg_desc'), "success");
                 setFeedbackSubmit({ isLoading: false });
                 window.location.reload();
-                // //console.log(res);
+                // 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

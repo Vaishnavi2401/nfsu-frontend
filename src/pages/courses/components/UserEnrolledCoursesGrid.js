@@ -64,7 +64,7 @@ const UserEnrolledCoursesGrid = (props) => {
     }, [currentLanguage, t])
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [loading, setLoading] = useState(false);
     const [rating, setRating] = useState([]);
@@ -91,11 +91,11 @@ const UserEnrolledCoursesGrid = (props) => {
     // useEffect(() => {
     //     Services.getCourseDetails()
     //         .then(res => {
-    //             //console.log(res);
+    //             
     //             setCourseState(res.data)
     //         })
     //         .catch(err => {
-    //             //console.log(err)
+    //            
     //         })
     // }, [])
     // var userId = UserService.getUserid();
@@ -107,7 +107,7 @@ const UserEnrolledCoursesGrid = (props) => {
             setLoading(true);
             const res = await Services.getUserEnrolledCourses(userId, roleId);
             setCourseState(res.data);
-            ////console.log(res.data);
+            
             setPaidJsonState(res.data.filter(function (ele) {
                 if (ele.courseDetails.course_Fee > 0)
                     return ele.courseDetails.course_Fee > 0;
@@ -122,11 +122,11 @@ const UserEnrolledCoursesGrid = (props) => {
 
     useEffect(() => {
         ratingTest();
-        ////console.log(courseState);
+       
     }, [courseState])
 
     const ratingTest = () => {
-        ////console.log(courseState);
+       
         courseState.map((data, i) => {
             ////console.log(data.courseId);
             setRating(rating => [...rating, { itemId: data.id.courseId, tenantId: 1 }])

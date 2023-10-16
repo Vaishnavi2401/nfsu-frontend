@@ -15,7 +15,7 @@ function CourseCategory() {
             .then(res => {
                 setCategory(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 

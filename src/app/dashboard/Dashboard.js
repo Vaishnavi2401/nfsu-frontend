@@ -69,7 +69,7 @@ function Dashboard() {
       setData(result.data);
       setInstructor(no_Of_Instructor.data.length);
     } catch (e) {
-      //console.log(e);
+      
     }
   }
 

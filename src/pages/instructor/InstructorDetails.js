@@ -45,7 +45,7 @@ function InstructorDetails(props) {
 
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     let instructorId = props.match.params.id;
     const [getInstructordata, setInstructordata] = useState([]);
@@ -56,7 +56,7 @@ function InstructorDetails(props) {
                 setInstructordata(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 

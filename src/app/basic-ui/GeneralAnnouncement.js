@@ -99,7 +99,7 @@ function GeneralAnnouncement() {
             let result = await service.getAllGeneralAnnouncementListByAuthor(UserId);
             setAnnouncementDetails(result.data);
         } catch (error) {
-            //console.log(error);
+            
         }
     }
 
@@ -152,7 +152,7 @@ function GeneralAnnouncement() {
                             setAddAnnouncementDiv(false);
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         });
@@ -310,7 +310,7 @@ function GeneralAnnouncement() {
                     "publishUpto": announcementData.publishupto, "courseId": "", "createdAt": new Date().toISOString(), "createdBy": UserId,
                     "readStatus": "string", "type": 1, "id": announcementData.id
                 };
-                ////console.log(data);
+                
                 service.updateAnnouncement(announcementData.id, data)
                     .then(async res => {
                         if (res.status === 200) {
@@ -318,10 +318,10 @@ function GeneralAnnouncement() {
                             AnnouncementData();
                             setAddAnnouncementDiv(false);
                         } else {
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         } else {
@@ -331,7 +331,7 @@ function GeneralAnnouncement() {
                     "publishUpto": announcementData.publishupto, "courseId": "", "createdAt": new Date().toISOString(), "createdBy": UserId,
                     "readStatus": "string", "type": 1
                 };
-                ////console.log(data);
+                
                 service.createAnnouncement(data)
                     .then(async res => {
                         if (res.status === 200) {
@@ -339,10 +339,10 @@ function GeneralAnnouncement() {
                             AnnouncementData();
                             setAddAnnouncementDiv(false);
                         } else {
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }

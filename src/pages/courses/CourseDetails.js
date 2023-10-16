@@ -111,7 +111,7 @@ function CourseDetails(props) {
     const um_api = USER_API;
     ////// console.log(um_api);
     // const dms_url = instructorService.DMS_URL;
-    ////// console.log(dms_url);
+    ////// 
 
     const [courseId, setDecodedCourseId] = useState(null)
     const [tenantId, setDecodedTenantId] = useState(null)
@@ -313,7 +313,7 @@ function CourseDetails(props) {
         // // console.log("calling courseMetaData API with courseId", courseId, "tenantId", tenantId)
         learnerService.getCourseMetadataById(courseId)
             .then(res => {
-                //console.log(res.data)
+                
                 // // console.log("calling courseMetaData API with courseId TRYYYYYYYYYY", courseId, "tenantId", tenantId)
                 setCourseValue(JSON.parse(res.data));
                 // console.log("res.datares.datares.data", res.data)
@@ -672,10 +672,7 @@ function CourseDetails(props) {
 
     }
 
-    //const [generatedOrderId, setGenratedOrderId] = useState();
-    useEffect(() => {
-        console.log("getPaymentInfo", getPaymentInfo);
-      }, [getPaymentInfo]);
+
 
 
       const paymentValidations = () =>{
@@ -690,7 +687,6 @@ function CourseDetails(props) {
         if (getPaymentInfo.merchant_param1.match(/^[A-Za-z0-9 \s]{0,100}$/)) {
             //status = true;
           } else {
-            console.log("test text");
             merchant_param1err = "Words and numbers are allowed(max 100 letters)";
             status = false;
           }
@@ -760,21 +756,20 @@ function CourseDetails(props) {
             promo_code: getPaymentInfo.promo_code
         };
 
-        // console.log("data==========> " , data);
-        console.log("status==========> " , status);
+       
     
         if(status == true){
 
             await service
           .paymentDetailSave(data)
           .then((res) => {
-            console.log(res.data);
-            console.log(res.data.encRequest);
-            console.log(res.data.access_code);
+            // console.log(res.data);
+            // console.log(res.data.encRequest);
+            // console.log(res.data.access_code);
             const TokenJsonString = JSON.stringify(res.data);
             //  let encoded = encodeURIComponent(res.data);
             // //setOrderId(res.data.orderId)
-            console.log("TokenJsonString ==> ", TokenJsonString);
+            // console.log("TokenJsonString ==> ", TokenJsonString);
     
             const form = document.createElement("form");
             form.method = "post";
@@ -803,7 +798,7 @@ function CourseDetails(props) {
             form.submit();
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
           });
 
         }
@@ -852,7 +847,7 @@ function CourseDetails(props) {
 
     const [getRate, setRate] = useState(state);
 
-    console.log("getRate -----------> " , getRate);
+    // console.log("getRate -----------> " , getRate);
 
     // useEffect(() => {
     //     const form = document.getElementById("form6");
@@ -900,7 +895,7 @@ function CourseDetails(props) {
                 getOverAllRating();
             }).catch(err => {
                 setLoading(false);
-                //console.log(err);
+               
             });
         }
     }
@@ -951,7 +946,7 @@ function CourseDetails(props) {
                 _checkthis(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
                 setReviewTextBoxCondition(true);
             })
     }
@@ -1016,7 +1011,7 @@ function CourseDetails(props) {
                 refreshPage();
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         //swal("Review deleted  Successfully!", "You can check in the  Reviews!", "success");
     }
@@ -1099,7 +1094,7 @@ function CourseDetails(props) {
                 setInstructor(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1126,7 +1121,7 @@ function CourseDetails(props) {
 
         learnerService.toGenerateCertificate(userId, courseId, tenantId)
             .then(res => {
-                //console.log(res);
+                
                 if (res.status == '200') {
                     // return(
                     //     <>
@@ -1136,14 +1131,14 @@ function CourseDetails(props) {
 
                     learnerService.toDownloadCertificate(courseId, res.data)
                         .then(res => {
-                            //console.log(res);
+                            
                             fileDownload(res.data, "Certificate.pdf");
                         })
                         .catch(err => {
 
                         })
                     ////console.log("toGenerateCertificate123", res);
-                    ////console.log(res.data);
+                    
                     //setCertificateUrl(res.data);
 
 
@@ -1737,7 +1732,7 @@ function CourseDetails(props) {
                                                                 ? 
                                                                 (courseValue.courseFee > 0 && roleId === 7) 
                                                                 ?
-                                                                <button type="button" onClick={PaymentParameterView} className="enroll-btn" disabled={CourseEnrollment.isLoading ? "true" : ""}>  {CourseEnrollment.isLoading ? (<> {t('loading')}</>) : (<>{t('pay_to_enroll')}</>)}</button>
+                                                                <button type="button" onClick={()=>{paymentForCourse(courseId, tenantId)}} className="enroll-btn" disabled={CourseEnrollment.isLoading ? "true" : ""}>  {CourseEnrollment.isLoading ? (<> {t('loading')}</>) : (<>{t('pay_to_enroll')}</>)}</button>
                                                                  : 
                                                                  ((roleId === 4)?
                                                                  <button type="button" className="enroll-btn" onClick={() => enrollCourseHandler(userId, courseId)} disabled={true}>{t('Waiting for Admin approval')}</button>
@@ -1750,7 +1745,7 @@ function CourseDetails(props) {
                                                                 ?
                                                                 (courseValue.courseFee > 0 && roleId === 7) 
                                                                 ?
-                                                                <button type="button" onClick={PaymentParameterView} className="enroll-btn" disabled={CourseEnrollment.isLoading ? "true" : ""}>  {CourseEnrollment.isLoading ? (<> {t('loading')}</>) : (<>{t('pay_to_enroll')}</>)}</button>
+                                                                <button type="button" onClick={()=>{paymentForCourse(courseId, tenantId)}} className="enroll-btn" disabled={CourseEnrollment.isLoading ? "true" : ""}>  {CourseEnrollment.isLoading ? (<> {t('loading')}</>) : (<>{t('pay_to_enroll')}</>)}</button>
                                                                  : 
                                                                  ((roleId === 1) 
                                                                  ? 
@@ -2113,7 +2108,7 @@ function CourseDetails(props) {
                                                 <div className="instructor-item">
                                                     {
                                                         getInstructor.map((data, i) => {
-                                                            // //console.log(data);
+                                                            
                                                             return (
                                                                 <Row>
                                                                     {/* <Col md="4"> */}

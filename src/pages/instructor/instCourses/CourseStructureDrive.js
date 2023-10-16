@@ -80,7 +80,7 @@ function CourseStructureDrive() {
 
   let token = "test";
 
-  console.log(DMS_URL);
+  
 
   useEffect(() => {
     token = UserService.generateToken();
@@ -220,7 +220,7 @@ function CourseStructureDrive() {
     setFolderName(dirName);
     instructorService.contentDetails(dirId, userId).then((res) => {
       setContentDetails(res.data);
-      //console.log(res.data);
+      
     });
   };
 
@@ -951,7 +951,7 @@ function CourseStructureDrive() {
           setFileContentUpdateModalState({ show: false });
           instructorService.contentDetails(folder_id, userId).then((res) => {
             setContentDetails(res.data);
-            //console.log(res.data);
+            
           });
         }
       })
@@ -1108,7 +1108,7 @@ function CourseStructureDrive() {
           setUploadModalState({ show: false });
           instructorService.contentDetails(getParentId, userId).then((res) => {
             setContentDetails(res.data);
-            //console.log(res.data);
+            
           });
         }
       })

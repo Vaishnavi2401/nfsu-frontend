@@ -5,7 +5,7 @@ import { BreadcrumbBox } from '../../components/common/Breadcrumb';
 import FooterTwo from '../../components/FooterTwo';
 import { Styles } from '../../app/Courses/styles/course1.js';
 import { Styles1 } from './styles/reviewForm.js';
-import service from '../../services/service';
+import service , {USER_API}  from '../../services/service';
 import UserService from '../../services/UserService';
 import ReplyForm from '../../pages/courses/components/ReplyForm';
 import UpdateReviewform from '../../pages/courses/components/UpdateReviewForm';
@@ -114,10 +114,10 @@ function AdminViewLibrary(props) {
     let mainurl = "http://tmis1.hyderabad.cdac.in:3000/course-details/";
     let url = mainurl + courseID + '/' + tenantID;
     // //console.log("tenantId in course details file" + tenantId);
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api =USER_API;
+    
     const dms_url = instructorService.DMS_URL;
-    // //console.log(dms_url);
+    // 
 
     const initialStateId = {
         firstName: '',
@@ -195,7 +195,7 @@ function AdminViewLibrary(props) {
                 setCourseDetails(res.data);
                 setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
             } catch (e) {
-                //console.log(e)
+                
             }
         }
         const fatchUserCount = async () => {
@@ -203,7 +203,7 @@ function AdminViewLibrary(props) {
                 const res = await service.userCount(courseId, tenantId);
                 setUserCount(res.data.userCount);
             } catch (error) {
-                //console.log(error)
+                
             }
         }
 
@@ -212,9 +212,9 @@ function AdminViewLibrary(props) {
                 const res = await service.getoverallRating(courseId, tenantId);
                 setRating(res.data);
                 setRatingCount(res.data.length);
-                ////console.log(res.data);
+                
             } catch (e) {
-                //console.log(e)
+                
             }
         }
         const fatchServerTime = async () => {
@@ -222,7 +222,7 @@ function AdminViewLibrary(props) {
                 const res = await instructorService.getServerTime();
                 setStartDate(new Date(res.data));
             } catch (e) {
-                //console.log(e)
+                
             }
         }
 
@@ -321,7 +321,7 @@ function AdminViewLibrary(props) {
             .then(res => {
                 setUserCount(res.data.userCount);
             }).catch(error => {
-                //console.log(error)
+                
             }
             )
 
@@ -349,7 +349,7 @@ function AdminViewLibrary(props) {
                 ////console.log('UserDetail-------------'+res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             });
 
         ////console.log("input data "+ userId + courseId + tenantId);
@@ -386,10 +386,10 @@ function AdminViewLibrary(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -406,10 +406,10 @@ function AdminViewLibrary(props) {
     //                         setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
     //                     })
     //             } else {
-    //                 //console.log("err");
+    //                 
     //             }
     //         }).catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
 
@@ -427,10 +427,10 @@ function AdminViewLibrary(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -439,17 +439,13 @@ function AdminViewLibrary(props) {
         if (userId !== " ") {
             service.getRoleIdbyCourseIdandUserId(courseId, userId)
                 .then((res) => {
-                    ////console.log("role id " + res.data);
-                    ////console.log("role status " + res.status);
                     if (res.status === 200) {
                         setRoleId(res.data);
                     }
                     else {
-                        ////console.log("role id " + res.data);
                     }
                 })
                 .catch((err) => {
-                    //console.log("role id error " + err);
                 })
         }
     }
@@ -470,25 +466,22 @@ function AdminViewLibrary(props) {
                 res.data.assignedQuizzes.map((data) => {
 
                     if (data.isPassed === true) {
-                        ////console.log("Inside True of getAssignedQuizzesStatus");
                         setCertificateViewButton(true);
                         setStatusCer(true);
-                        ////console.log(certificateViewButton);
-                        ////console.log("true................."); 
+                        
                     }
                     else {
-                        ////console.log("Inside Else of getAssignedQuizzesStatus")
+                        
                         setCertificateViewButton2(false);
-                        ////console.log(certificateViewButton2);
                     }
-                    ////console.log(data.isPassed+'----------------------------------');
-                    ////console.log(certificateViewButton + ' certificateViewButton');
-                    ////console.log(certificateViewButton2 + ' certificateViewButton2');
+                    
+                    
+                   
                 })
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -496,8 +489,7 @@ function AdminViewLibrary(props) {
         getQuizzesStatus(userId, courseId);
         handleContentDependOnDate();
         instructorData();
-        ////console.log(certificateViewButton);
-        ////console.log("OUTTTPUT ", certificateViewButton2);
+        
     }, [statusCer])
 
     useEffect(() => {
@@ -621,7 +613,7 @@ function AdminViewLibrary(props) {
             // "suspendAll": 1,
             // "enrollReqDate":denrollReqDate.toISOString()
         }
-        ////console.log(data);
+        
         ////console.log(courseValue);
         if (service.postUserEnrollment(data)
             .then(res => {
@@ -633,7 +625,7 @@ function AdminViewLibrary(props) {
                 }
             })
             .catch(err => {
-                //console.log(err);
+               
                 setCourseEnrollment({ isLoading: false });
             })) {
         }
@@ -774,7 +766,7 @@ function AdminViewLibrary(props) {
                 getOverAllRating();
             }).catch(err => {
                 setLoading(false);
-                //console.log(err);
+               
             });
         }
     }
@@ -810,7 +802,7 @@ function AdminViewLibrary(props) {
                 _checkthis(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -874,7 +866,7 @@ function AdminViewLibrary(props) {
                 refreshPage();
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         //swal("Review deleted  Successfully!", "You can check in the  Reviews!", "success");
     }
@@ -957,7 +949,7 @@ function AdminViewLibrary(props) {
                 setInstructor(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -986,7 +978,7 @@ function AdminViewLibrary(props) {
                 if (res.status == '200') {
 
                     ////console.log("toGenerateCertificate123", res);
-                    ////console.log(res.data);
+                    
                     setCertificateUrl(res.data);
 
 
@@ -1044,7 +1036,7 @@ function AdminViewLibrary(props) {
                 })
             }
         }).catch((err) => {
-            //console.log(err)
+           
         })
 
         // //console.log(contentType)
@@ -1105,7 +1097,7 @@ function AdminViewLibrary(props) {
                 })
             }
         }).catch((err) => {
-            //console.log(err);
+           
         })
 
     }
@@ -1975,7 +1967,7 @@ function AdminViewLibrary(props) {
                                                 <div className="instructor-item">
                                                     {
                                                         getInstructor.map((data, i) => {
-                                                            // //console.log(data);
+                                                            
                                                             return (
                                                                 <Row>
                                                                     {/* <Col md="4"> */}

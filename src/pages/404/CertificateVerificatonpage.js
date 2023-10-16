@@ -78,7 +78,7 @@ function CertificateVerificatonpage(props) {
             }
         })
         .catch((err)=>{
-            //console.log(err);
+           
              setCertificateLoading({ isLoading: false });
             
         })

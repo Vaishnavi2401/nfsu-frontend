@@ -90,7 +90,7 @@ function LearnerListtoApproveForCourse() {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getLearnerData, setlearnerData] = useState([]);
     const [getLearnerDataStatus, setlearnerDataStatus] = useState(false);
@@ -102,10 +102,10 @@ function LearnerListtoApproveForCourse() {
     const getAllCourseList = () => {
         services.getAllCourses().then((resp) => {
             //setLearnerList(resp.data);
-            ////console.log(resp.data)
+           
             setCourseList(resp.data);
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
@@ -121,10 +121,10 @@ function LearnerListtoApproveForCourse() {
         try {
             let result = await adminServices.getRequestOfLearnerForCourse(id)
             setlearnerData(result.data);
-            ////console.log(result.data);
+            
             setlearnerDataStatus(false);
         } catch (e) {
-            //console.log(e);
+            
             setlearnerDataStatus(false);
         }
     }
@@ -163,7 +163,7 @@ function LearnerListtoApproveForCourse() {
             // if(getCourseType == "free"){
                 let result = await service.approveCourseLearnerRequest(courseId, userId);
 
-                ////console.log(result.data);
+                
                 if (result.data == "success") {
                     await swal(`${t('success')}`, `${t('learner_approved')}`, "success");
                     // InstructorRequestDatas();
@@ -172,7 +172,7 @@ function LearnerListtoApproveForCourse() {
             }
             // } else{
             //     let result = await service.approveCourseLearnerRequestforPayment(courseId, userId);
-            //     ////console.log(result.data);
+            //     
             //     if (result.data == "success") {
             //         await swal(`${t('success')}`, `${t('learner_approved')}`, "success");
             //         // InstructorRequestDatas();
@@ -184,7 +184,7 @@ function LearnerListtoApproveForCourse() {
 
         } catch (e) {
             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-            //console.log(e)
+            
             setApproveLoading({ isLoading: false });
             setlearnerDataStatus(true);
         }
@@ -407,7 +407,7 @@ function LearnerListtoApproveForCourse() {
 
             //Previously there is an 'data' in Parameter 
             // //console.log(learnerId);
-            ////console.log(result.data);
+            
             if (result.data == "success") {
                 await swal(`${t('success')}`, `${t('learner_rejected_successfully')}`, "success");
                 // InstructorRequestDatas();
@@ -418,7 +418,7 @@ function LearnerListtoApproveForCourse() {
             }
         } catch (e) {
             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-            //console.log(e)
+            
             setRejectLoading({ isLoading: false });
             setRemarkSubmit({ isLoading: false });
             onHideRejectModel();
@@ -434,7 +434,7 @@ function LearnerListtoApproveForCourse() {
             LearnersDatas(e.target.value);
             courseList.map((course) => {
                 if(course.courseId == e.target.value){
-                    console.log(course.courseType);
+                    // console.log(course.courseType);
                     setCourseType(course.courseType);
                 }
             })

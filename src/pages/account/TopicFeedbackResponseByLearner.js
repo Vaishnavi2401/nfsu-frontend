@@ -40,7 +40,7 @@ function TopicFeedbackResponseByLearner(props) {
                 }
             })
             .catch(err => {
-                //console.log(err)
+               
 
             })
 
@@ -53,7 +53,7 @@ function TopicFeedbackResponseByLearner(props) {
 
         //     })
         //     .catch(err => {
-        //         //console.log(err)
+        //        
         //     })
     }, [itemId])
 
@@ -122,10 +122,10 @@ function TopicFeedbackResponseByLearner(props) {
             .then(async res => {
                 await swal("Feedback submitted successfully!", "Thank you", "success");
                 window.location.reload();
-                // //console.log(res);
+                // 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

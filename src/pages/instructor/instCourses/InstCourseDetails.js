@@ -107,7 +107,7 @@ function InstCourseDetails(props) {
 
 
     const um_api = USER_API;
-    //////console.log(um_api);
+    //
 
     const [ratingCount, setRatingCount] = useState(0);
     const [getAvgRating, setAvgRating] = useState([]);
@@ -129,7 +129,7 @@ function InstCourseDetails(props) {
             service.averageRating(rating)
                 .then(res => {
                     setAvgRating(res.data);
-                    ////console.log(res.data);
+                    
                 }).catch(error => {
                     //console(('service_maintainance_down_alert'))
                 });
@@ -306,7 +306,7 @@ function InstCourseDetails(props) {
                 ////console.log('UserDetail-------------'+res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -336,7 +336,7 @@ function InstCourseDetails(props) {
                     setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                     //console.log((res.data.courseStructureJson));
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
             const fatchUserCount = async () => {
@@ -344,7 +344,7 @@ function InstCourseDetails(props) {
                     const res = await service.userCount(courseId, tenantId);
                     setUserCount(res.data.userCount);
                 } catch (error) {
-                    //console.log(error)
+                    
                 }
             }
 
@@ -355,9 +355,9 @@ function InstCourseDetails(props) {
                     const res = await service.getoverallRating(courseId, tenantId);
                     setRating(res.data);
                     setRatingCount(res.data.length);
-                    ////console.log(res.data);
+                    
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
             const fatchServerTime = async () => {
@@ -365,7 +365,7 @@ function InstCourseDetails(props) {
                     const res = await instructorService.getServerTime();
                     setStartDate(new Date(res.data));
                 } catch (e) {
-                    //console.log(e)
+                    
                 }
             }
 
@@ -1203,7 +1203,7 @@ function InstCourseDetails(props) {
                     setUrl(res.data);
                 }
                 setContentType(contentType);
-                ////console.log(res.data);
+                
                 setContentName(contentName);
                 setUrlModal({ show: true });
             }).catch(err => {
@@ -1211,7 +1211,6 @@ function InstCourseDetails(props) {
             })
     }
 
-    console.log("{DMS_URL} " + DMS_URL + " mmmm  " + DMS_URL, "/", getUrl);
 
     const videoJsOptions = {
         autoplay: false,
@@ -1435,7 +1434,7 @@ function InstCourseDetails(props) {
                     }
                     setContentType(contentType);
                     setContentName(label);
-                    ////console.log(res.data);
+                    
                     setUrlModal({ show: true });
                     //window.open({DMS_URL} + res.data, "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1000,height=1000");
                 }).catch(err => {
@@ -1519,7 +1518,7 @@ function InstCourseDetails(props) {
                         folderStructureTreeCourse();
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1559,7 +1558,7 @@ function InstCourseDetails(props) {
                         folderStructureTreeCourse();
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1600,7 +1599,7 @@ function InstCourseDetails(props) {
                         folderStructureTreeCourse();
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1648,7 +1647,7 @@ function InstCourseDetails(props) {
                         folderStructureTreeCourse();
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1776,7 +1775,7 @@ function InstCourseDetails(props) {
                                 folderStructureTreeCourse();
                             }
                         }).catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             });
@@ -1803,7 +1802,7 @@ function InstCourseDetails(props) {
                                 folderStructureTreeCourse();
                             }
                         }).catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             });
@@ -1824,10 +1823,10 @@ function InstCourseDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1843,10 +1842,10 @@ function InstCourseDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1862,10 +1861,10 @@ function InstCourseDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1898,7 +1897,7 @@ function InstCourseDetails(props) {
                             setAddAnnouncementDiv(false);
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         });
@@ -2062,7 +2061,7 @@ function InstCourseDetails(props) {
                     "publishUpto": announcementData.publishupto, "courseId": courseId, "createdAt": new Date().toISOString(), "createdBy": UserId,
                     "readStatus": "string", "type": 2, "id": announcementData.id
                 };
-                ////console.log(data);
+                
                 service.updateAnnouncement(announcementData.id, data)
                     .then(async res => {
                         if (res.status === 200) {
@@ -2070,10 +2069,10 @@ function InstCourseDetails(props) {
                             fatchAnnouncementData();
                             setAddAnnouncementDiv(false);
                         } else {
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         } else {
@@ -2083,7 +2082,7 @@ function InstCourseDetails(props) {
                     "publishUpto": announcementData.publishupto, "courseId": courseId, "createdAt": new Date().toISOString(), "createdBy": UserId,
                     "readStatus": "string", "type": 2
                 };
-                // //console.log(data)
+                // 
                 service.createAnnouncement(data)
                     .then(async res => {
                         if (res.status === 200) {
@@ -2091,10 +2090,10 @@ function InstCourseDetails(props) {
                             fatchAnnouncementData();
                             setAddAnnouncementDiv(false);
                         } else {
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }
@@ -2173,7 +2172,7 @@ function InstCourseDetails(props) {
                 "typeMasterId": 1,
                 "updatedBy": UserId
             }
-            ////console.log(data);
+            
             service.feedbackMasterPost(data)
                 .then(async res => {
                     if (res.status === 201) {
@@ -2193,10 +2192,10 @@ function InstCourseDetails(props) {
                                 }
                             })
                     } else {
-                        //console.log("something is wrong")
+                        
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -2368,11 +2367,11 @@ function InstCourseDetails(props) {
                             setServiceList([{ service: "" }]);
                         } else {
                             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                            //console.log("something is wrong")
+                            
 
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }
@@ -2400,10 +2399,10 @@ function InstCourseDetails(props) {
                             setServiceList([{ service: "" }]);
                         } else {
                             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }
@@ -2508,7 +2507,7 @@ function InstCourseDetails(props) {
                             feedbackQuestionReset();
                         }
                     }).catch((err) => {
-                        //console.log(err);
+                       
                         swal(`${t('error')}`, `${t('something_went_wrong_try_later')}`, "error");
                     })
             }
@@ -2709,7 +2708,7 @@ function InstCourseDetails(props) {
         service.getFeedbackListByCourseId(courseId).then((resp) => {
             setFeedbackListData(resp.data);
         }).catch(err => {
-            //console.log(err)
+           
         })
     }
 
@@ -2799,12 +2798,12 @@ function InstCourseDetails(props) {
     // const [option, setOption] = useState([]);
     const getResponseCount = () => {
         service.getResponseCount(1, courseId).then((resp) => {
-            ////console.log(resp.data);
-            //console.log(resp.data)
+           
+           
             setFeedbackList(resp.data);
             // setListFeedbackData(resp.data.responseCount);
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 

@@ -46,7 +46,7 @@ function TokenActivatePage(props) {
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
                 setTokenLoading({ isLoading: false });
 
             })

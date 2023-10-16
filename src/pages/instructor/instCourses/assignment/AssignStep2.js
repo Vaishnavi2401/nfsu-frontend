@@ -45,7 +45,7 @@ function AssignStep2(props) {
                     ////console.log("Files Res - ", res.data)
                     ////console.log("File upload SuccessFull")
                 }).catch((error) => {
-                    //console.log(error);
+                    
                 })
             }
 

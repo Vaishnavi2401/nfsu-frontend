@@ -63,7 +63,7 @@ function UpdateCourse(props) {
     }, [currentLanguage, t])
 
     const um_api = USER_API;
-    //console.log(um_api);
+    
 
     let courseId = props.match.params.cId;
     const [getCourseCat, setCourseCat] = useState([]);
@@ -72,7 +72,7 @@ function UpdateCourse(props) {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -127,7 +127,7 @@ function UpdateCourse(props) {
             setcommenceDate(`${dateConvertToTformate(res.data.commenceDate)}`);
             setFeeSelect(res.data.courseType);
         } catch (error) {
-            //console.log(error);
+            
         }
     }
 
@@ -407,7 +407,7 @@ function UpdateCourse(props) {
                     })
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -676,7 +676,7 @@ function Step1(props) {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 

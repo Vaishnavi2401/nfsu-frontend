@@ -70,7 +70,7 @@ const CourseItemList = (props) => {
     const [pageNumber, setPageNumber] = useState(0);
     const history = useHistory();
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     let value = useSelector(state => state.inputValue);
     let paidStat = useSelector(state => state.paidCourse);

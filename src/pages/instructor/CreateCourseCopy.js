@@ -19,7 +19,7 @@ function CreateCourseCopy() {
        }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     let instructorId = UserService.getUserid();
     const [coursePeditorState, setCoursePEditorState] = useState();
@@ -52,7 +52,7 @@ function CreateCourseCopy() {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
         instructorService.getServerTime()
             .then(res => {
@@ -621,7 +621,7 @@ function CreateCourseCopy() {
                         await swal("Error!", `${res.data}`, "error")
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         } else {
             //console.log("Error something")

@@ -103,9 +103,9 @@ function CourseAnalyticsReports() {
     const getAllLearnerList = () => {
         adminServices.getAllLearners().then((resp) => {
             setLearnerList(resp.data);
-            ////console.log(resp.data)
+           
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
@@ -491,7 +491,7 @@ function CourseAnalyticsReports() {
                     setAccessLogData(resp.data);
                     setSubmitLoading({ isLoading: false });
                 }).catch((err) => {
-                    //console.log(err);
+                   ;
                 })
         }
     }

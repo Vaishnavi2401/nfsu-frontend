@@ -86,7 +86,7 @@ const UpdateReviewForm = ({ reviewdata, starrating, courseid, ureviewid, learner
         updateRatingInfo();
       })
       .catch(err => {
-        //console.log(err);
+       
       })
 
   }, []);
@@ -137,7 +137,7 @@ const UpdateReviewForm = ({ reviewdata, starrating, courseid, ureviewid, learner
           await swal(t('review_update_success'), t('review_update_success_desc'), "success");
           refreshPage();
         }).catch(err => {
-          //console.log(err);
+         
         });
       }
     }
@@ -152,7 +152,7 @@ const UpdateReviewForm = ({ reviewdata, starrating, courseid, ureviewid, learner
           await swal(t('review_update_success'), t('review_update_success_desc'), "success");
           refreshPage();
         }).catch(err => {
-          //console.log(err);
+         
         });
       }
     }

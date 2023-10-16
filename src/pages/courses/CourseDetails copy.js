@@ -84,7 +84,7 @@ function CourseDetails(props) {
     let url = mainurl + courseId + '/' + tenantId;
     let sessionId = UserService.getSessionId();
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     // //console.log("tenantId in course details file" + tenantId);
 
@@ -300,7 +300,7 @@ function CourseDetails(props) {
                 // //console.log("Success" + res.status);
             })
             .catch(err => {
-                //console.log(err);
+               
             })) {
             swal(t('course_enrolled_successfully'), t('course_enrolled_successfully_alert'), "success");
             setVisibility(false);
@@ -393,7 +393,7 @@ function CourseDetails(props) {
                 await swal(t('review_submited_succesfully'), t('review_submited_succesfully_alert'), "success");
                 refreshPage();
             }).catch(err => {
-                //console.log(err);
+               
             });
         }
     }
@@ -424,7 +424,7 @@ function CourseDetails(props) {
                 _checkthis(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, []);
 
@@ -489,7 +489,7 @@ function CourseDetails(props) {
                 refreshPage();
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         //swal("Review deleted  Successfully!", "You can check in the  Reviews!", "success");
 
@@ -575,7 +575,7 @@ function CourseDetails(props) {
                 setInstructor(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     return (

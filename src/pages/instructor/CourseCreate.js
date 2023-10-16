@@ -132,7 +132,7 @@ function  CourseCreate() {
     }
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
 
     const handleChangeCourseeditor = event => {
@@ -314,7 +314,7 @@ function  CourseCreate() {
                     })
                     setSuccessCourse(res.data);
                 } else {
-                    ////console.log(res.data);
+                    
                     setSuccessCourse(res.data);
                     setProcessing(false);
                     await swal(`${t('error')}`, `${res.data}`, "error")
@@ -325,7 +325,7 @@ function  CourseCreate() {
                     })
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -605,7 +605,7 @@ function Step1(props) {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 

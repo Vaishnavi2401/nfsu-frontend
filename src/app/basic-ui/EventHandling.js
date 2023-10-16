@@ -10,7 +10,6 @@ import FilterDataTable from '../../pages/instructor/FilterDataTable';
 import DataTable from 'react-data-table-component';
 import swal from 'sweetalert';
 import UserService from '../../services/UserService';
-
 import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 import moment from 'moment';
@@ -166,9 +165,9 @@ function EventHandling() {
     const getAllEvent = () => {
         service.getAllEventList().then((resp) => {
             setEventList(resp.data);
-            ////console.log(resp.data)
+           
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -404,7 +403,7 @@ function EventHandling() {
                 getAllEvent();
             }
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 

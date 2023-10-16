@@ -28,7 +28,7 @@ function AssignmentMain(props) {
         //         setAssignmentDetails(res.data);
         //     })
         //     .catch(err => {
-        //         //console.log(err);
+        //        
         //     })
     }, []);
 
@@ -68,7 +68,7 @@ function AssignmentMain(props) {
                 setViewFile(fileURL);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

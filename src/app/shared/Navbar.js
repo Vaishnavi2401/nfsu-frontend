@@ -14,7 +14,7 @@ function Navbar() {
    }, []);
 
   const um_api = USER_API;
-    ////console.log(um_api);
+    
 
   function toggleOffcanvas() {
     document.querySelector('.sidebar-offcanvas').classList.toggle('active');
@@ -44,7 +44,7 @@ function Navbar() {
         setUserDetails(res.data);
       })
       .catch(err => {
-        //console.log(err);
+       
       })
   },[])
 

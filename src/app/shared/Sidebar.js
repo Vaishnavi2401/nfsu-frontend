@@ -155,7 +155,7 @@ function Sidebar() {
         setUserDetails(res.data);
       })
       .catch(err => {
-        //console.log(err);
+       
       })
   }, [])
 
@@ -672,7 +672,7 @@ export default Sidebar;
 //           id: UserService.getUserid()
 //         });
 //       }).catch(err => {
-//         //console.log(err);
+//        
 //       })
 //   }
 

@@ -63,7 +63,7 @@ const CoursePrice = (props) => {
                 setCourseState(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         let allCheckBox = document.getElementById("price1");
         allCheckBox.checked = true;
@@ -80,7 +80,7 @@ const CoursePrice = (props) => {
             }
         });
         return freeCoursesLength;
-        // ////console.log("Length of obj:",obj.length);
+        
     }
     function calculateFreeCourses() {
         courseState.map((item) => {
@@ -89,7 +89,7 @@ const CoursePrice = (props) => {
             }
         });
         return paidCoursesLength;
-        // ////console.log("Length of obj:",obj.length);
+        
     }
     function calculateAllCourses() {
         courseState.map((item) => {
@@ -99,7 +99,7 @@ const CoursePrice = (props) => {
         });
 
         return allCoursesLength;
-        // ////console.log("Length of obj:",obj.length);
+        
     }
     const paidHandler = () => {
         paidCheckBox = document.getElementById("price3");

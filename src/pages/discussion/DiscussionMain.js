@@ -52,7 +52,7 @@ let commentCount = 0;
 //         service.getPostValues(courseid, itemid, tenantid)
 //             .then(res => {
 //                 setPostedValue(res.data);
-//                 //console.log(res.data);
+//                 
 //             })
 //             .catch(err => {
 //                 //console.log("discussion Service is not working");
@@ -80,7 +80,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
     }, [currentLanguage, t])
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     //let [ResponseCount, setResponseCount] = useState(0);
     // const [getPostedValues, setPostedValue] = useState([]);
@@ -98,10 +98,10 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
         ////console.log("Global State Dataaaaaa : ", globalContextState)
         service.getPostValues(courseid, itemid, tenantid)
             .then(res => {
-                ////console.log(res.data)
+                
                 // setPostedValue(res.data);
                 setGlobalContextState(prevState => { return { ...prevState, discussionData: res.data } })
-                ////console.log(res.data);
+                
             })
             .catch(err => {
                 //console.log("discussion Service is not working");
@@ -200,7 +200,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                         setSubmitHandlerLoading({ isLoading: false });
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
 
                 setVisibility(false);
@@ -209,7 +209,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                 title = '';
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         // }
 
@@ -224,7 +224,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                 ////console.log(ResponseCount);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         setVisibility(false);
     }
@@ -241,12 +241,12 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                         setGlobalContextState(prevState => { return { ...prevState, discussionData: res.data } })
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -257,7 +257,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -302,7 +302,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                             setUpdatePostValuesLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setModalState(false);
                     setValidations({ title: "", value: "" });
@@ -310,7 +310,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                     title = '';
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -330,11 +330,11 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                         setGlobalContextState(prevState => { return { ...prevState, discussionData: res.data } })
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -356,7 +356,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -381,7 +381,7 @@ function DiscussionMain({ courseid, tenantid, userid, itemid }) {
                 setSubmitSpamValueLoading({ isLoading: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -574,7 +574,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
             .then(res => {
                 // setPostedValue(res.data);
                 setGlobalContextState(prevState => { return { ...prevState, discussionData: res.data } })
-                ////console.log(res.data);
+                
             })
             .catch(err => {
                 //console.log("discussion Service is not working");
@@ -595,7 +595,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         setVisibility(false);
     }
@@ -633,14 +633,14 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                             setSubmitHandlerLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setVisibility(false);
                     setValidations('');
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -653,7 +653,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -696,7 +696,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                             setResponseValuesloading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
 
                 })
@@ -715,12 +715,12 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                             //window.location.reload();
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     const upvoteFunction = (id) => {
@@ -736,11 +736,11 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                         setResponse(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -757,11 +757,11 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                         setResponse(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     const reportSpamFunction = (id) => {
@@ -786,7 +786,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, itemi
                 setSubmitSpamValueloading({ isLoading: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     return (
@@ -1013,14 +1013,14 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                             setSubmitHandlerLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setVisibility(false);
                     setValidations('');
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1038,7 +1038,7 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1079,13 +1079,13 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                             setUpdateCommentValuesLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
 
 
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -1100,11 +1100,11 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                         setComments(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     const upvoteFunction = (id) => {
@@ -1120,11 +1120,11 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                         setComments(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -1141,11 +1141,11 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                         setComments(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     const reportSpamFunction = (id) => {
@@ -1170,7 +1170,7 @@ function CommentComponent({ comments, responseId, tenantid, userid }) {
                 setSubmitSpamValueLoading({ isLoading: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     return (

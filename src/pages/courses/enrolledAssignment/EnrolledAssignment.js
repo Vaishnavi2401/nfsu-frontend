@@ -123,11 +123,11 @@ function EnrolledAssignment(props) {
             try {
                 let result = await AssignmentService.getListStudentAssignment(props.courseID, props.tenantID)
                 //let result = await AssignmentService.getAssignDetail("8edb6947-c501-4ad1-9bf6-9d9728c67aaa", 1, 1);
-                ////console.log(result.data);
+                
                 setAssignmentList(result.data);
 
             } catch (error) {
-                //console.log(error)
+                
             }
 
         }
@@ -271,7 +271,7 @@ function EnrolledAssignment(props) {
             const userid = UserService.getUserid();
             ////console.log(assignid , userid);
             AssignmentService.getStudentFileUpload(assignid, userid).then((resp) => {
-                ////console.log(resp.data)
+               
                 if (resp.data.solutionmarks == null) {
                     setShareUrlModal({
                         show: true,
@@ -295,7 +295,7 @@ function EnrolledAssignment(props) {
                 }
 
             }).catch((err) => {
-                //console.log(err)
+               
             })
 
         }
@@ -402,7 +402,7 @@ function EnrolledAssignment(props) {
 
                 }).catch((err) => {
 
-                    //console.log(err);
+                   
                 })
         }
         // const getAssignmentStudentListAfterDelete = (assignID, userid) => {
@@ -413,7 +413,7 @@ function EnrolledAssignment(props) {
         //             getStatus(resp.data.solutionmarks.status);
         //             //console.log(resp.data.solutionfile);
         //         }).catch((err) => {
-        //             //console.log(err);
+        //            
         //         })
         // }
 
@@ -468,7 +468,7 @@ function EnrolledAssignment(props) {
                         ////console.log("Files Res - ", res.data)
                         ////console.log("File upload SuccessFull")
                     }).catch((error) => {
-                        //console.log(error);
+                        
                     })
 
 
@@ -495,7 +495,7 @@ function EnrolledAssignment(props) {
                         ////console.log("TRUE-------------")
                     }
                 }).catch((err) => {
-                    //console.log(err);
+                   
                 })
         }
         const customStyles = {
@@ -699,7 +699,7 @@ function EnrolledAssignment(props) {
                     setAssignmentFileList(resp.data.assignmentFilePath);
                     ////console.log(resp.data.assignmentFilePath);
                 }).catch((error) => {
-                    //console.log(error)
+                    
                 })
         }
 

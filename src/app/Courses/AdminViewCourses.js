@@ -161,7 +161,7 @@ function AdminViewCourses(props) {
             let result = await instructorService.getAllCourses()
             setCourseData(result.data);
         } catch (e) {
-            //console.log(e);
+            
         }
     }
 

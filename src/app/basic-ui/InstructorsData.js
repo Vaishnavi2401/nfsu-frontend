@@ -8,18 +8,16 @@ import Navbar from '../shared/Navbar';
 import SettingsPanel from '../shared/SettingsPanel';
 import Sidebar from '../shared/Sidebar';
 import DataTable from "react-data-table-component";
-import service from '../../services/service';
+import service, {USER_API} from '../../services/service';
 import swal from 'sweetalert';
 import UserService from '../../services/UserService';
 import { Button, Modal } from 'react-bootstrap';
 import { downloadExcel, DownloadTableExcel } from 'react-export-table-to-excel';
 import jsPDF from 'jspdf';
 import "jspdf-autotable";
-
 import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 import moment from 'moment';
-import {USER_API} from '../../services/service';
 
 
 const languages = [
@@ -92,7 +90,7 @@ function InstructorsData() {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getLearnerData, setlearnerData] = useState([]);
     useEffect(() => {
@@ -102,10 +100,10 @@ function InstructorsData() {
     const LearnersDatas = async () => {
         try {
             let result = await adminServices.getAllInstructors()
-            ////console.log(result.data)
+            
             setlearnerData(result.data);
         } catch (e) {
-            //console.log(e)
+            
         }
     }
 
@@ -145,7 +143,7 @@ function InstructorsData() {
         //     }
         // } catch (e) {
         //     await swal(`${t('error')}`, `${t('something_went_wrong_try_later')}`, "error")
-        //     //console.log(e)
+        //     
         //     setDisableLoading({ isLoading: false });
 
         // }
@@ -183,7 +181,7 @@ function InstructorsData() {
         // } catch (e) {
         //     setEnableLoading({ isLoading: false });
         //     await swal(`${t('error')}`, `${t('something_went_wrong_try_later')}`, "error")
-        //     //console.log(e)
+        //     
         // }
     }
 
@@ -342,7 +340,7 @@ function InstructorsData() {
 
     // const [data2,setData]=useState()
     const tableExportExcel = () => {
-        ////console.log(getLearnerData);
+       
         var checkData = [];
         const header = ["Name", "Date of Birth", "Address", "Gender", "E-mail", "Mobile No.", "Qualification"]
         getLearnerData.map((data) => {

@@ -2,7 +2,7 @@ import { PAID_COURSE_TYPE, FREE_COURSE_TYPE, SEARCH, CATEGORY, ENROLLED, SEARCHE
 
 export const paidCoursesStatus = (data) => {
 
-    ////console.log("Pradeep" + data);
+    
 
     return {
         type: PAID_COURSE_TYPE,
@@ -12,7 +12,7 @@ export const paidCoursesStatus = (data) => {
 
 export const freeCoursesStatus = (data) => {
 
-    ////console.log("Pradeep" + data);
+    
 
     return {
         type: FREE_COURSE_TYPE,
@@ -22,7 +22,7 @@ export const freeCoursesStatus = (data) => {
 
 export const search = (data) => {
 
-    ////console.log("Pradeep" + data);
+    
 
     return {
         type: SEARCH,
@@ -31,7 +31,7 @@ export const search = (data) => {
 }
 
 export const categoryData = (data) => {
-    ////console.log("Pradeep" + data);
+    
 
     return {
         type: CATEGORY,

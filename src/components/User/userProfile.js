@@ -115,10 +115,10 @@ const UserProfile = (props) => {
         service.getUserById(id)
             .then(res => {
                 setUserDetails(res.data);
-                //console.log(res.data);
+                
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -133,7 +133,7 @@ const UserProfile = (props) => {
                 setCountry(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -142,10 +142,10 @@ const UserProfile = (props) => {
         service.getState()
             .then(res => {
                 setStates(res.data);
-                //console.log(res.data);
+                
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -158,7 +158,7 @@ const UserProfile = (props) => {
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -169,19 +169,19 @@ const UserProfile = (props) => {
 
         service.RegisterQualification()
             .then((res) => {
-                ////console.log(res.data);
+                
                 setQualification(res.data);
             })
             .catch((err) => {
-                //console.log(err);
+               
             })
         service.RegisterDesignation()
             .then((res) => {
-                ////console.log(res.data);
+                
                 setDesignation(res.data);
             })
             .catch((err) => {
-                //console.log(err);
+               
             })
 
     }, [])
@@ -502,9 +502,7 @@ const UserProfile = (props) => {
                     desgId: desgId, title: getUserDetails.title, ddcertificate: getUserDetails.ddcertificate, mobile1: getUserDetails.mobile1, middleName: getUserDetails.middleName, idproofNumber: getUserDetails.idproofNumber
                 }
             }
-            ////console.log("inside submit-----------updates");
-            ////console.log('update User =>' + JSON.stringify(update))
-            console.log(update);
+           
 
             service.updateUser(update)
                 .then(async response => {

@@ -37,7 +37,7 @@ function CreateCourse() {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
         instructorService.getServerTime()
             .then(res => {
@@ -463,7 +463,7 @@ function CreateCourse() {
                         await swal("Error!", `${res.data}`, "error")
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         } else {
             //console.log("Error something")

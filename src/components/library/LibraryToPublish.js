@@ -98,8 +98,7 @@ function LibraryToPublish(props) {
         UserService.generateToken();
     }, []);
 
-    // const um_api = UserService.USER_API;
-    // ////console.log(um_api);
+   
 
     // const [getLearnerData, setlearnerData] = useState([]);
     // const [getLearnerDataStatus, setlearnerDataStatus] = useState(false);
@@ -111,10 +110,10 @@ function LibraryToPublish(props) {
     // const getAllCourseList = () => {
     //     service.getAllLibraryToPublish().then((resp) => {
     //         //setLearnerList(resp.data);
-    //         //console.log(resp.data)
+    //        
     //         setCourseList(resp.data);
     //     }).catch((err) => {
-    //         //console.log(err)
+    //        
     //     })
     // }
 
@@ -130,10 +129,10 @@ function LibraryToPublish(props) {
     //     try {
     //         let result = await adminServices.getRequestOfLearnerForCourse(id)
     //         setlearnerData(result.data);
-    //         //console.log(result.data);
+    //         
     //         setlearnerDataStatus(false);
     //     } catch (e) {
-    //         //console.log(e);
+    //         
     //         setlearnerDataStatus(false);
     //     }
     // }
@@ -160,7 +159,7 @@ function LibraryToPublish(props) {
 
     //         let result = await service.approveCourseLearnerRequest(courseId, userId);
 
-    //         //console.log(result.data);
+    //         
     //         if (result.data == "success") {
     //             await swal("Success", "Learner Approved Successfully!", "success");
     //            // InstructorRequestDatas();
@@ -169,7 +168,7 @@ function LibraryToPublish(props) {
     //         }
     //     } catch (e) {
     //         swal("Error", "Something Went Wrong Try Again!", "error")
-    //         //console.log(e)
+    //         
     //         setApproveLoading({ isLoading: false });
     //         setlearnerDataStatus(true);
     //     }
@@ -385,7 +384,7 @@ function LibraryToPublish(props) {
             let result = await service.getAllLibraryToPublish();
             setCourseData(result.data);
         } catch (e) {
-            //console.log(e);
+            
         }
     }
 
@@ -431,7 +430,7 @@ function LibraryToPublish(props) {
                 courseData();
             }
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -442,7 +441,7 @@ function LibraryToPublish(props) {
                 courseData();
             }
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 

@@ -55,7 +55,7 @@ function CourseFilter(props) {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
 
     const currentLanguageCode = cookies.get('i18next') || 'en'
@@ -77,7 +77,7 @@ function CourseFilter(props) {
     //         items[k].style.display = "none";
 
     //         if (dataTarget === "*") {
-    //             ////console.log(target);
+    //             
     //             ////console.log( items[k]);
     //             ////console.log( items.length);
     //             for (let i = 0; (i < k && i < 6); i++) {
@@ -97,20 +97,20 @@ function CourseFilter(props) {
 
     //             this.classList.add("active");
     //             const target = this.getAttribute("data-target");
-    //             ////console.log(target);
+    //             
 
     //             for (let k = 0; k < items.length; k++) {
     //                 items[k].style.display = "none";
 
 
     //                 if (items[k].getAttribute("data-id") === target) {
-    //                     ////console.log(target);
+    //                     
 
     //                     items[k].style.display = "block";
     //                 }
 
     //                 if (target === "*") {
-    //                     ////console.log(target);
+    //                     
     //                     ////console.log( items[k]);
     //                     ////console.log( items.length);
     //                     for (let i = 0; (i < k && i < 6); i++) {
@@ -160,11 +160,11 @@ function CourseFilter(props) {
 
     useEffect(() => {
         ratingTest();
-        ////console.log(courseState);
+       
     }, [courseState])
 
     const ratingTest = () => {
-        ////console.log(courseState);
+       
         courseState.map((data, i) => {
             ////console.log(data.courseId);
             setRating(rating => [...rating, { itemId: data.courseId, tenantId: 1 }])
@@ -266,7 +266,7 @@ function CourseFilter(props) {
         }
 
     }
-    ////console.log(courseState);
+   
 
     const [viewAllCourse, setViewAllCourse] = useState({
         isLoading: false

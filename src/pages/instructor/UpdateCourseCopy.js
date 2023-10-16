@@ -36,7 +36,7 @@ function UpdateCourseCopy(props) {
     const [getDurationSelect, setDurationSelect] = useState();
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const feeSelect = (e) => {
         setFeeSelect(e.target.value);
@@ -52,7 +52,7 @@ function UpdateCourseCopy(props) {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -97,7 +97,7 @@ function UpdateCourseCopy(props) {
             setCoursePEditorState(res.data.prerequisite);
             setCourseOEditorState(res.data.objective);
         } catch (error) {
-            //console.log(error);
+            
         }
     }
 
@@ -118,7 +118,7 @@ function UpdateCourseCopy(props) {
     //             setCoursePEditorState(res.data.prerequisite);
     //             setCourseOEditorState(res.data.objective);
     //         }).catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }, [])
 
@@ -652,7 +652,7 @@ function UpdateCourseCopy(props) {
                         await swal("Error!", `${res.data}`, "error");
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
 
         }

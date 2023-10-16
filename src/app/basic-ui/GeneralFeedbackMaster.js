@@ -13,7 +13,6 @@ import Accordion from 'react-bootstrap/Accordion';
 import DataTable from "react-data-table-component";
 import service from '../../services/service';
 import FilterDataTable from '../../pages/instructor/FilterDataTable';
-
 import { useTranslation } from 'react-i18next'
 import cookies from 'js-cookie';
 
@@ -298,10 +297,10 @@ function GeneralFeedbackMaster() {
                             })
                     } else {
                         swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                        //console.log("something is wrong")
+                        
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -473,10 +472,10 @@ function GeneralFeedbackMaster() {
     //                     getAllFeedbackQuestionList();
     //                     feedbackQuestionReset();
     //                 } else {
-    //                     //console.log("something is wrong")
+    //                     
     //                 }
     //             }).catch(err => {
-    //                 //console.log(err);
+    //                
     //         })
     //     }
     // }
@@ -521,11 +520,11 @@ function GeneralFeedbackMaster() {
                             feedbackQuestionReset();
                         } else {
                             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
 
-                        //console.log(err);
+                       
                     })
                 document.getElementById("flexRadioDefault2").checked = false;
                 document.getElementById("flexRadioDefault1").checked = false;
@@ -556,10 +555,10 @@ function GeneralFeedbackMaster() {
                             feedbackQuestionReset();
                         } else {
                             swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
                 document.getElementById("flexRadioDefault1").checked = false;
                 document.getElementById("flexRadioDefault2").checked = false;
@@ -580,7 +579,7 @@ function GeneralFeedbackMaster() {
     const [getFeedbackResponse, setfeedbackResponse] = useState([])
     const getAllFeedbackQuestionList = async () => {
         let result = await service.getAllQuestionByType(2);
-        ////console.log(result.data);
+        
         setfeedbackQuestion(result.data);
     }
 
@@ -609,7 +608,7 @@ function GeneralFeedbackMaster() {
                         }
                     }).catch((error) => {
                         swal(`${t('error')}`, `${t('something_wrong_try_again')}`, "error")
-                        //console.log(error)
+                        
                     })
             }
 
@@ -823,7 +822,7 @@ function GeneralFeedbackMaster() {
         service.getGeneralFeedbackListById(courseId).then((resp) => {
             setFeedbackListData(resp.data);
         }).catch(err => {
-            console.log(err)
+            // console.log(err)
         })
     }
 

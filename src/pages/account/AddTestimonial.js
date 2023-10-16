@@ -178,7 +178,7 @@ function AddTestimonial() {
                     history.push('/');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -231,7 +231,7 @@ function AddTestimonial() {
     //                     alert("services is down please register after sometime !");
     //                 }
     //             }).catch(err => {
-    //                 //console.log(err);
+    //                
     //             })
     //     }
     // }

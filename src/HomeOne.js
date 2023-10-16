@@ -14,7 +14,6 @@ import NewsletterForm from './components/NewsletterForm';
 import Footer from './components/Footer';
 import UserService from './services/UserService';
 import service from './services/service';
-
 import Setting from './components/common/Setting';
 import FooterTwo from './components/FooterTwo';
 import { GlobalContext } from './pages/courses/contentdelivery/contexts/GlobalContext';
@@ -45,12 +44,12 @@ function HomeOne(props) {
     //     if (UserService.doLogin) {
     //         service.saveUserActionDetails(emailid, ipaddress, action, os, resolution, browserName, result, siteid, sessionId)
     //             .then(res => {
-    //                 //console.log(res.data);
+    //                 
     //             })
     //     }if (UserService.doLogout){
     //         service.updateUserActionDetails(emailid, sessionId)
     //         .then(res=>{
-    //             //console.log(res.data);
+    //             
     //         })
     //     }
     // }

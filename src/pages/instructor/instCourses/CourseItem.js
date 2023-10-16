@@ -71,7 +71,7 @@ function CourseItem() {
             .then(res => {
                 setCourses(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -97,7 +97,7 @@ function CourseItem() {
                                 })
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             } else {
                 swal(`${t('cancel')}`, `${t('safe_msg')}`, "error");

@@ -16,7 +16,9 @@ import axios from 'axios';
 
 // export let CERTIFICATION = 'http://gfsu2.hyderabad.cdac.in:8083';
 
-// export let USER_API = "http://gfsu.hyderabad.cdac.in:8084/um_api/";
+// export let USER_API2 = "http://10.244.3.218:8084/";
+
+// export let USER_API = "http://10.244.3.218:8084/um_api/";
 
 // export let COURSE_CLUG = 'http://gfsu3.hyderabad.cdac.in:8085';
 
@@ -43,9 +45,9 @@ import axios from 'axios';
 
 export let Frontend_UI = "http://10.244.2.164:3000";
 
-export let Assessment_Authoring = "http://gfsu.hyderabad.cdac.in"
+export let Assessment_Authoring = "http://gfsu.hyderabad.cdac.in:3001"
 
-export let Assessment_Delivery = "http://gfsu.hyderabad.cdac.in"
+export let Assessment_Delivery = "http://gfsu.hyderabad.cdac.in:3002"
 
 export let Keyclock = "http://gfsu2.hyderabad.cdac.in";
 

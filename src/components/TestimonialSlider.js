@@ -54,10 +54,10 @@ function TestimonialSlider() {
         service.getTestimonial()
             .then(res => {
                 setTestimonials(res.data);
-                // //console.log(res.data)
+                // 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -92,7 +92,7 @@ function TestimonialSlider() {
     };
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     return (
         <Styles>

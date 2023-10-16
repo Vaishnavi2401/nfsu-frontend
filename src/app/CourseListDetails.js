@@ -100,7 +100,7 @@ function CourseListDetails() {
     service.getAllCourses().then((resp) => {
       setAllCourse(resp.data);
     }).then((err) => {
-      //console.log(err);
+     
     })
   }
 

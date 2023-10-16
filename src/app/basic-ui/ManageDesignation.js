@@ -94,7 +94,7 @@ export default function ManageDesignation() {
         adminServices.getAllDesignation().then((resp) => {
             setDesignation(resp.data);
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -120,13 +120,13 @@ export default function ManageDesignation() {
             }
             else if (resp.status == 200) {
                 setDeleteLoading({ isLoading: false });
-                ////console.log(resp.data);
+               
                 swal(`${t('success')}`, `${t('designation_delete')}`, 'success')
                 getAllDesignation();
             }
         }).catch((err) => {
             setDeleteLoading({ isLoading: false });
-            //console.log(err)
+           
         })
     }
 
@@ -144,7 +144,7 @@ export default function ManageDesignation() {
                 getAllDesignation();
                 setAddModalShow(false);
             }).then((err) => {
-                //console.log(err);
+               
             })
         }
     }
@@ -161,7 +161,7 @@ export default function ManageDesignation() {
             setAddModalShow(true);
         }).then((err) => {
             setEditLoading({ isLoading: false });
-            //console.log(err)
+           
         })
 
     }
@@ -243,12 +243,12 @@ export default function ManageDesignation() {
             }
             ////console.log(designationAdd)
             adminServices.addDesignation(designationAdd).then((resp) => {
-                ////console.log(resp.data);
+               
                 swal(`${t('success')}`, `${t('designation_add')}`, 'success')
                 getAllDesignation();
                 setAddModalShow(false)
             }).catch((err) => {
-                //console.log(err)
+               
             })
         }
     }

@@ -171,12 +171,12 @@ function Payment(props) {
                 ////console.log('UserDetail-------------'+res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
 
         service.getPaymentDetails(userId, courseId, tenantId)
             .then(res => {
-                ////console.log(res.data);
+                
                 var formatDate = res.data.transactionDate;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
                 ////console.log(responseDate);
@@ -190,7 +190,7 @@ function Payment(props) {
                     transactionDate: responseDate
                 }));
             }).catch(err => {
-                //console.log(err);
+               
             })
 
     }, [])

@@ -188,7 +188,7 @@ function AddCourseCategory() {
                         }, [])
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             } else {
                 ////console.log(data.categoryName);
@@ -234,7 +234,7 @@ function AddCourseCategory() {
                                 })
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
 
@@ -282,7 +282,7 @@ function AddCourseCategory() {
             .then(res => {
                 setCourseCat(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -305,7 +305,7 @@ function AddCourseCategory() {
                                 .then(res => {
                                     setCourseCat(res.data);
                                 }).catch(err => {
-                                    //console.log(err);
+                                   
                                 })
                         } else {
                             await swal(`${t('delete')}`, res.data, "warning");

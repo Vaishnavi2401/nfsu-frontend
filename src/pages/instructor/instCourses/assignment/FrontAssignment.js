@@ -147,10 +147,10 @@ function FrontAssignment(props) {
         const assignmentListAPI = async () => {
             try {
                 let result = await AssignmentService.getAssignDetail(UserService.getUserid(), courseID, tenantID)
-                ////console.log(result.data);
+                
                 setAssignmentList(result.data);
             } catch (error) {
-                //console.log(error);
+                
             }
         }
 
@@ -193,7 +193,7 @@ function FrontAssignment(props) {
                     assignmentListAPI();
                 }
             }).catch(error => {
-                //console.log(error)
+                
             })
         }
 
@@ -460,7 +460,7 @@ function FrontAssignment(props) {
 
         function assignmentFormValidate() {
 
-            ////console.log(assignmentData)
+            
             let nameE = '';
             let totalMarksE = '';
             let passMarksE = '';
@@ -572,13 +572,13 @@ function FrontAssignment(props) {
         const onClickNext = () => {
             // dateHandler();
 
-            ////console.log(assignmentData)
+            
 
 
             if (assignmentData.updateAssignment) {
                 const check = assignmentFormValidate();
                 if (check == true) {
-                    ////console.log(assignmentData)
+                    
                     assignmentDataService();
                 }
             }
@@ -651,7 +651,7 @@ function FrontAssignment(props) {
                 // const closingAssignDate = (closingAssignDatereplace.replace(':', '%3A00')).replace(".0",'');
                 const instID = UserService.getUserid();
                 const courseId = parseInt(courseID)
-                //console.log(courseId);
+                
                 const tenantId = parseInt(tenantID)
                 const assignmentID = assignmentData.assignID
 
@@ -1019,7 +1019,7 @@ function FrontAssignment(props) {
                     setStoreAssignDataById(resp.data.assignmentFilePath);
                     ////console.log(resp.data.assignmentFilePath)
                 }).catch((err) => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -1077,7 +1077,7 @@ function FrontAssignment(props) {
                         // if(error.response.status === 406){
                         //     swal(t('error'),"File Not Supported","error");
                         // }
-                        //console.log(error);
+                        
                     })
                 }
 
@@ -1117,7 +1117,7 @@ function FrontAssignment(props) {
         //     .then((resp)=>{
         //         setListFileAssignment(resp.data)
         //     }).catch((err)=>{
-        //         //console.log(err);
+        //        
         //     })
         //     if(listFileAssignment)
         //     {
@@ -1172,7 +1172,7 @@ function FrontAssignment(props) {
                         props.setState("Success");
                     }
                 }).catch((err) => {
-                    //console.log(err);
+                   
                 })
         }
         const customStyles = {
@@ -1435,11 +1435,11 @@ function FrontAssignment(props) {
         const assignmentSubmittedListAPI = async () => {
             AssignmentService.getAssignmentSubmittedList(courseID, tenantID, assignID)
                 .then((resp) => {
-                    ////console.log(resp.data)
+                   
                     setAssignmentSubmittedList(resp.data)
 
                 }).catch((err) => {
-                    //console.log(err);
+                   
                 })
 
         }
@@ -1612,7 +1612,7 @@ function FrontAssignment(props) {
                 setSolStudFile(resp.data.solutionfile)
                 ////console.log(resp.data.solutionfile)
             }).catch((err) => {
-                //console.log(err)
+               
             })
         }
 
@@ -1802,7 +1802,7 @@ function FrontAssignment(props) {
                 //         )
                 //     }
                 // }).catch((error) => {
-                //     //console.log(error)
+                //     
                 // })
             }
         }

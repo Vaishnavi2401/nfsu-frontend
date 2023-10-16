@@ -48,7 +48,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
 
     const [getPostedValues, setPostedValue] = useState([]);
@@ -71,7 +71,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
     useEffect(() => {
         service.getDiscussionsByItem(itemid, tenantid, UserService.getEmail())
             .then(res => {
-                ////console.log(res.data);
+                
                 setPostedValue(res.data);
             })
             .catch(err => {
@@ -120,7 +120,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                     title = '';
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -133,7 +133,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                 // //console.log(res.data.responsedto);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         setVisibility(false);
     }
@@ -149,12 +149,12 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                         setPostedValue(res.data);
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -165,7 +165,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -196,7 +196,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                             setPostedValue(res.data);
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setModalState(false);
                     setValidations({ title: "", value: "" });
@@ -204,7 +204,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                     title = '';
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -223,11 +223,11 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
     //                     setPostedValue(res.data);
     //                 })
     //                 .catch(err => {
-    //                     //console.log(err);
+    //                    
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
 
@@ -248,7 +248,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
 
@@ -267,7 +267,7 @@ function DiscussionMain1({ courseid, tenantid, userid, itemid, useremail }) {
                 setReportSpamState({ flag: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -446,7 +446,7 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                 setVisibility(false);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
 
     }
@@ -465,14 +465,14 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                             setResponse(res.data.responsedto);
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setVisibility(false);
                     setValidations('');
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -490,7 +490,7 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     const updateResponseValues = (id) => {
@@ -518,7 +518,7 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                             setResponse(res.data.responsedto);
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
 
                 })
@@ -537,12 +537,12 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                             setResponse(res.data.responsedto);
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     // const upvoteFunction = (id) => {
@@ -558,11 +558,11 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
     //                     setResponse(res.data);
     //                 })
     //                 .catch(err => {
-    //                     //console.log(err);
+    //                    
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
 
@@ -579,11 +579,11 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
     //                     setResponse(res.data);
     //                 })
     //                 .catch(err => {
-    //                     //console.log(err);
+    //                    
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
     const reportSpamFunction = (id) => {
@@ -601,7 +601,7 @@ function ResponseComponent({ response, postId, tenantid, userid, useremail }) {
                 setReportSpamState({ flag: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     return (
@@ -786,14 +786,14 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
                             }));
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setVisibility(false);
                     setValidations('');
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -819,7 +819,7 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
 
         // service.getUpdateCommentValues(id, tenantid)
@@ -828,7 +828,7 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
         //         setModalState(true);
         //     })
         //     .catch(err => {
-        //         //console.log(err);
+        //        
         //     })
     }
     const updateCommentValues = (id) => {
@@ -858,13 +858,13 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
                             }));
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
 
 
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -882,11 +882,11 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
                         }));
                     })
                     .catch(err => {
-                        //console.log(err);
+                       
                     })
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
     // const upvoteFunction = (id) => {
@@ -902,11 +902,11 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
     //                     setComments(res.data);
     //                 })
     //                 .catch(err => {
-    //                     //console.log(err);
+    //                    
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
 
@@ -923,11 +923,11 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
     //                     setComments(res.data);
     //                 })
     //                 .catch(err => {
-    //                     //console.log(err);
+    //                    
     //                 })
     //         })
     //         .catch(err => {
-    //             //console.log(err);
+    //            
     //         })
     // }
     const reportSpamFunction = (id) => {
@@ -945,7 +945,7 @@ function CommentComponent({ comments, responseId, tenantid, userid, useremail, p
                 setReportSpamState({ flag: false });
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

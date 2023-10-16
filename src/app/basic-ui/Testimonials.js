@@ -94,7 +94,7 @@ function Testimonials() {
             let result = await adminServices.getAllTestimonial();
             setTestimonialData(result.data);
         } catch (error) {
-            //console.log(error);
+            
         }
     }
 
@@ -124,7 +124,7 @@ function Testimonials() {
             }
         } catch (error) {
             setApproveLoading({ isLoading: false });
-            //console.log(error);
+            
         }
     }
 
@@ -141,7 +141,7 @@ function Testimonials() {
             }
         } catch (error) {
             setRejectLoading({ isLoading: false });
-            //console.log(error);
+            
         }
     }
     const columns = [

@@ -338,7 +338,7 @@ const ContentDelivery = (props) => {
             data = "";
         }
         else {
-            //////console.log(data);
+            //
             var res = data && data.nodes.map(d => d.duration).reduce((a, b) => b + a);
             return res;
         }
@@ -556,7 +556,7 @@ const ContentDelivery = (props) => {
         axios.get(`${COURSE_URL}/courseOrganizer/getPubCourseStructure/${courseId}/${userId}`)
             .then((res) => {
                 menuData = [res.data];
-                //////console.log(res.data)
+                //
                 // setApiData(menuData)
                 let menuItems = menuData.map((item, i) => {
                     let menuItem = returnMenuItem(item, i);
@@ -640,13 +640,7 @@ const ContentDelivery = (props) => {
                                         act,
                                         depAct
                                     );
-                                    console.log(item.id,
-                                        item.filePath,
-                                        item.label,
-                                        ind1,
-                                        item.nodetype,
-                                        act,
-                                        depAct)
+                                  
 
                                 }}
                                 style={{
@@ -718,7 +712,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -732,13 +726,7 @@ const ContentDelivery = (props) => {
                                         act,
                                         depAct
                                     );
-                                    console.log(item.id,
-                                        item.filePath,
-                                        item.label,
-                                        ind1,
-                                        item.nodetype,
-                                        act,
-                                        depAct)
+                           
                                 }}
                                 style={{
                                     marginTop: "8px",
@@ -801,7 +789,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -877,7 +865,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
                                                     }
                                                 });
                                         });
@@ -1012,7 +1000,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
 
                                                     }
                                                 });
@@ -1089,7 +1077,7 @@ const ContentDelivery = (props) => {
                                                         globalState.push(itemContent.label, itemtype.label);
                                                         setIsActive({ folder: itemContent.label, file: item.id })
                                                         handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                        ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+
 
                                                     }
                                                 });
@@ -1242,7 +1230,7 @@ const ContentDelivery = (props) => {
                                                             globalState.push(itemContent.label, itemtype.label);
                                                             setIsActive({ folder: itemContent.label, file: item.id })
                                                             handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                            ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+    
 
                                                         }
                                                     });
@@ -1327,7 +1315,7 @@ const ContentDelivery = (props) => {
 
                     service.getQuizScoringStatus(userId, arr[0])
                         .then((res) => {
-                            console.log("quiz Achieved Percentage " + res.data.quizAchievedPercentage);
+                            // console.log("quiz Achieved Percentage " + res.data.quizAchievedPercentage);
                             setQuizAchievedPercentage(res.data.quizAchievedPercentage);
                         })
                         .catch((err) => {
@@ -1415,7 +1403,7 @@ const ContentDelivery = (props) => {
                                                             globalState.push(itemContent.label, itemtype.label);
                                                             setIsActive({ folder: itemContent.label, file: item.id })
                                                             handleContentVisit(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype, act, depAct);
-                                                            ////console.log(userId, courseId, item.id, item.label, sessionId, itemtype.nodetype);
+    
 
                                                         }
                                                     });
@@ -1550,7 +1538,7 @@ const ContentDelivery = (props) => {
             setUrl(globalContextState.currentPath);
         }
         else if (globalContextState.currentNodeType === "pdf") {
-            console.log("pdf url", DMS_URL + `${globalContextState.currentPath}`, globalContextState)
+            // console.log("pdf url", DMS_URL + `${globalContextState.currentPath}`, globalContextState)
 
             axios
                 .get(DMS_URL + `${globalContextState.currentPath}`)

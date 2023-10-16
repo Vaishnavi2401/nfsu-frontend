@@ -268,7 +268,7 @@ function TopicFeedback(props) {
                             feedbackQuestionReset();
                         }
                     }).catch((err) => {
-                        //console.log(err);
+                       
                         swal(t('error_mesg'), t('something_went_wrong_try_again'), "error");
                     })
             }
@@ -456,7 +456,7 @@ function TopicFeedback(props) {
                 "typeMasterId": 3,
                 "updatedBy": UserId
             }
-            ////console.log(data);
+            
             service.feedbackMasterPost(data)
                 .then(async res => {
                     if (res.status === 201) {
@@ -474,10 +474,10 @@ function TopicFeedback(props) {
                                 }
                             })
                     } else {
-                        //console.log("something is wrong")
+                        
                     }
                 }).catch(err => {
-                    //console.log(err);
+                   
                 })
         }
     }
@@ -509,11 +509,11 @@ function TopicFeedback(props) {
                             setServiceList([{ service: "" }]);
                         } else {
                             swal(t('error_mesg'), t('something_went_wrong_try_again'), "error")
-                            //console.log("something is wrong")
+                            
 
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }
@@ -540,10 +540,10 @@ function TopicFeedback(props) {
                             setServiceList([{ service: "" }]);
                         } else {
                             swal(t('error_mesg'), t('something_went_wrong_try_again'), "error")
-                            //console.log("something is wrong")
+                            
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             }
         }

@@ -82,7 +82,7 @@ const CourseItemGrid = (props) => {
     let searchEngine = useSelector(state => state.searchEngine);
     const um_api = USER_API;
     let currentCourseState;
-    ////console.log(um_api);
+    
     ////console.log("============="+searchEngine);
     let dummyCategory = [];
     if (categoryValue) {
@@ -97,7 +97,7 @@ const CourseItemGrid = (props) => {
             setLoading(true);
             const res = await service.getPublishCourses();
             setCourseState(res.data);
-            ////console.log(res.data);
+            
             setPaidJsonState(res.data.filter(function (ele) {
                 return ele.fees > 0;
             }));
@@ -111,11 +111,11 @@ const CourseItemGrid = (props) => {
 
     useEffect(() => {
         ratingTest();
-        ////console.log(courseState);
+       
     }, [courseState])
 
     const ratingTest = () => {
-        ////console.log(courseState);
+       
         courseState.map((data, i) => {
             ////console.log(data.courseId);
             setRating(rating => [...rating, { itemId: data.courseId, tenantId: 1 }])

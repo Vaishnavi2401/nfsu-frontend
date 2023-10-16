@@ -8,14 +8,13 @@ import Navbar from "../shared/Navbar";
 import SettingsPanel from "../shared/SettingsPanel";
 import Sidebar from "../shared/Sidebar";
 import DataTable from "react-data-table-component";
-import service from "../../services/service";
+import service, {USER_API} from "../../services/service";
 import swal from "sweetalert";
 import { Button, Modal } from "react-bootstrap";
 import UserService from "../../services/UserService";
 import { useTranslation } from "react-i18next";
 import cookies from "js-cookie";
 import moment from "moment";
-import {USER_API} from "../../services/service";
 
 const languages = [
   {
@@ -86,7 +85,7 @@ function LearnersData() {
 
   const um_api = USER_API;
 
-  ////console.log(um_api);
+  
 
   const [getLearnerData, setlearnerData] = useState([]);
   useEffect(() => {
@@ -100,17 +99,17 @@ function LearnersData() {
         setlearnerData(resp.data);
       })
       .catch((err) => {
-        //console.log(err);
+       
       });
   };
 
   // const LearnersDatas = async () => {
   //     try {
   //         let result = await adminServices.getAllLearners()
-  //         //console.log(result.data);
+  //         
   //         setlearnerData(result.data);
   //     } catch (e) {
-  //         //console.log(e)
+  //         
   //     }
   // }
   const [enableLearnerName, setenableLearnerName] = useState();
@@ -139,7 +138,7 @@ function LearnersData() {
 
         // window.location.reload();
 
-        ////console.log(resp.data);
+       
       )
       .catch((err) => {
         //console.log("inside the Catch enable")
@@ -149,7 +148,7 @@ function LearnersData() {
           `${t("something_went_wrong_try_later")}`,
           "error"
         );
-        //console.log(err);
+       
       });
 
     // setenableLearnerName(userId);
@@ -164,11 +163,11 @@ function LearnersData() {
     //     })
     //     // window.location.reload();
 
-    //     ////console.log(resp.data);
+    //    
     // }).catch((err) => {
 
     //     setEnableLoading({ isLoading: false });
-    //     //console.log(err);
+    //    
     // })
   };
 
@@ -191,7 +190,7 @@ function LearnersData() {
         }
         // window.location.reload();
 
-        ////console.log(resp.data);
+       
       )
       .catch((err) => {
         //console.log("inside the Catch disable")
@@ -202,7 +201,7 @@ function LearnersData() {
           `${t("something_went_wrong_try_later")}`,
           "error"
         );
-        //console.log(err);
+       
       });
 
     // setDisableLearnerName(userId);
@@ -220,11 +219,11 @@ function LearnersData() {
     //     );
     //     // window.location.reload();
 
-    //     ////console.log(resp.data);
+    //    
     //   })
     //   .catch((err) => {
     //     setDisableLoading({ isLoading: false });
-    //     //console.log(err);
+    //    
     //   });
   };
 

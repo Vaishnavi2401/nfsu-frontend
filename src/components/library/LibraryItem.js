@@ -72,7 +72,7 @@ function LibraryItem(props) {
             .then(res => {
                 setCourses(res.data);
             }).catch(err => {
-                //console.log(err);
+               
             })
     }, [])
 
@@ -98,7 +98,7 @@ function LibraryItem(props) {
                                 })
                         }
                     }).catch(err => {
-                        //console.log(err);
+                       
                     })
             } else {
                 swal(t('cancelled'), t('your_course_is_safe'), "error");

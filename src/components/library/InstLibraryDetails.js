@@ -45,7 +45,7 @@ import TopicFeedback from "../../pages/instructor/instCourses/TopicFeedback";
 import { BreadcrumbBox } from "../common/Breadcrumb";
 import UserService from "../../services/UserService";
 import instructorService from "../../services/instructorService";
-import service from "../../services/service";
+import service, {USER_API} from "../../services/service";
 import md5 from "md5";
 import ViewPdf from "../../pages/instructor/ViewPdf.js";
 import CryptoJS from "crypto-js";
@@ -109,8 +109,8 @@ function InstLibraryDetails(props) {
         UserService.generateToken();
     }, []);
 
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api = USER_API;
+    
 
     const [ratingCount, setRatingCount] = useState(0);
     let tenantId = 1;
@@ -212,7 +212,7 @@ function InstLibraryDetails(props) {
 
     useEffect(() => {
 
-        console.log("Called isDecodeValid")
+        // console.log("Called isDecodeValid")
 
         if (isDecodeValid !== "VALID") {
             decodeHandler()
@@ -327,7 +327,7 @@ function InstLibraryDetails(props) {
                     ////console.log('UserDetail-------------'+JSON.stringify(res.data));
                 })
                 .catch((err) => {
-                    //console.log(err);
+                   
                 });
         }
     }, [courseId]);
@@ -358,7 +358,7 @@ function InstLibraryDetails(props) {
                 setNoOfContents(data.nodes.length);
             });
         } catch (e) {
-            //console.log(e)
+            
         }
     };
     const fatchUserCount = async () => {
@@ -366,7 +366,7 @@ function InstLibraryDetails(props) {
             const res = await service.userCount(courseId, tenantId);
             setUserCount(res.data.userCount);
         } catch (error) {
-            //console.log(error)
+            
         }
     };
 
@@ -375,9 +375,9 @@ function InstLibraryDetails(props) {
             const res = await service.getoverallRating(courseId, tenantId);
             setRating(res.data);
             setRatingCount(res.data.length);
-            ////console.log(res.data);
+            
         } catch (e) {
-            //console.log(e)
+            
         }
     };
     const fatchServerTime = async () => {
@@ -385,7 +385,7 @@ function InstLibraryDetails(props) {
             const res = await instructorService.getServerTime();
             setStartDate(new Date(res.data));
         } catch (e) {
-            //console.log(e)
+            
         }
     };
 
@@ -1581,7 +1581,7 @@ function InstLibraryDetails(props) {
                     const pdfDomain = "gfsu3.hyderabad.cdac.in:8080"
                     const finalSubDomain = pdfDomain + "/" + safeEncodedString
 
-                    console.log("finalSubDomain", finalSubDomain)
+                    // console.log("finalSubDomain", finalSubDomain)
 
                     setUrl(finalSubDomain);
                 } else {
@@ -1911,7 +1911,7 @@ function InstLibraryDetails(props) {
                         const pdfDomain = "gfsu3.hyderabad.cdac.in:8080"
                         const finalSubDomain = pdfDomain + "/" + safeEncodedString
 
-                        console.log("finalSubDomain", finalSubDomain)
+                        // console.log("finalSubDomain", finalSubDomain)
 
                         setUrl(finalSubDomain);
                     } else {
@@ -2020,7 +2020,7 @@ function InstLibraryDetails(props) {
                     }
                 })
                 .catch((err) => {
-                    //console.log(err);
+                   
                 });
         }
     };
@@ -2068,7 +2068,7 @@ function InstLibraryDetails(props) {
                     }
                 })
                 .catch((err) => {
-                    //console.log(err);
+                   
                 });
         }
     };
@@ -2173,7 +2173,7 @@ function InstLibraryDetails(props) {
                             }
                         })
                         .catch((err) => {
-                            //console.log(err);
+                           
                         });
                 }
             });
@@ -2207,7 +2207,7 @@ function InstLibraryDetails(props) {
                             }
                         })
                         .catch((err) => {
-                            //console.log(err);
+                           
                         });
                 }
             });
@@ -2231,11 +2231,11 @@ function InstLibraryDetails(props) {
                         setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                     });
                 } else {
-                    //console.log("err");
+                    
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 
@@ -2255,11 +2255,11 @@ function InstLibraryDetails(props) {
                     });
                 } else {
                     setLoading(false);
-                    //console.log("err");
+                    
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 
@@ -2279,11 +2279,11 @@ function InstLibraryDetails(props) {
                     });
                 } else {
                     setLoading(false);
-                    //console.log("err");
+                    
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 
@@ -2294,7 +2294,7 @@ function InstLibraryDetails(props) {
                 await swal(t("success"), t('library_disable_msg'), "success");
             })
             .catch((err) => {
-                //console.log("err");
+                
             });
     };
 
@@ -2316,11 +2316,11 @@ function InstLibraryDetails(props) {
                         setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                     });
                 } else {
-                    //console.log("err");
+                    
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 
@@ -2342,11 +2342,11 @@ function InstLibraryDetails(props) {
                         setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                     });
                 } else {
-                    //console.log("err");
+                    
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 

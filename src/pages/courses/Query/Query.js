@@ -51,7 +51,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
     const { globalContextState, setGlobalContextState } = useContext(GlobalContext)
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getInstructor, setInstructor] = useState();
     //const [getPostedValues, setPostedValue] = useState([]);
@@ -87,7 +87,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [isQueryEmpty, isQueryExist])
 
@@ -118,7 +118,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                     ////console.log("Query test" ,res.data);
                     setGlobalContextState(prevState => { return { ...prevState, queryData: res.data } })
                     //setPostedValue(res.data);
-                    ////console.log(res.data)
+                    
 
                     if (globalContextState.queryData.length === 0) {
                         setIsQueryEmpty(true);
@@ -173,7 +173,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                     setSubmitHandlerLoading({ isLoading: false });
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -185,7 +185,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                 setResponse(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         setVisibility(false);
     }
@@ -199,7 +199,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                 }
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -210,7 +210,7 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -250,14 +250,14 @@ function Query({ courseid, tenantid, userid, itemid, instructor }) {
                             setUpdateResponseValuesLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setModalState(false);
                     setValidations({ value: "" });
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -391,7 +391,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
 
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         setVisibility(false);
     }
@@ -403,7 +403,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                     //setPostedValue(res.data);
                     ////console.log( res.data);
                     setGlobalContextState(prevState => { return { ...prevState, queryData: res.data } })
-                    ////console.log(res.data)
+                    
                 })
                 .catch(err => {
                     //console.log("Query Service is not working");
@@ -415,7 +415,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                     ////console.log( res.data);
                     setGlobalContextState(prevState => { return { ...prevState, queryData: res.data } })
                     //setPostedValue(res.data);
-                    ////console.log(res.data)
+                    
                 })
                 .catch(err => {
                     //console.log("Query Service is not working");
@@ -430,7 +430,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
     const submitHandler = () => {
 
         const um_api = USER_API;
-        ////console.log(um_api);
+        
 
         if (!editorState) {
             setValidations(t('blank_title_not_allowed'));
@@ -454,14 +454,14 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                             setSubmitHandlerLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                     setVisibility(false);
                     setValidations('');
                     setEditorState('');
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
 
@@ -474,7 +474,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                 setModalState(true);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -517,7 +517,7 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                             setUpdateResponseValuesLoading({ isLoading: false });
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
 
                 })
@@ -539,12 +539,12 @@ function ResponseComponent({ response, postId, tenantid, userid, courseid, instr
                             getQuestions();
                         })
                         .catch(err => {
-                            //console.log(err);
+                           
                         })
                 }
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 

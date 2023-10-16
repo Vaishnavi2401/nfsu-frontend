@@ -54,7 +54,7 @@ function Contact() {
     useEffect(() => {
         service.getContactCaptcha()
             .then((res) => {
-                //console.log(res.data);
+                
                 setData(res.data.captchaImage);
                 setCaptchaHash(res.data.captchaHash);
                 setCaptchaToken(res.data.captchaToken);
@@ -64,7 +64,7 @@ function Contact() {
     const handleRefereshCaptcha = () => {
         service.getContactCaptcha()
             .then((res) => {
-                //console.log(res.data);
+                
                 setData(res.data.captchaImage);
                 setCaptchaHash(res.data.captchaHash);
                 setCaptchaToken(res.data.captchaToken);

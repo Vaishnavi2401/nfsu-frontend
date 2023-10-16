@@ -18,7 +18,7 @@ function Instructor() {
        }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     const [getInstructordata, setInstructordata] = useState([]);
     useEffect(() => {
@@ -27,7 +27,7 @@ function Instructor() {
                 setInstructordata(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }, [])
     const [getInstructorImg, setInstructorImg] = useState({

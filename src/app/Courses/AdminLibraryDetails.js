@@ -114,8 +114,8 @@ function AdminLibraryDetails(props) {
     let url = mainurl + courseID + '/' + tenantID;
     // //console.log("tenantId in course details file" + tenantId);
     const um_api = USER_API;
-    ////console.log(um_api);
-    ////console.log(dms_url);
+    
+    //
 
     const initialStateId = {
         firstName: '',
@@ -193,7 +193,7 @@ function AdminLibraryDetails(props) {
                 setCourseDetails(res.data);
                 setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
             } catch (e) {
-                //console.log(e)
+                
             }
         }
         const fatchUserCount = async () => {
@@ -201,7 +201,7 @@ function AdminLibraryDetails(props) {
                 const res = await service.userCount(courseId, tenantId);
                 setUserCount(res.data.userCount);
             } catch (error) {
-                //console.log(error)
+                
             }
         }
 
@@ -210,9 +210,9 @@ function AdminLibraryDetails(props) {
         //         const res = await service.getoverallRating(courseId, tenantId);
         //         setRating(res.data);
         //         setRatingCount(res.data.length);
-        //         ////console.log(res.data);
+        //         
         //     } catch (e) {
-        //         //console.log(e)
+        //         
         //     }
         // }
         // const fatchServerTime = async () => {
@@ -220,7 +220,7 @@ function AdminLibraryDetails(props) {
         //         const res = await instructorService.getServerTime();
         //         setStartDate(new Date(res.data));
         //     } catch (e) {
-        //         //console.log(e)
+        //         
         //     }
         // }
 
@@ -314,7 +314,7 @@ function AdminLibraryDetails(props) {
         //     .then(res => {
         //         setUserCount(res.data.userCount);
         //     }).catch(error =>
-        //         //console.log(error)
+        //         
         //     )
 
         const accordionButton = document.querySelectorAll(".accordion-button");
@@ -341,7 +341,7 @@ function AdminLibraryDetails(props) {
                 ////console.log('UserDetail-------------'+res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             });
 
         ////console.log("input data "+ userId + courseId + tenantId);
@@ -376,10 +376,10 @@ function AdminLibraryDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -394,10 +394,10 @@ function AdminLibraryDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -413,10 +413,10 @@ function AdminLibraryDetails(props) {
                             setCourseStructureJson(JSON.parse(res.data.courseStructureJson));
                         })
                 } else {
-                    //console.log("err");
+                    
                 }
             }).catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -425,17 +425,13 @@ function AdminLibraryDetails(props) {
         if (userId !== " ") {
             service.getRoleIdbyCourseIdandUserId(courseId, userId)
                 .then((res) => {
-                    ////console.log("role id " + res.data);
-                    ////console.log("role status " + res.status);
                     if (res.status === 200) {
                         setRoleId(res.data);
                     }
                     else {
-                        ////console.log("role id " + res.data);
                     }
                 })
                 .catch((err) => {
-                    //console.log("role id error " + err);
                 })
         }
     }
@@ -456,25 +452,22 @@ function AdminLibraryDetails(props) {
                 res.data.assignedQuizzes.map((data) => {
 
                     if (data.isPassed === true) {
-                        ////console.log("Inside True of getAssignedQuizzesStatus");
                         setCertificateViewButton(true);
                         setStatusCer(true);
-                        ////console.log(certificateViewButton);
-                        ////console.log("true................."); 
+                        
                     }
                     else {
-                        ////console.log("Inside Else of getAssignedQuizzesStatus")
+                        
                         setCertificateViewButton2(false);
-                        ////console.log(certificateViewButton2);
                     }
-                    ////console.log(data.isPassed+'----------------------------------');
-                    ////console.log(certificateViewButton + ' certificateViewButton');
-                    ////console.log(certificateViewButton2 + ' certificateViewButton2');
+                    
+                    
+                   
                 })
 
             })
             .catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -482,8 +475,7 @@ function AdminLibraryDetails(props) {
         getQuizzesStatus(userId, courseId);
         handleContentDependOnDate();
         instructorData();
-        ////console.log(certificateViewButton);
-        ////console.log("OUTTTPUT ", certificateViewButton2);
+        
     }, [statusCer])
 
     useEffect(() => {
@@ -665,7 +657,7 @@ function AdminLibraryDetails(props) {
                 getOverAllRating();
             }).catch(err => {
                 setLoading(false);
-                //console.log(err);
+               
             });
         }
     }
@@ -701,7 +693,7 @@ function AdminLibraryDetails(props) {
                 _checkthis(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -765,7 +757,7 @@ function AdminLibraryDetails(props) {
                 refreshPage();
             })
             .catch(err => {
-                //console.log(err);
+               
             })
         //swal("Review deleted  Successfully!", "You can check in the  Reviews!", "success");
     }
@@ -848,7 +840,7 @@ function AdminLibraryDetails(props) {
                 setInstructor(res.data);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -877,7 +869,7 @@ function AdminLibraryDetails(props) {
                 if (res.status == '200') {
 
                     ////console.log("toGenerateCertificate123", res);
-                    ////console.log(res.data);
+                    
                     setCertificateUrl(res.data);
 
 
@@ -1658,7 +1650,7 @@ function AdminLibraryDetails(props) {
                                                 <div className="instructor-item">
                                                     {
                                                         getInstructor.map((data, i) => {
-                                                            // //console.log(data);
+                                                            
                                                             return (
                                                                 <Row>
                                                                     {/* <Col md="4"> */}

@@ -84,7 +84,7 @@ function AdminViewAllLibrary(props) {
             let result = await service.getAllLibraryForAdmin();
             setCourseData(result.data);
         } catch (e) {
-            //console.log(e);
+            
         }
     };
 
@@ -140,7 +140,7 @@ function AdminViewAllLibrary(props) {
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 
@@ -158,7 +158,7 @@ function AdminViewAllLibrary(props) {
                 }
             })
             .catch((err) => {
-                //console.log(err);
+               
             });
     };
 

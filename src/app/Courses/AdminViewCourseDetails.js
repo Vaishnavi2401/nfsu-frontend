@@ -96,7 +96,7 @@ function AdminViewCourseDetails(props) {
     }, []);
 
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     let courseId = props.match.params.id;
     let tenantId = 1;
@@ -120,7 +120,7 @@ function AdminViewCourseDetails(props) {
             .then(res => {
                 setCourseDetails(JSON.parse(res.data));
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -129,7 +129,7 @@ function AdminViewCourseDetails(props) {
             .then(res => {
                 setlearnerData(res.data);
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -138,7 +138,7 @@ function AdminViewCourseDetails(props) {
             .then(res => {
                 setInstructorData(res.data);
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -147,7 +147,7 @@ function AdminViewCourseDetails(props) {
             const res = await service.getoverallRating(courseId, tenantId);
             setRating(res.data);
         } catch (e) {
-            //console.log(e)
+            
         }
     }
 
@@ -156,7 +156,7 @@ function AdminViewCourseDetails(props) {
             const res = await service.userCount(courseId, tenantId);
             setUserCount(res.data.userCount);
         } catch (error) {
-            //console.log(error)
+            
         }
     }
 

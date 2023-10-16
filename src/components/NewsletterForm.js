@@ -98,7 +98,7 @@ function NewsletterForm() {
     //             document.getElementById('name2').value = '';
     //             document.getElementById('email2').value = '';
     //         }).catch(err => {
-    //             //console.log(err);
+    //            
     //         });
     //     }
     // }
@@ -139,7 +139,7 @@ function NewsletterForm() {
                 //     document.getElementById('name2').value = '';
                 //     document.getElementById('email2').value = '';
                 // }).catch(err => {
-                //     //console.log(err);
+                //    
                 // });
             }
         }

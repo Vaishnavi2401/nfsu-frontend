@@ -91,7 +91,7 @@ function DataTableAssessment({ tenantId, courseId }) {
     let userId = UserService.getUserid();
     let userEmail = UserService.getEmail();
     const um_api = USER_API;
-    ////console.log(um_api);
+    
 
     useEffect(() => {
         // service.getAssignedQuizDetails(courseId, userEmail, tenantId)
@@ -154,7 +154,7 @@ function DataTableAssessment({ tenantId, courseId }) {
                 setAttemptedID(res.data[4]);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -197,7 +197,7 @@ function DataTableAssessment({ tenantId, courseId }) {
 
                 })
                 .catch(err => {
-                    //console.log(err);
+                   
                 })
         }
         if (atmpid === 0) {
@@ -356,7 +356,7 @@ function DataTableAssessment({ tenantId, courseId }) {
                 setQuesTitle(xml.attributes.title);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -393,7 +393,7 @@ function DataTableAssessment({ tenantId, courseId }) {
                 setQuesTitle(xml.attributes.title);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -429,7 +429,7 @@ function DataTableAssessment({ tenantId, courseId }) {
             timeslice: convertMinutestoSeconds(gettimer)
         })
             .then(res => {
-                // //console.log(res.data)
+                // 
                 const xml_data = `${res.data}`
                 var XMLParser = require('react-xml-parser');
                 var xml = new XMLParser().parseFromString(xml_data);
@@ -439,7 +439,7 @@ function DataTableAssessment({ tenantId, courseId }) {
                 setQuesTitle(xml.attributes.title);
             })
             .catch(err => {
-                //console.log(err);
+               
             })
     }
 
@@ -516,7 +516,7 @@ function DataTableAssessment({ tenantId, courseId }) {
             {firstVisibility ?
                 <div>
 
-                    {assessDetails.length === 0 ? (<a className="btn btn-success btn-lg btn-block" href={`${Assessment_Delivery}/assessment/delivery/dashboard/courseId/${courseId}`} onClick={() => viewAssessmentFun()} disabled={viewAssessment.isLoading ? "true" : ""}>{viewAssessment.isLoading ? (<> Loading...</>) : "Take Online Quiz"}</a>) :
+                    {assessDetails.length === 0 ? (<a className="btn btn-success btn-lg btn-block" href={`${Assessment_Delivery}/assessment/delivery/dashboard/courseId/${courseId}/nfsu`} onClick={() => viewAssessmentFun()} disabled={viewAssessment.isLoading ? "true" : ""}>{viewAssessment.isLoading ? (<> Loading...</>) : "Take Online Quiz"}</a>) :
 
                         <table className="table" >
                             <thead>

@@ -119,7 +119,7 @@ export default function CourseWiseLearnerList() {
             })
             setOption(courseData);
         }).catch((err) => {
-            //console.log(err);
+           
         })
     }
 
@@ -303,7 +303,7 @@ export default function CourseWiseLearnerList() {
     ////console.log("filteredItems ", filteredItems);
 
     const tableExportExcel = () => {
-        ////console.log(getLearnerData);
+       
         var checkData = [];
         const header = ["Name", "E-mail", "Mobile No.", "Designation", "Date of Birth", "Qualification", "Enrollment Date", "Course Name", "Category Name", "Course Start Date", "Course End Date", "Quiz Report"]
 

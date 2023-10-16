@@ -6,7 +6,7 @@ import Navbar from '../../app/shared/Navbar';
 import Sidebar from '../../app/shared/Sidebar';
 import FilterDataTable from '../../pages/instructor/FilterDataTable';
 import learnerService from '../../services/learnerService';
-import service from '../../services/service';
+import service, {USER_API} from '../../services/service';
 import UserService from '../../services/UserService';
 import StickyMenu from '../common/StickyMenu';
 import { Styles } from '../library/styles/coursedetails.js';
@@ -66,8 +66,8 @@ function AdminViewLibraryContent(props) {
         UserService.generateToken();
        }, []);
        
-    const um_api = UserService.USER_API;
-    ////console.log(um_api);
+    const um_api = USER_API;
+    
 
     let courseId = props.match.params.id;
     let tenantId = 1;
@@ -94,11 +94,6 @@ function AdminViewLibraryContent(props) {
         getCourseInstructors();
     }, [])
 
-    useEffect(() => {
-        ////console.log("geturl value---", getUrl);
-        ////console.log("getContentType===", getContentType);
-    }, [urlModal])
-
     // const usersPerPage = 8;
     // const pagesVisited = pageNumber * usersPerPage;
     // const pageCount = Math.ceil(currentCourseState.length / usersPerPage);
@@ -106,12 +101,12 @@ function AdminViewLibraryContent(props) {
 
 
     const getContentList = () => {
-        ////console.log(courseId);
+       
         instructorService.getLibraryContent(courseId).then((resp) => {
-            ////console.log(resp.data)
+           
             setContentData(resp.data.nodes[0].nodes)
         }).catch((err) => {
-            //console.log(err)
+           
         })
     }
 
@@ -131,7 +126,7 @@ function AdminViewLibraryContent(props) {
             setContentLabel(contentLabel);
             setUrlModal(true)
         }).catch((err) => {
-            //console.log(err);
+           
         })
 
 
@@ -150,9 +145,9 @@ function AdminViewLibraryContent(props) {
                 swal(`${t('success')}`, `${t('content_approve_msg')}`, "success")
                 getContentList();
             }
-            ////console.log(resp.data);
+           
         }).catch((err) => {
-            //console.log(err);
+           
         })
 
     }
@@ -183,7 +178,7 @@ function AdminViewLibraryContent(props) {
             description: desp,
         }
 
-        ////console.log(data);
+        
 
         const check = validateError();
         if (check) {
@@ -195,7 +190,7 @@ function AdminViewLibraryContent(props) {
                     getContentList();
                 }
             }).catch((err) => {
-                //console.log(err);
+               
             })
         }
 
@@ -236,7 +231,7 @@ function AdminViewLibraryContent(props) {
             .then(res => {
                 setCourseDetails(JSON.parse(res.data));
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -245,7 +240,7 @@ function AdminViewLibraryContent(props) {
             .then(res => {
                 setlearnerData(res.data);
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -254,7 +249,7 @@ function AdminViewLibraryContent(props) {
             .then(res => {
                 setInstructorData(res.data);
             }).catch(err => {
-                //console.log(err)
+               
             })
     }
 
@@ -263,7 +258,7 @@ function AdminViewLibraryContent(props) {
             const res = await service.getoverallRating(courseId, tenantId);
             setRating(res.data);
         } catch (e) {
-            //console.log(e)
+            
         }
     }
     const [courseState, setCourseState] = useState([]);
